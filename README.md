@@ -7,11 +7,11 @@ to describe its wire format. The XDR description for NFSv4 can be found
 in [RFC 7531](https://datatracker.ietf.org/doc/html/rfc7531).
 
 This repository provides a compiler that is capable of converting the
-XDR description of NFSv4 to Go code. For each data type in the XDR
-description, a Go language equivalent is created. Each data type in Go
-implements the `io.ReaderFrom` and `io.WriterTo` interfaces, allowing
-instances of the data type to be deserialized and serialized,
-respectively.
+XDR description of NFSv4, and other protocols, to Go code. For each data
+type in the XDR description, a Go language equivalent is created. Each
+data type in Go implements the `io.ReaderFrom` and `io.WriterTo`
+interfaces, allowing instances of the data type to be deserialized and
+serialized, respectively.
 
 Furthermore, the XDR to Go compiler is capable of emitting interfaces
 for ONC RPCv2 ("Sun RPC") program definitions, as described in
