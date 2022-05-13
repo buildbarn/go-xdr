@@ -1,0 +1,31 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "runtime",
+    srcs = [
+        "ascii_string.go",
+        "bool.go",
+        "integer.go",
+        "opaque.go",
+        "utf8_string.go",
+    ],
+    importpath = "github.com/buildbarn/go-xdr/pkg/runtime",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "runtime_test",
+    srcs = [
+        "ascii_string_test.go",
+        "bool_test.go",
+        "integer_test.go",
+        "opaque_test.go",
+        "utf8_string_test.go",
+    ],
+    deps = [
+        ":runtime",
+        "//internal/mock",
+        "@com_github_golang_mock//gomock",
+        "@com_github_stretchr_testify//require",
+    ],
+)

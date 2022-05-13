@@ -1,0 +1,20 @@
+load("//:xdr.bzl", "go_xdr_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_xdr_library(
+    name = "rpcv2_xdr",
+    src = "rpcv2.x",
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "rpcv2",
+    srcs = [
+        ":rpcv2_xdr",  # keep
+    ],
+    importpath = "github.com/buildbarn/go-xdr/pkg/protocols/rpcv2",  # keep
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/runtime",  # keep
+    ],
+)

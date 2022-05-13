@@ -1,0 +1,37 @@
+# gazelle:ignore
+
+load("@bazel_gomock//:gomock.bzl", "gomock")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+gomock(
+    name = "aliases",
+    out = "aliases.go",
+    interfaces = [
+        "Reader",
+        "Writer",
+    ],
+    library = "//internal/mock/aliases",
+    package = "mock",
+)
+
+gomock(
+    name = "rpcserver",
+    out = "rpcserver.go",
+    interfaces = ["Service"],
+    library = "//pkg/rpcserver",
+    package = "mock",
+)
+
+go_library(
+    name = "mock",
+    srcs = [
+        ":aliases.go",
+        ":rpcserver.go",
+    ],
+    importpath = "github.com/buildbarn/go-xdr/internal/mock",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//pkg/protocols/rpcv2",
+        "@com_github_golang_mock//gomock",
+    ],
+)

@@ -1,0 +1,22 @@
+load("//:xdr.bzl", "go_xdr_library")
+load("//pkg/compiler/tests:diff.bzl", "diff_test")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_xdr_library(
+    name = "nested_generated",
+    src = "nested.x",
+)
+
+diff_test(
+    name = "diff_test",
+    after = ":nested_generated",
+    before = "nested.go",
+)
+
+go_library(
+    name = "nested",
+    srcs = ["nested.go"],
+    importpath = "github.com/buildbarn/go-xdr/pkg/compiler/tests/nested",
+    visibility = ["//visibility:public"],
+    deps = ["//pkg/runtime"],
+)

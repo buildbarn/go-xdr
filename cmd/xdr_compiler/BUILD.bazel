@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "xdr_compiler_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/buildbarn/go-xdr/cmd/xdr_compiler",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//pkg/compiler/model",
+        "//pkg/compiler/parser",
+        "@com_github_antlr_antlr4_runtime_go_antlr//:antlr",
+    ],
+)
+
+go_binary(
+    name = "xdr_compiler",
+    embed = [":xdr_compiler_lib"],
+    visibility = ["//visibility:public"],
+)

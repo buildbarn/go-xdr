@@ -1,0 +1,21 @@
+load("@rules_antlr//antlr:antlr4.bzl", "antlr")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+antlr(
+    name = "xdr",
+    srcs = ["XDR.g4"],
+    language = "Go",
+)
+
+go_library(
+    name = "parser",
+    srcs = [
+        ":xdr",  # keep
+    ],
+    importpath = "github.com/buildbarn/go-xdr/pkg/compiler/parser",  # keep
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/compiler/model",  # keep
+        "@com_github_antlr_antlr4_runtime_go_antlr//:antlr",  # keep
+    ],
+)

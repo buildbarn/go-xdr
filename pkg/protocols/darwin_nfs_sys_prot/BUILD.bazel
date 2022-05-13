@@ -1,0 +1,20 @@
+load("//:xdr.bzl", "go_xdr_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_xdr_library(
+    name = "darwin_nfs_sys_prot_xdr",
+    src = "darwin_nfs_sys_prot.x",
+    deps = ["//pkg/protocols/nfsv4:nfsv4_xdr"],
+)
+
+go_library(
+    name = "darwin_nfs_sys_prot",
+    srcs = [
+        ":darwin_nfs_sys_prot_xdr",  # keep
+    ],
+    importpath = "github.com/buildbarn/go-xdr/pkg/protocols/darwin_nfs_sys_prot",  # keep
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/runtime",  # keep
+    ],
+)
