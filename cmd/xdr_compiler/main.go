@@ -2,10 +2,13 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"log"
 	"math/big"
 	"os"
+	"path/filepath"
+	"strings"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/buildbarn/go-xdr/pkg/compiler/model"
@@ -92,15 +95,30 @@ func (ed *errorDetector) ReportContextSensitivity(recognizer antlr.Parser, dfa *
 	ed.ReportContextSensitivity(recognizer, dfa, startIndex, stopIndex, prediction, configs)
 }
 
+type stringList []string
+
+func (sl *stringList) String() string {
+	return strings.Join(*sl, ":")
+}
+
+func (sl *stringList) Set(v string) error {
+	*sl = append(*sl, v)
+	return nil
+}
+
 func main() {
-	if len(os.Args) != 3 {
-		log.Fatal("Usage: in.x out.go")
+	var importPaths stringList
+	flag.Var(&importPaths, "I", "Add search path for source files")
+	flag.Parse()
+	args := flag.Args()
+	if len(args) != 2 {
+		log.Fatal("Usage: [-I import_path] in.x out.go")
 	}
 
 	r := simpleResolver{
 		constants:      map[string]*big.Int{},
 		types:          map[string]typeInfo{},
-		pendingImports: []string{os.Args[1]},
+		pendingImports: []string{args[0]},
 	}
 
 	processedImports := map[string]struct{}{}
@@ -115,10 +133,19 @@ func main() {
 		}
 		processedImports[path] = struct{}{}
 
-		input, err := antlr.NewFileStream(path)
-		if err != nil {
-			log.Fatalf("Failed to open file %#v: %s", path, err)
+		var input *antlr.FileStream
+		for _, importPath := range importPaths {
+			var err error
+			input, err = antlr.NewFileStream(filepath.Join(importPath, path))
+			if err == nil {
+				goto FoundSourceFile
+			}
+			if !os.IsNotExist(err) {
+				log.Fatalf("Failed to open file %#v: %s", path, err)
+			}
 		}
+		log.Fatalf("File %#v not found in any of the import paths", path)
+	FoundSourceFile:
 		p := parser.NewXDRParser(
 			antlr.NewCommonTokenStream(
 				parser.NewXDRLexer(input),
@@ -142,7 +169,7 @@ func main() {
 	}
 
 	// Emit the resulting Go source file.
-	f, err := os.OpenFile(os.Args[2], os.O_CREATE|os.O_WRONLY, 0o666)
+	f, err := os.OpenFile(args[1], os.O_CREATE|os.O_WRONLY, 0o666)
 	if err != nil {
 		log.Fatal("Failed to open output file: ", err)
 	}
