@@ -528,7 +528,7 @@ func (m *Stringentry3) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Next
-		if len(m) > 1 {
+		if uint(len(m)) > 1 {
 			err = fmt.Errorf("size of %d elements exceeds stringentry3.next's maximum of 1 elements", len(m))
 			goto done
 		}
@@ -596,7 +596,7 @@ done:
 
 func WriteStringlist3(w io.Writer, m []Stringentry3) (nTotal int64, err error) {
 	var nField int64
-	if len(m) > 1 {
+	if uint(len(m)) > 1 {
 		err = fmt.Errorf("size of %d elements exceeds stringlist3's maximum of 1 elements", len(m))
 		goto done
 	}
