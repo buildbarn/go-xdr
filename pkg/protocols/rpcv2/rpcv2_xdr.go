@@ -1478,7 +1478,7 @@ func (m *AuthsysParms) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Gids
-		if len(m) > 16 {
+		if uint(len(m)) > 16 {
 			err = fmt.Errorf("size of %d elements exceeds authsys_parms.gids's maximum of 16 elements", len(m))
 			goto done
 		}

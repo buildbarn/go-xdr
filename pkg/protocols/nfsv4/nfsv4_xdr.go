@@ -493,7 +493,7 @@ done:
 
 func WriteBitmap4(w io.Writer, m []uint32) (nTotal int64, err error) {
 	var nField int64
-	if len(m) > 4294967295 {
+	if uint(len(m)) > 4294967295 {
 		err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
 		goto done
 	}
@@ -1079,7 +1079,7 @@ done:
 
 func WritePathname4(w io.Writer, m []string) (nTotal int64, err error) {
 	var nField int64
-	if len(m) > 4294967295 {
+	if uint(len(m)) > 4294967295 {
 		err = fmt.Errorf("size of %d elements exceeds pathname4's maximum of 4294967295 elements", len(m))
 		goto done
 	}
@@ -1525,7 +1525,7 @@ func (m *FsLocation4) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.Server
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds fs_location4.server's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -1544,7 +1544,7 @@ func (m *FsLocation4) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Rootpath
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds pathname4's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -1651,7 +1651,7 @@ func (m *FsLocations4) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.FsRoot
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds pathname4's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -1670,7 +1670,7 @@ func (m *FsLocations4) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Locations
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds fs_locations4.locations's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -2091,7 +2091,7 @@ done:
 
 func WriteFattr4SupportedAttrs(w io.Writer, m []uint32) (nTotal int64, err error) {
 	var nField int64
-	if len(m) > 4294967295 {
+	if uint(len(m)) > 4294967295 {
 		err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
 		goto done
 	}
@@ -2456,7 +2456,7 @@ done:
 
 func WriteFattr4Acl(w io.Writer, m []Nfsace4) (nTotal int64, err error) {
 	var nField int64
-	if len(m) > 4294967295 {
+	if uint(len(m)) > 4294967295 {
 		err = fmt.Errorf("size of %d elements exceeds fattr4_acl's maximum of 4294967295 elements", len(m))
 		goto done
 	}
@@ -3874,7 +3874,7 @@ func (m *Fattr4) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.Attrmask
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -5583,7 +5583,7 @@ func (m *Create4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Attrset
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -5948,7 +5948,7 @@ func (m *Getattr4args) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.AttrRequest
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -9834,7 +9834,7 @@ func (m *Open4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Attrset
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -11152,7 +11152,7 @@ func (m *Readdir4args) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.AttrRequest
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -12783,7 +12783,7 @@ done:
 
 func WriteSecinfo4resok(w io.Writer, m []Secinfo4) (nTotal int64, err error) {
 	var nField int64
-	if len(m) > 4294967295 {
+	if uint(len(m)) > 4294967295 {
 		err = fmt.Errorf("size of %d elements exceeds SECINFO4resok's maximum of 4294967295 elements", len(m))
 		goto done
 	}
@@ -12924,7 +12924,7 @@ func (m *Secinfo4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Resok4
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds SECINFO4resok's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -13107,7 +13107,7 @@ func (m *Setattr4res) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Attrsset
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -18424,7 +18424,7 @@ func (m *Compound4args) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Argarray
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds COMPOUND4args.argarray's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -18541,7 +18541,7 @@ func (m *Compound4res) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Resarray
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds COMPOUND4res.resarray's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -18704,7 +18704,7 @@ func (m *CbGetattr4args) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.AttrRequest
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -19634,7 +19634,7 @@ func (m *CbCompound4args) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Argarray
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds CB_COMPOUND4args.argarray's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -19752,7 +19752,7 @@ func (m *CbCompound4res) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Resarray
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds CB_COMPOUND4res.resarray's maximum of 4294967295 elements", len(m))
 			goto done
 		}

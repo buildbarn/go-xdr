@@ -41,7 +41,7 @@ done:
 
 func WriteBitmap(w io.Writer, m []uint32) (nTotal int64, err error) {
 	var nField int64
-	if len(m) > 4294967295 {
+	if uint(len(m)) > 4294967295 {
 		err = fmt.Errorf("size of %d elements exceeds bitmap's maximum of 4294967295 elements", len(m))
 		goto done
 	}
@@ -130,7 +130,7 @@ done:
 
 func WritePathname(w io.Writer, m []string) (nTotal int64, err error) {
 	var nField int64
-	if len(m) > 4294967295 {
+	if uint(len(m)) > 4294967295 {
 		err = fmt.Errorf("size of %d elements exceeds pathname's maximum of 4294967295 elements", len(m))
 		goto done
 	}
@@ -315,7 +315,7 @@ func (m *NfsFlagSet) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.Mask
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -334,7 +334,7 @@ func (m *NfsFlagSet) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.Value
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -545,7 +545,7 @@ func (m *NfsFsServer) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.NfssAddress
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds nfs_fs_server.nfss_address's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -661,7 +661,7 @@ func (m *NfsFsLocation) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.NfslServer
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds nfs_fs_location.nfsl_server's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -680,7 +680,7 @@ func (m *NfsFsLocation) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.NfslRootpath
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds pathname's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -799,7 +799,7 @@ func (m *NfsFsLocationsInfo) WriteTo(w io.Writer) (nTotal int64, err error) {
 	}
 	{
 		m := m.NfsliRoot
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds pathname's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -885,7 +885,7 @@ func (m *NfsFsLocations) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.NfslLocation
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds nfs_fs_locations.nfsl_location's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -982,7 +982,7 @@ func (m *NfsMattr) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.Attrmask
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap's maximum of 4294967295 elements", len(m))
 			goto done
 		}
@@ -1401,7 +1401,7 @@ done:
 
 func WriteNfsMattrSecurity(w io.Writer, m []uint32) (nTotal int64, err error) {
 	var nField int64
-	if len(m) > 4294967295 {
+	if uint(len(m)) > 4294967295 {
 		err = fmt.Errorf("size of %d elements exceeds nfs_mattr_security's maximum of 4294967295 elements", len(m))
 		goto done
 	}
@@ -2172,7 +2172,7 @@ func (m *NfsMiattr) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.Attrmask
-		if len(m) > 4294967295 {
+		if uint(len(m)) > 4294967295 {
 			err = fmt.Errorf("size of %d elements exceeds bitmap's maximum of 4294967295 elements", len(m))
 			goto done
 		}

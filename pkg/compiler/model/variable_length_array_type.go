@@ -97,7 +97,7 @@ func (t *variableLengthArrayType) emitReadFrom(s sink, r Resolver, i identifier)
 }
 
 func (t *variableLengthArrayType) emitWriteTo(s sink, r Resolver, i identifier) error {
-	s.emitString("if len(m) > ")
+	s.emitString("if uint(len(m)) > ")
 	if err := t.maximumSizeElements.visit(newIntegerEmittingValueVisitor(s, r)); err != nil {
 		return err
 	}
