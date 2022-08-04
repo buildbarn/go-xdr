@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "tools",
+    srcs = ["deps.go"],
+    importpath = "github.com/buildbarn/go-xdr/tools",
+    tags = ["manual"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@cc_mvdan_gofumpt//:gofumpt",
+        "@com_github_golang_mock//gomock",
+        "@com_github_gordonklaus_ineffassign//:ineffassign",
+        "@com_github_stretchr_testify//require",
+    ],
+)
