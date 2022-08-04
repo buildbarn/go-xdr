@@ -13,10 +13,10 @@ type identifierType struct {
 // identifier after resolving it. This can be used to simply alias
 // types, or to compose them:
 //
-//     typedef int t1;
-//             ^^^ IntType
-//     typedef t1 t2;
-//             ^^ NewIdentifierType("t1")
+//	typedef int t1;
+//	        ^^^ IntType
+//	typedef t1 t2;
+//	        ^^ NewIdentifierType("t1")
 func NewIdentifierType(identifier string) Type {
 	return &identifierType{
 		identifier: identifier,

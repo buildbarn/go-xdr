@@ -8,9 +8,9 @@ type identifierValue struct {
 // another identifier. These objects are, for example, instantiated when
 // a fixed length array is declared:
 //
-//     const LENGTH = 10;
-//     typedef int mytype[LENGTH];
-//                        ^^^^^^ NewIdentifierValue("LENGTH")
+//	const LENGTH = 10;
+//	typedef int mytype[LENGTH];
+//	                   ^^^^^^ NewIdentifierValue("LENGTH")
 func NewIdentifierValue(identifier string) Value {
 	return &identifierValue{
 		identifier: identifier,

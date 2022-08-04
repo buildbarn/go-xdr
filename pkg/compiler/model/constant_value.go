@@ -12,8 +12,8 @@ type constantValue struct {
 // These objects are, for example, instantiated when a fixed length
 // array is declared:
 //
-//     typedef int mytype[10];
-//                        ^^ NewConstantValue(10)
+//	typedef int mytype[10];
+//	                   ^^ NewConstantValue(10)
 func NewConstantValue(constant *big.Int) Value {
 	return &constantValue{
 		constant: constant,
