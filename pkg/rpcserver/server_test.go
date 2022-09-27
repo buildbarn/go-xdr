@@ -18,9 +18,10 @@ func TestServer(t *testing.T) {
 	ctrl := gomock.NewController(t)
 
 	service := mock.NewMockService(ctrl)
+	authenticator := mock.NewMockAuthenticator(ctrl)
 	s := rpcserver.NewServer(map[uint32]rpcserver.Service{
 		123: service.Call,
-	})
+	}, authenticator)
 
 	t.Run("EOF", func(t *testing.T) {
 		// It's valid for a client to close the connection
@@ -127,7 +128,7 @@ func TestServer(t *testing.T) {
 			0x00, 0x00, 0x00, 0x02,
 			// body.rbody.rreply.mismatch_info.high == 2.
 			0x00, 0x00, 0x00, 0x02,
-		}).Return(24, nil)
+		}).Return(28, nil)
 
 		require.Equal(
 			t,
@@ -160,9 +161,66 @@ func TestServer(t *testing.T) {
 			}), w))
 	})
 
+	t.Run("Unauthenticated", func(t *testing.T) {
+		// Let the authenticator reject the RPC.
+		authenticator.EXPECT().Authenticate(gomock.Any(), &rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}, &rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}).
+			DoAndReturn(func(ctx context.Context, credentials, verifier *rpcv2.OpaqueAuth) (context.Context, rpcv2.OpaqueAuth, rpcv2.AuthStat) {
+				return nil, rpcv2.OpaqueAuth{}, rpcv2.AUTH_BADCRED
+			})
+		w := mock.NewMockWriter(ctrl)
+		w.EXPECT().Write([]byte{
+			// Record marker.
+			0x80, 0x00, 0x00, 0x14,
+			// xid.
+			0xc2, 0xa7, 0xfb, 0xc6,
+			// body.msg_type == REPLY.
+			0x00, 0x00, 0x00, 0x01,
+			// body.rbody.reply_stat == MSG_DENIED.
+			0x00, 0x00, 0x00, 0x01,
+			// body.rbody.rreply.reject_stat == AUTH_ERROR.
+			0x00, 0x00, 0x00, 0x01,
+			// body.rbody.rreply.stat == AUTH_BADCRED.
+			0x00, 0x00, 0x00, 0x01,
+		}).Return(24, nil)
+
+		require.Equal(
+			t,
+			nil,
+			s.HandleConnection(bytes.NewBuffer([]byte{
+				// Record marker.
+				0x80, 0x00, 0x00, 0x30,
+				// xid.
+				0xc2, 0xa7, 0xfb, 0xc6,
+				// body.msg_type == CALL.
+				0x00, 0x00, 0x00, 0x00,
+				// body.cbody.rpcvers == 2.
+				0x00, 0x00, 0x00, 0x02,
+				// body.cbody.prog == 10.
+				0x00, 0x00, 0x00, 0x0a,
+				// body.cbody.vers == 7.
+				0x00, 0x00, 0x00, 0x07,
+				// body.cbody.proc == 4.
+				0x00, 0x00, 0x00, 0x04,
+				// body.cbody.cred.flavor == AUTH_NONE,
+				0x00, 0x00, 0x00, 0x00,
+				// body.cbody.cred.body.
+				0x00, 0x00, 0x00, 0x00,
+				// body.cbody.verf.flavor == AUTH_NONE,
+				0x00, 0x00, 0x00, 0x00,
+				// body.cbody.verf.body.
+				0x00, 0x00, 0x00, 0x00,
+				// Some payload that follows.
+				0xb3, 0x83, 0x19, 0x90, 0x0a, 0xe0, 0xf1, 0x2a,
+			}), w))
+	})
+
 	t.Run("ProgramUnavailable", func(t *testing.T) {
 		// Sending an RPC for an unknown program number should
 		// cause us to return PROG_UNAVAIL.
+		authenticator.EXPECT().Authenticate(gomock.Any(), &rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}, &rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}).
+			DoAndReturn(func(ctx context.Context, credentials, verifier *rpcv2.OpaqueAuth) (context.Context, rpcv2.OpaqueAuth, rpcv2.AuthStat) {
+				return ctx, rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}, rpcv2.AUTH_OK
+			})
 		w := mock.NewMockWriter(ctrl)
 		w.EXPECT().Write([]byte{
 			// Record marker.
@@ -218,8 +276,19 @@ func TestServer(t *testing.T) {
 		// call into the Service. Because the requests may be
 		// handled in parallel, responses can be written in any
 		// order.
-		service.EXPECT().Call(gomock.Any(), uint32(7), uint32(4), gomock.Any(), gomock.Any()).
-			DoAndReturn(func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, returnValue io.Writer) (*rpcv2.AcceptedReply, error) {
+		mockContext1 := mock.NewMockContext(ctrl)
+		authenticator.EXPECT().Authenticate(gomock.Any(), &rpcv2.OpaqueAuth{
+			Flavor: rpcv2.AUTH_SHORT,
+			Body:   []byte{0xe6, 0xda, 0x1d, 0x8d, 0x27, 0x35, 0xa1, 0xf2},
+		}, &rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}).
+			DoAndReturn(func(ctx context.Context, credentials, verifier *rpcv2.OpaqueAuth) (context.Context, rpcv2.OpaqueAuth, rpcv2.AuthStat) {
+				return mockContext1, rpcv2.OpaqueAuth{
+					Flavor: rpcv2.AUTH_SHORT,
+					Body:   []byte{0x24, 0x3e, 0xa5, 0xeb, 0xa1, 0x91, 0x78, 0x7d},
+				}, rpcv2.AUTH_OK
+			})
+		service.EXPECT().Call(mockContext1, uint32(7), uint32(4), gomock.Any(), gomock.Any()).
+			DoAndReturn(func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, returnValue io.Writer) (rpcv2.AcceptedReplyData, error) {
 				var in [8]byte
 				n, err := parameters.Read(in[:])
 				require.Equal(t, 8, n)
@@ -231,12 +300,15 @@ func TestServer(t *testing.T) {
 				require.Equal(t, 8, n)
 				require.NoError(t, err)
 
-				return &rpcv2.AcceptedReply{
-					ReplyData: &rpcv2.AcceptedReplyReplyData_SUCCESS{},
-				}, nil
+				return &rpcv2.AcceptedReplyData_SUCCESS{}, nil
 			})
-		service.EXPECT().Call(gomock.Any(), uint32(3), uint32(9), gomock.Any(), gomock.Any()).
-			DoAndReturn(func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, returnValue io.Writer) (*rpcv2.AcceptedReply, error) {
+		mockContext2 := mock.NewMockContext(ctrl)
+		authenticator.EXPECT().Authenticate(gomock.Any(), &rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}, &rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}).
+			DoAndReturn(func(ctx context.Context, credentials, verifier *rpcv2.OpaqueAuth) (context.Context, rpcv2.OpaqueAuth, rpcv2.AuthStat) {
+				return mockContext2, rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}, rpcv2.AUTH_OK
+			})
+		service.EXPECT().Call(mockContext2, uint32(3), uint32(9), gomock.Any(), gomock.Any()).
+			DoAndReturn(func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, returnValue io.Writer) (rpcv2.AcceptedReplyData, error) {
 				var in [8]byte
 				n, err := parameters.Read(in[:])
 				require.Equal(t, 8, n)
@@ -248,24 +320,23 @@ func TestServer(t *testing.T) {
 				require.Equal(t, 8, n)
 				require.NoError(t, err)
 
-				return &rpcv2.AcceptedReply{
-					ReplyData: &rpcv2.AcceptedReplyReplyData_SUCCESS{},
-				}, nil
+				return &rpcv2.AcceptedReplyData_SUCCESS{}, nil
 			})
 		w := mock.NewMockWriter(ctrl)
 		w.EXPECT().Write([]byte{
 			// Record marker.
-			0x80, 0x00, 0x00, 0x20,
+			0x80, 0x00, 0x00, 0x28,
 			// xid.
 			0x44, 0xe5, 0x33, 0x30,
 			// body.msg_type == REPLY.
 			0x00, 0x00, 0x00, 0x01,
 			// body.rbody.reply_stat == MSG_ACCEPTED.
 			0x00, 0x00, 0x00, 0x00,
-			// body.rbody.areply.verf.flavor == AUTH_NONE.
-			0x00, 0x00, 0x00, 0x00,
+			// body.rbody.areply.verf.flavor == AUTH_SHORT.
+			0x00, 0x00, 0x00, 0x02,
 			// body.rbody.areply.verf.body.
-			0x00, 0x00, 0x00, 0x00,
+			0x00, 0x00, 0x00, 0x08,
+			0x24, 0x3e, 0xa5, 0xeb, 0xa1, 0x91, 0x78, 0x7d,
 			// body.rbody.areply.stat == PROG_UNAVAIL.
 			0x00, 0x00, 0x00, 0x00,
 			// Return value.
@@ -295,7 +366,7 @@ func TestServer(t *testing.T) {
 			nil,
 			s.HandleConnection(bytes.NewBuffer([]byte{
 				// Record marker.
-				0x80, 0x00, 0x00, 0x30,
+				0x80, 0x00, 0x00, 0x38,
 				// xid.
 				0x44, 0xe5, 0x33, 0x30,
 				// body.msg_type == CALL.
@@ -308,10 +379,11 @@ func TestServer(t *testing.T) {
 				0x00, 0x00, 0x00, 0x07,
 				// body.cbody.proc == 4.
 				0x00, 0x00, 0x00, 0x04,
-				// body.cbody.cred.flavor == AUTH_NONE,
-				0x00, 0x00, 0x00, 0x00,
+				// body.cbody.cred.flavor == AUTH_SHORT,
+				0x00, 0x00, 0x00, 0x02,
 				// body.cbody.cred.body.
-				0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x08,
+				0xe6, 0xda, 0x1d, 0x8d, 0x27, 0x35, 0xa1, 0xf2,
 				// body.cbody.verf.flavor == AUTH_NONE,
 				0x00, 0x00, 0x00, 0x00,
 				// body.cbody.verf.body.

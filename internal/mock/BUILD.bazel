@@ -7,6 +7,7 @@ gomock(
     name = "aliases",
     out = "aliases.go",
     interfaces = [
+        "Context",
         "Reader",
         "Writer",
     ],
@@ -17,7 +18,10 @@ gomock(
 gomock(
     name = "rpcserver",
     out = "rpcserver.go",
-    interfaces = ["Service"],
+    interfaces = [
+        "Authenticator",
+        "Service",
+    ],
     library = "//pkg/rpcserver",
     package = "mock",
 )

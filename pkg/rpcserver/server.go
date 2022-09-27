@@ -48,18 +48,20 @@ const recordMarkerSizeBytes = 4
 // It should close it immediately after it has finished reading the
 // parameters, so that the RPC server can continue to read the next
 // incoming request.
-type Service func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, returnValue io.Writer) (*rpcv2.AcceptedReply, error)
+type Service func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, returnValue io.Writer) (rpcv2.AcceptedReplyData, error)
 
 // Server of ONC RPCv2, as described in RFC 5531.
 type Server struct {
-	services map[uint32]Service
+	services      map[uint32]Service
+	authenticator Authenticator
 }
 
 // NewServer creates a new Server that is capable of accepting incoming
 // requests for a provided set of services.
-func NewServer(services map[uint32]Service) *Server {
+func NewServer(services map[uint32]Service, authenticator Authenticator) *Server {
 	return &Server{
-		services: services,
+		services:      services,
+		authenticator: authenticator,
 	}
 }
 
@@ -70,7 +72,7 @@ func NewServer(services map[uint32]Service) *Server {
 func (s *Server) HandleConnection(r io.Reader, w io.Writer) error {
 	group, ctx := errgroup.WithContext(context.Background())
 	ch := connectionHandler{
-		services: s.services,
+		server: s,
 
 		group:   group,
 		context: ctx,
@@ -83,7 +85,7 @@ func (s *Server) HandleConnection(r io.Reader, w io.Writer) error {
 }
 
 type connectionHandler struct {
-	services map[uint32]Service
+	server *Server
 
 	group   *errgroup.Group
 	context context.Context
@@ -147,10 +149,36 @@ func (ch *connectionHandler) readMessages() error {
 			continue
 		}
 
-		service, ok := ch.services[callBody.Prog]
+		// Extract credentials.
+		server := ch.server
+		ctxWithCancel, cancelContext := context.WithCancel(ch.context)
+		ctxWithAuth, replyVerifier, authStat := server.authenticator.Authenticate(ctxWithCancel, &callBody.Cred, &callBody.Verf)
+		if authStat != rpcv2.AUTH_OK {
+			// Authentication failed.
+			cancelContext()
+			if err := rmr.discardRemaining(); err != nil {
+				return err
+			}
+			ch.group.Go(func() error {
+				return ch.replyWithoutReturnValue(&rpcv2.RpcMsg{
+					Xid: callRPCMessage.Xid,
+					Body: &rpcv2.RpcMsgBody_REPLY{
+						Rbody: &rpcv2.ReplyBody_MSG_DENIED{
+							Rreply: &rpcv2.RejectedReply_AUTH_ERROR{
+								Stat: authStat,
+							},
+						},
+					},
+				})
+			})
+			continue
+		}
+
+		service, ok := server.services[callBody.Prog]
 		if !ok {
 			// No service associated with this
 			// program number.
+			cancelContext()
 			if err := rmr.discardRemaining(); err != nil {
 				return err
 			}
@@ -160,7 +188,8 @@ func (ch *connectionHandler) readMessages() error {
 					Body: &rpcv2.RpcMsgBody_REPLY{
 						Rbody: &rpcv2.ReplyBody_MSG_ACCEPTED{
 							Areply: rpcv2.AcceptedReply{
-								ReplyData: &rpcv2.AcceptedReplyReplyData_default{
+								Verf: replyVerifier,
+								ReplyData: &rpcv2.AcceptedReplyData_default{
 									Stat: rpcv2.PROG_UNAVAIL,
 								},
 							},
@@ -190,7 +219,8 @@ func (ch *connectionHandler) readMessages() error {
 			replyReturnValueStartBytes,
 			replyReturnValueStartBytes+maximumReplyReturnValueSizeBytes))
 
-		acceptedReply, err := service(ch.context, callBody.Vers, callBody.Proc, &rc, replyBuffer)
+		replyData, err := service(ctxWithAuth, callBody.Vers, callBody.Proc, &rc, replyBuffer)
+		cancelContext()
 		rc.Close()
 		if err != nil {
 			return err
@@ -208,7 +238,10 @@ func (ch *connectionHandler) readMessages() error {
 			Xid: callRPCMessage.Xid,
 			Body: &rpcv2.RpcMsgBody_REPLY{
 				Rbody: &rpcv2.ReplyBody_MSG_ACCEPTED{
-					Areply: *acceptedReply,
+					Areply: rpcv2.AcceptedReply{
+						Verf:      replyVerifier,
+						ReplyData: replyData,
+					},
 				},
 			},
 		}

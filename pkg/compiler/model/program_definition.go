@@ -90,18 +90,18 @@ func (d programDefinition) emitAllDefinitions(s sink, r Resolver) error {
 	s.emitPackageNamePrefix("io")
 	s.emitString("ReadCloser, ")
 	s.emitPackageNamePrefix("io")
-	s.emitString("Writer) (*")
+	s.emitString("Writer) (")
 	s.emitPackageNamePrefix(rpcv2Package)
-	s.emitString("AcceptedReply, error) {\n")
+	s.emitString("AcceptedReplyData, error) {\n")
 	s.emitString("return func(ctx ")
 	s.emitPackageNamePrefix("context")
 	s.emitString("Context, vers uint32, proc uint32, r ")
 	s.emitPackageNamePrefix("io")
 	s.emitString("ReadCloser, w ")
 	s.emitPackageNamePrefix("io")
-	s.emitString("Writer) (*")
+	s.emitString("Writer) (")
 	s.emitPackageNamePrefix(rpcv2Package)
-	s.emitString("AcceptedReply, error) {\nvar err error\nswitch vers {\n")
+	s.emitString("AcceptedReplyData, error) {\nvar err error\nswitch vers {\n")
 	needsErrorHandling := false
 	for _, version := range d.versions {
 		s.emitString("case ")
@@ -159,11 +159,9 @@ func (d programDefinition) emitAllDefinitions(s sink, r Resolver) error {
 		}
 		s.emitString("default:\nr.Close()\nreturn &")
 		s.emitPackageNamePrefix(rpcv2Package)
-		s.emitString("AcceptedReply{ReplyData: &")
+		s.emitString("AcceptedReplyData_default{Stat: ")
 		s.emitPackageNamePrefix(rpcv2Package)
-		s.emitString("AcceptedReplyReplyData_default{Stat: ")
-		s.emitPackageNamePrefix(rpcv2Package)
-		s.emitString("PROC_UNAVAIL}}, nil\n}\n")
+		s.emitString("PROC_UNAVAIL}, nil\n}\n")
 	}
 	s.emitString("default:\nr.Close()\nvar replyData ")
 	s.emitPackageNamePrefix(rpcv2Package)
@@ -176,18 +174,14 @@ func (d programDefinition) emitAllDefinitions(s sink, r Resolver) error {
 			maxVersion = version.versionNumber
 		}
 	}
-	s.emitString("AcceptedReplyReplyData_PROG_MISMATCH\nreplyData.MismatchInfo.Low = ")
+	s.emitString("AcceptedReplyData_PROG_MISMATCH\nreplyData.MismatchInfo.Low = ")
 	s.emitString(minVersion.String())
 	s.emitString("\nreplyData.MismatchInfo.High = ")
 	s.emitString(maxVersion.String())
-	s.emitString("\nreturn &")
-	s.emitPackageNamePrefix(rpcv2Package)
-	s.emitString("AcceptedReply{ReplyData: &replyData}, nil\n")
+	s.emitString("\nreturn &replyData, nil\n")
 	s.emitString("}\nreturn &")
 	s.emitPackageNamePrefix(rpcv2Package)
-	s.emitString("AcceptedReply{ReplyData: &")
-	s.emitPackageNamePrefix(rpcv2Package)
-	s.emitString("AcceptedReplyReplyData_SUCCESS{}}, nil\n")
+	s.emitString("AcceptedReplyData_SUCCESS{}, nil\n")
 	if needsErrorHandling {
 		s.emitString("done:\nif r != nil {\nr.Close()\n}\nreturn nil, err\n")
 	}

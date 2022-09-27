@@ -99,24 +99,26 @@ case MSG_DENIED:
 
 struct accepted_reply {
    opaque_auth verf;
-   union switch (accept_stat stat) {
-   case SUCCESS:
-      opaque results[0];
-      /*
-       * procedure-specific results start here
-       */
-    case PROG_MISMATCH:
-       struct {
-          unsigned int low;
-          unsigned int high;
-       } mismatch_info;
-    default:
-       /*
-        * Void.  Cases include PROG_UNAVAIL, PROC_UNAVAIL,
-        * GARBAGE_ARGS, and SYSTEM_ERR.
-        */
-       void;
-    } reply_data;
+   accepted_reply_data reply_data;
+};
+
+union accepted_reply_data switch (accept_stat stat) {
+case SUCCESS:
+   opaque results[0];
+   /*
+    * procedure-specific results start here
+    */
+case PROG_MISMATCH:
+   struct {
+      unsigned int low;
+      unsigned int high;
+   } mismatch_info;
+default:
+   /*
+    * Void.  Cases include PROG_UNAVAIL, PROC_UNAVAIL,
+    * GARBAGE_ARGS, and SYSTEM_ERR.
+    */
+   void;
 };
 
 union rejected_reply switch (reject_stat stat) {

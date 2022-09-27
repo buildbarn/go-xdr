@@ -899,12 +899,7 @@ func (m *ReplyBody_MSG_DENIED) GetEncodedSizeBytes() (nTotal int) {
 
 type AcceptedReply struct {
 	Verf      OpaqueAuth
-	ReplyData interface {
-		isAcceptedReplyReplyData()
-		GetStat() AcceptStat
-		io.WriterTo
-		GetEncodedSizeBytes() int
-	}
+	ReplyData AcceptedReplyData
 }
 
 func (m *AcceptedReply) ReadFrom(r io.Reader) (nTotal int64, err error) {
@@ -919,74 +914,11 @@ func (m *AcceptedReply) ReadFrom(r io.Reader) (nTotal int64, err error) {
 	}
 	{
 		mSave := &m.ReplyData
-		var m interface {
-			isAcceptedReplyReplyData()
-			GetStat() AcceptStat
-			io.WriterTo
-			GetEncodedSizeBytes() int
-		}
-		var discriminant AcceptStat
-		{
-			var m AcceptStat
-			*(*int32)(&m), nField, err = runtime.ReadInt(r)
-			nTotal += nField
-			if err != nil {
-				goto done
-			}
-			discriminant = m
-		}
-		switch discriminant {
-		case 0:
-			var mArm AcceptedReplyReplyData_SUCCESS
-			{
-				m := &mArm
-				{
-					m := &m.Results
-					nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
-					nTotal += nField
-					if err != nil {
-						goto done
-					}
-				}
-			}
-			m = &mArm
-		case 2:
-			var mArm AcceptedReplyReplyData_PROG_MISMATCH
-			{
-				m := &mArm
-				{
-					m := &m.MismatchInfo
-					{
-						mSave := &m.Low
-						var m uint32
-						m, nField, err = runtime.ReadUnsignedInt(r)
-						nTotal += nField
-						if err != nil {
-							goto done
-						}
-						*mSave = m
-					}
-					{
-						mSave := &m.High
-						var m uint32
-						m, nField, err = runtime.ReadUnsignedInt(r)
-						nTotal += nField
-						if err != nil {
-							goto done
-						}
-						*mSave = m
-					}
-				}
-			}
-			m = &mArm
-		default:
-			var mArm AcceptedReplyReplyData_default
-			{
-				m := &mArm
-				m.Stat = discriminant
-				_ = m
-			}
-			m = &mArm
+		var m AcceptedReplyData
+		m, nField, err = ReadAcceptedReplyData(r)
+		nTotal += nField
+		if err != nil {
+			goto done
 		}
 		*mSave = m
 	}
@@ -1028,7 +960,85 @@ func (m *AcceptedReply) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
-func readAcceptedReplyReplyDataStat(r io.Reader) (m AcceptStat, nTotal int64, err error) {
+// Type definition "accepted_reply_data".
+
+type AcceptedReplyData interface {
+	isAcceptedReplyData()
+	GetStat() AcceptStat
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadAcceptedReplyData(r io.Reader) (m AcceptedReplyData, nTotal int64, err error) {
+	var nField int64
+	var discriminant AcceptStat
+	{
+		var m AcceptStat
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm AcceptedReplyData_SUCCESS
+		{
+			m := &mArm
+			{
+				m := &m.Results
+				nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 2:
+		var mArm AcceptedReplyData_PROG_MISMATCH
+		{
+			m := &mArm
+			{
+				m := &m.MismatchInfo
+				{
+					mSave := &m.Low
+					var m uint32
+					m, nField, err = runtime.ReadUnsignedInt(r)
+					nTotal += nField
+					if err != nil {
+						goto done
+					}
+					*mSave = m
+				}
+				{
+					mSave := &m.High
+					var m uint32
+					m, nField, err = runtime.ReadUnsignedInt(r)
+					nTotal += nField
+					if err != nil {
+						goto done
+					}
+					*mSave = m
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm AcceptedReplyData_default
+		{
+			m := &mArm
+			m.Stat = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readAcceptedReplyDataStat(r io.Reader) (m AcceptStat, nTotal int64, err error) {
 	var nField int64
 	*(*int32)(&m), nField, err = runtime.ReadInt(r)
 	nTotal += nField
@@ -1039,7 +1049,7 @@ done:
 	return
 }
 
-func writeAcceptedReplyReplyDataStat(w io.Writer, m AcceptStat) (nTotal int64, err error) {
+func writeAcceptedReplyDataStat(w io.Writer, m AcceptStat) (nTotal int64, err error) {
 	var nField int64
 	nField, err = runtime.WriteInt(w, int32(m))
 	nTotal += nField
@@ -1050,19 +1060,19 @@ done:
 	return
 }
 
-const acceptedReplyReplyDataStatEncodedSizeBytes = 4
+const acceptedReplyDataStatEncodedSizeBytes = 4
 
-type AcceptedReplyReplyData_SUCCESS struct {
+type AcceptedReplyData_SUCCESS struct {
 	Results [0]byte
 }
 
-func (m *AcceptedReplyReplyData_SUCCESS) isAcceptedReplyReplyData() {}
+func (m *AcceptedReplyData_SUCCESS) isAcceptedReplyData() {}
 
-func (m *AcceptedReplyReplyData_SUCCESS) GetStat() AcceptStat {
+func (m *AcceptedReplyData_SUCCESS) GetStat() AcceptStat {
 	return 0
 }
 
-func (m *AcceptedReplyReplyData_SUCCESS) WriteTo(w io.Writer) (nTotal int64, err error) {
+func (m *AcceptedReplyData_SUCCESS) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		var m AcceptStat = 0
@@ -1084,26 +1094,26 @@ done:
 	return
 }
 
-func (m *AcceptedReplyReplyData_SUCCESS) GetEncodedSizeBytes() (nTotal int) {
+func (m *AcceptedReplyData_SUCCESS) GetEncodedSizeBytes() (nTotal int) {
 	nTotal += 4
 	nTotal += 0
 	return
 }
 
-type AcceptedReplyReplyData_PROG_MISMATCH struct {
+type AcceptedReplyData_PROG_MISMATCH struct {
 	MismatchInfo struct {
 		Low  uint32
 		High uint32
 	}
 }
 
-func (m *AcceptedReplyReplyData_PROG_MISMATCH) isAcceptedReplyReplyData() {}
+func (m *AcceptedReplyData_PROG_MISMATCH) isAcceptedReplyData() {}
 
-func (m *AcceptedReplyReplyData_PROG_MISMATCH) GetStat() AcceptStat {
+func (m *AcceptedReplyData_PROG_MISMATCH) GetStat() AcceptStat {
 	return 2
 }
 
-func (m *AcceptedReplyReplyData_PROG_MISMATCH) WriteTo(w io.Writer) (nTotal int64, err error) {
+func (m *AcceptedReplyData_PROG_MISMATCH) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		var m AcceptStat = 2
@@ -1136,23 +1146,23 @@ done:
 	return
 }
 
-func (m *AcceptedReplyReplyData_PROG_MISMATCH) GetEncodedSizeBytes() (nTotal int) {
+func (m *AcceptedReplyData_PROG_MISMATCH) GetEncodedSizeBytes() (nTotal int) {
 	nTotal += 4
 	nTotal += 8
 	return
 }
 
-type AcceptedReplyReplyData_default struct {
+type AcceptedReplyData_default struct {
 	Stat AcceptStat
 }
 
-func (m *AcceptedReplyReplyData_default) isAcceptedReplyReplyData() {}
+func (m *AcceptedReplyData_default) isAcceptedReplyData() {}
 
-func (m *AcceptedReplyReplyData_default) GetStat() AcceptStat {
+func (m *AcceptedReplyData_default) GetStat() AcceptStat {
 	return m.Stat
 }
 
-func (m *AcceptedReplyReplyData_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+func (m *AcceptedReplyData_default) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.Stat
@@ -1166,7 +1176,7 @@ done:
 	return
 }
 
-func (m *AcceptedReplyReplyData_default) GetEncodedSizeBytes() (nTotal int) {
+func (m *AcceptedReplyData_default) GetEncodedSizeBytes() (nTotal int) {
 	nTotal += 4
 	return
 }

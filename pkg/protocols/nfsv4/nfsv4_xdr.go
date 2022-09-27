@@ -18585,8 +18585,8 @@ type Nfs4Program interface {
 	NfsV4Nfsproc4Compound(context.Context, *Compound4args) (*Compound4res, error)
 }
 
-func NewNfs4ProgramService(p Nfs4Program) func(context.Context, uint32, uint32, io.ReadCloser, io.Writer) (*rpcv2.AcceptedReply, error) {
-	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (*rpcv2.AcceptedReply, error) {
+func NewNfs4ProgramService(p Nfs4Program) func(context.Context, uint32, uint32, io.ReadCloser, io.Writer) (rpcv2.AcceptedReplyData, error) {
+	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (rpcv2.AcceptedReplyData, error) {
 		var err error
 		switch vers {
 		case 4:
@@ -18625,16 +18625,16 @@ func NewNfs4ProgramService(p Nfs4Program) func(context.Context, uint32, uint32, 
 				}
 			default:
 				r.Close()
-				return &rpcv2.AcceptedReply{ReplyData: &rpcv2.AcceptedReplyReplyData_default{Stat: rpcv2.PROC_UNAVAIL}}, nil
+				return &rpcv2.AcceptedReplyData_default{Stat: rpcv2.PROC_UNAVAIL}, nil
 			}
 		default:
 			r.Close()
-			var replyData rpcv2.AcceptedReplyReplyData_PROG_MISMATCH
+			var replyData rpcv2.AcceptedReplyData_PROG_MISMATCH
 			replyData.MismatchInfo.Low = 4
 			replyData.MismatchInfo.High = 4
-			return &rpcv2.AcceptedReply{ReplyData: &replyData}, nil
+			return &replyData, nil
 		}
-		return &rpcv2.AcceptedReply{ReplyData: &rpcv2.AcceptedReplyReplyData_SUCCESS{}}, nil
+		return &rpcv2.AcceptedReplyData_SUCCESS{}, nil
 	done:
 		if r != nil {
 			r.Close()
@@ -19796,8 +19796,8 @@ type Nfs4Callback interface {
 	NfsCbCbCompound(context.Context, *CbCompound4args) (*CbCompound4res, error)
 }
 
-func NewNfs4CallbackService(p Nfs4Callback) func(context.Context, uint32, uint32, io.ReadCloser, io.Writer) (*rpcv2.AcceptedReply, error) {
-	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (*rpcv2.AcceptedReply, error) {
+func NewNfs4CallbackService(p Nfs4Callback) func(context.Context, uint32, uint32, io.ReadCloser, io.Writer) (rpcv2.AcceptedReplyData, error) {
+	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (rpcv2.AcceptedReplyData, error) {
 		var err error
 		switch vers {
 		case 1:
@@ -19836,16 +19836,16 @@ func NewNfs4CallbackService(p Nfs4Callback) func(context.Context, uint32, uint32
 				}
 			default:
 				r.Close()
-				return &rpcv2.AcceptedReply{ReplyData: &rpcv2.AcceptedReplyReplyData_default{Stat: rpcv2.PROC_UNAVAIL}}, nil
+				return &rpcv2.AcceptedReplyData_default{Stat: rpcv2.PROC_UNAVAIL}, nil
 			}
 		default:
 			r.Close()
-			var replyData rpcv2.AcceptedReplyReplyData_PROG_MISMATCH
+			var replyData rpcv2.AcceptedReplyData_PROG_MISMATCH
 			replyData.MismatchInfo.Low = 1
 			replyData.MismatchInfo.High = 1
-			return &rpcv2.AcceptedReply{ReplyData: &replyData}, nil
+			return &replyData, nil
 		}
-		return &rpcv2.AcceptedReply{ReplyData: &rpcv2.AcceptedReplyReplyData_SUCCESS{}}, nil
+		return &rpcv2.AcceptedReplyData_SUCCESS{}, nil
 	done:
 		if r != nil {
 			r.Close()
