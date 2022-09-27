@@ -59,7 +59,7 @@ func WriteFixedLengthOpaque(w io.Writer, b []byte) (int64, error) {
 
 func copyVariableLengthOpaque(r io.Reader, w io.Writer, maximumSizeBytes uint32) (int64, error) {
 	length, nTotal, err := ReadUnsignedInt(r)
-	if err != nil {
+	if err != nil || length == 0 {
 		return nTotal, err
 	}
 	if length > maximumSizeBytes {

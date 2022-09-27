@@ -188,6 +188,16 @@ func TestReadVariableLengthOpaque(t *testing.T) {
 		require.Equal(t, int64(8), n)
 	})
 
+	t.Run("SuccessZero", func(t *testing.T) {
+		// Reads of empty buffers should not cause allocations.
+		b, n, err := runtime.ReadVariableLengthOpaque(
+			bytes.NewBuffer([]byte{0, 0, 0, 0}),
+			20)
+		require.NoError(t, err)
+		require.Equal(t, int64(4), n)
+		require.Nil(t, b)
+	})
+
 	t.Run("SuccessPadding0Bytes", func(t *testing.T) {
 		b, n, err := runtime.ReadVariableLengthOpaque(
 			bytes.NewBuffer([]byte{0, 0, 0, 4, 0x2d, 0x11, 0x8b, 0xa4}),
