@@ -3,10 +3,13 @@ package darwin_nfs_sys_prot
 
 import (
 	"fmt"
-	"io"
-
 	"github.com/buildbarn/go-xdr/pkg/runtime"
+	"io"
 )
+
+const NFS_ARGSVERSION_XDR = 88
+
+const NFS_MAXPATHLEN = 1024
 
 // Type definition "bitmap".
 
@@ -1023,9 +1026,233 @@ func (m *NfsMattr) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
+// Type definition "nfs_version_range".
+
+type NfsVersionRange struct {
+	MinVers uint32
+	MaxVers uint32
+}
+
+func (m *NfsVersionRange) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.MinVers
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.MaxVers
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *NfsVersionRange) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.MinVers
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.MaxVers
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const NfsVersionRangeEncodedSizeBytes = 8
+
+// Type definition "nfs_supported_kerberos_etypes".
+
+type NfsSupportedKerberosEtypes int32
+
+func (mParent *NfsSupportedKerberosEtypes) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m NfsSupportedKerberosEtypes
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m NfsSupportedKerberosEtypes) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsSupportedKerberosEtypesEncodedSizeBytes = 4
+
+const NFS_AES128_CTS_HMAC_SHA1_96 NfsSupportedKerberosEtypes = 17
+
+const NFS_AES256_CTS_HMAC_SHA1_96 NfsSupportedKerberosEtypes = 18
+
+const NFS_DES3_CBC_SHA1_KD NfsSupportedKerberosEtypes = 16
+
+var NfsSupportedKerberosEtypes_name = map[NfsSupportedKerberosEtypes]string{
+	17: "NFS_AES128_CTS_HMAC_SHA1_96",
+	18: "NFS_AES256_CTS_HMAC_SHA1_96",
+	16: "NFS_DES3_CBC_SHA1_KD",
+}
+
+const NFS_MAX_ETYPES = 3
+
+// Type definition "nfs_etype".
+
+type NfsEtype struct {
+	Count    uint32
+	Selected uint32
+	Etypes   [3]NfsSupportedKerberosEtypes
+}
+
+func (m *NfsEtype) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.Count
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.Selected
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.Etypes
+		mParent := m
+		for i := 0; i < len(m); i++ {
+			var m NfsSupportedKerberosEtypes
+			*(*int32)(&m), nField, err = runtime.ReadInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			mParent[i] = m
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsEtype) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.Count
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Selected
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Etypes
+		for _, m := range m {
+			nField, err = runtime.WriteInt(w, int32(m))
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+const NfsEtypeEncodedSizeBytes = 20
+
+// Type definition "nfs_readlink_cache_mode".
+
+type NfsReadlinkCacheMode int32
+
+func (mParent *NfsReadlinkCacheMode) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m NfsReadlinkCacheMode
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m NfsReadlinkCacheMode) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsReadlinkCacheModeEncodedSizeBytes = 4
+
+const NFS_READLINK_CACHE_MODE_CACHED NfsReadlinkCacheMode = 0
+
+const NFS_READLINK_CACHE_MODE_FULLY_UNCACHED NfsReadlinkCacheMode = 2
+
+const NFS_READLINK_CACHE_MODE_PARTIALLY_CACHED NfsReadlinkCacheMode = 1
+
+var NfsReadlinkCacheMode_name = map[NfsReadlinkCacheMode]string{
+	0: "NFS_READLINK_CACHE_MODE_CACHED",
+	2: "NFS_READLINK_CACHE_MODE_FULLY_UNCACHED",
+	1: "NFS_READLINK_CACHE_MODE_PARTIALLY_CACHED",
+}
+
 const NFS_XDRARGS_VERSION_0 = 0
 
-const NFS_MATTR_BITMAP_LEN = 1
+const NFS_MATTR_BITMAP_LEN = 2
 
 const NFS_MFLAG_BITMAP_LEN = 1
 
@@ -1721,7 +1948,7 @@ type NfsMattrMntfrom = string
 
 func ReadNfsMattrMntfrom(r io.Reader) (m string, nTotal int64, err error) {
 	var nField int64
-	m, nField, err = runtime.ReadASCIIString(r, 1023)
+	m, nField, err = runtime.ReadASCIIString(r, 1024)
 	nTotal += nField
 	if err != nil {
 		goto done
@@ -1732,7 +1959,7 @@ done:
 
 func WriteNfsMattrMntfrom(w io.Writer, m string) (nTotal int64, err error) {
 	var nField int64
-	nField, err = runtime.WriteASCIIString(w, 1023, m)
+	nField, err = runtime.WriteASCIIString(w, 1024, m)
 	nTotal += nField
 	if err != nil {
 		goto done
@@ -1752,7 +1979,7 @@ type NfsMattrRealm = string
 
 func ReadNfsMattrRealm(r io.Reader) (m string, nTotal int64, err error) {
 	var nField int64
-	m, nField, err = runtime.ReadASCIIString(r, 1023)
+	m, nField, err = runtime.ReadASCIIString(r, 1024)
 	nTotal += nField
 	if err != nil {
 		goto done
@@ -1763,7 +1990,7 @@ done:
 
 func WriteNfsMattrRealm(w io.Writer, m string) (nTotal int64, err error) {
 	var nField int64
-	nField, err = runtime.WriteASCIIString(w, 1023, m)
+	nField, err = runtime.WriteASCIIString(w, 1024, m)
 	nTotal += nField
 	if err != nil {
 		goto done
@@ -1783,7 +2010,7 @@ type NfsMattrPrincipal = string
 
 func ReadNfsMattrPrincipal(r io.Reader) (m string, nTotal int64, err error) {
 	var nField int64
-	m, nField, err = runtime.ReadASCIIString(r, 1023)
+	m, nField, err = runtime.ReadASCIIString(r, 1024)
 	nTotal += nField
 	if err != nil {
 		goto done
@@ -1794,7 +2021,7 @@ done:
 
 func WriteNfsMattrPrincipal(w io.Writer, m string) (nTotal int64, err error) {
 	var nField int64
-	nField, err = runtime.WriteASCIIString(w, 1023, m)
+	nField, err = runtime.WriteASCIIString(w, 1024, m)
 	nTotal += nField
 	if err != nil {
 		goto done
@@ -1814,7 +2041,7 @@ type NfsMattrSvcpinc = string
 
 func ReadNfsMattrSvcpinc(r io.Reader) (m string, nTotal int64, err error) {
 	var nField int64
-	m, nField, err = runtime.ReadASCIIString(r, 1023)
+	m, nField, err = runtime.ReadASCIIString(r, 1024)
 	nTotal += nField
 	if err != nil {
 		goto done
@@ -1825,7 +2052,7 @@ done:
 
 func WriteNfsMattrSvcpinc(w io.Writer, m string) (nTotal int64, err error) {
 	var nField int64
-	nField, err = runtime.WriteASCIIString(w, 1023, m)
+	nField, err = runtime.WriteASCIIString(w, 1024, m)
 	nTotal += nField
 	if err != nil {
 		goto done
@@ -1838,6 +2065,180 @@ func GetNfsMattrSvcpincEncodedSizeBytes(m string) (nTotal int) {
 	nTotal += (len(m) + 7) &^ 3
 	return
 }
+
+// Type definition "nfs_mattr_version_range".
+
+type NfsMattrVersionRange = NfsVersionRange
+
+func ReadNfsMattrVersionRange(r io.Reader, m *NfsVersionRange) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsMattrVersionRange(w io.Writer, m *NfsVersionRange) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsMattrVersionRangeEncodedSizeBytes = 8
+
+// Type definition "nfs_mattr_kerb_etype".
+
+type NfsMattrKerbEtype = NfsEtype
+
+func ReadNfsMattrKerbEtype(r io.Reader, m *NfsEtype) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsMattrKerbEtype(w io.Writer, m *NfsEtype) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsMattrKerbEtypeEncodedSizeBytes = 20
+
+// Type definition "nfs_mattr_local_nfs_port".
+
+type NfsMattrLocalNfsPort = string
+
+func ReadNfsMattrLocalNfsPort(r io.Reader) (m string, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadASCIIString(r, 1024)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsMattrLocalNfsPort(w io.Writer, m string) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteASCIIString(w, 1024, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetNfsMattrLocalNfsPortEncodedSizeBytes(m string) (nTotal int) {
+	nTotal += (len(m) + 7) &^ 3
+	return
+}
+
+// Type definition "nfs_mattr_local_mount_port".
+
+type NfsMattrLocalMountPort = string
+
+func ReadNfsMattrLocalMountPort(r io.Reader) (m string, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadASCIIString(r, 1024)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsMattrLocalMountPort(w io.Writer, m string) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteASCIIString(w, 1024, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetNfsMattrLocalMountPortEncodedSizeBytes(m string) (nTotal int) {
+	nTotal += (len(m) + 7) &^ 3
+	return
+}
+
+// Type definition "nfs_mattr_set_mount_owner".
+
+type NfsMattrSetMountOwner = uint32
+
+func ReadNfsMattrSetMountOwner(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsMattrSetMountOwner(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsMattrSetMountOwnerEncodedSizeBytes = 4
+
+// Type definition "nfs_mattr_readlink_nocache".
+
+type NfsMattrReadlinkNocache = NfsReadlinkCacheMode
+
+func ReadNfsMattrReadlinkNocache(r io.Reader) (m NfsReadlinkCacheMode, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsMattrReadlinkNocache(w io.Writer, m NfsReadlinkCacheMode) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsMattrReadlinkNocacheEncodedSizeBytes = 4
 
 const NFS_MATTR_FLAGS = 0
 
@@ -1900,6 +2301,10 @@ const NFS_MATTR_KERB_ETYPE = 28
 const NFS_MATTR_LOCAL_NFS_PORT = 29
 
 const NFS_MATTR_LOCAL_MOUNT_PORT = 30
+
+const NFS_MATTR_SET_MOUNT_OWNER = 31
+
+const NFS_MATTR_READLINK_NOCACHE = 32
 
 const NFS_MFLAG_SOFT = 0
 
