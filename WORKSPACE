@@ -3,13 +3,6 @@ workspace(name = "com_github_buildbarn_go_xdr")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
-    name = "bazel_gomock",
-    sha256 = "82a5fb946d2eb0fed80d3d70c2556784ec6cb5c35cd65a1b5e93e46f99681650",
-    strip_prefix = "bazel_gomock-1.3",
-    urls = ["https://github.com/jmhodges/bazel_gomock/archive/v1.3.tar.gz"],
-)
-
-http_archive(
     name = "io_bazel_rules_go",
     sha256 = "16e9fca53ed6bd4ff4ad76facc9b7b651a89db1689a2877d6fd7b82aa824e366",
     urls = [
