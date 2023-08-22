@@ -175,6 +175,8 @@ typedef nfstime32		nfs_mattr_acregmin;
 typedef nfstime32		nfs_mattr_acregmax;
 typedef nfstime32		nfs_mattr_acdirmin;
 typedef nfstime32		nfs_mattr_acdirmax;
+typedef nfstime32		nfs_mattr_acrootdirmin;
+typedef nfstime32		nfs_mattr_acrootdirmax;
 typedef nfs_lock_mode		nfs_mattr_lock_mode;
 typedef uint32_t		nfs_mattr_security<>;
 typedef uint32_t		nfs_mattr_maxgrouplist;
@@ -232,6 +234,8 @@ const NFS_MATTR_LOCAL_NFS_PORT		= 29;	/* Local transport (socket) address for NF
 const NFS_MATTR_LOCAL_MOUNT_PORT	= 30;	/* Local transport (socket) address for MOUNT protocol */
 const NFS_MATTR_SET_MOUNT_OWNER 	= 31;	/* Set owner of mount point */
 const NFS_MATTR_READLINK_NOCACHE	= 32;	/* Readlink nocache mode */
+const NFS_MATTR_ATTRCACHE_ROOTDIR_MIN	= 33;	/* minimum attribute cache time for root directory */
+const NFS_MATTR_ATTRCACHE_ROOTDIR_MAX	= 34;	/* maximum attribute cache time for root directory */
 
 /*
  * Mount flags

@@ -1567,6 +1567,62 @@ done:
 
 const NfsMattrAcdirmaxEncodedSizeBytes = 8
 
+// Type definition "nfs_mattr_acrootdirmin".
+
+type NfsMattrAcrootdirmin = Nfstime32
+
+func ReadNfsMattrAcrootdirmin(r io.Reader, m *Nfstime32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsMattrAcrootdirmin(w io.Writer, m *Nfstime32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsMattrAcrootdirminEncodedSizeBytes = 8
+
+// Type definition "nfs_mattr_acrootdirmax".
+
+type NfsMattrAcrootdirmax = Nfstime32
+
+func ReadNfsMattrAcrootdirmax(r io.Reader, m *Nfstime32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsMattrAcrootdirmax(w io.Writer, m *Nfstime32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsMattrAcrootdirmaxEncodedSizeBytes = 8
+
 // Type definition "nfs_mattr_lock_mode".
 
 type NfsMattrLockMode = NfsLockMode
@@ -2305,6 +2361,10 @@ const NFS_MATTR_LOCAL_MOUNT_PORT = 30
 const NFS_MATTR_SET_MOUNT_OWNER = 31
 
 const NFS_MATTR_READLINK_NOCACHE = 32
+
+const NFS_MATTR_ATTRCACHE_ROOTDIR_MIN = 33
+
+const NFS_MATTR_ATTRCACHE_ROOTDIR_MAX = 34
 
 const NFS_MFLAG_SOFT = 0
 
