@@ -2402,6 +2402,10 @@ const NFS_MFLAG_MNTUDP = 16
 
 const NFS_MFLAG_MNTQUICK = 17
 
+const NFS_MFLAG_NOOPAQUE_AUTH = 19
+
+const NFS_MFLAG_SKIP_RENEW = 20
+
 // Type definition "nfs_mount_args".
 
 type NfsMountArgs struct {

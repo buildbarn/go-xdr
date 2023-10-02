@@ -258,6 +258,8 @@ const NFS_MFLAG_NFC			= 14;	/* send NFC strings */
 const NFS_MFLAG_NOQUOTA			= 15;	/* don't support QUOTA requests */
 const NFS_MFLAG_MNTUDP			= 16;	/* MOUNT protocol should use UDP */
 const NFS_MFLAG_MNTQUICK		= 17;	/* use short timeouts while mounting */
+const NFS_MFLAG_NOOPAQUE_AUTH		= 19;	/* don't make the mount AUTH_OPAQUE. Used by V3 */
+const NFS_MFLAG_SKIP_RENEW		= 20;	/* don't send OP_RENEW when no files are opened. Used by V4 */
 
 
 /*
