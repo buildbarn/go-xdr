@@ -2296,6 +2296,34 @@ done:
 
 const NfsMattrReadlinkNocacheEncodedSizeBytes = 4
 
+// Type definition "nfs_mattr_access_cache".
+
+type NfsMattrAccessCache = uint32
+
+func ReadNfsMattrAccessCache(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsMattrAccessCache(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsMattrAccessCacheEncodedSizeBytes = 4
+
 const NFS_MATTR_FLAGS = 0
 
 const NFS_MATTR_NFS_VERSION = 1
@@ -2365,6 +2393,8 @@ const NFS_MATTR_READLINK_NOCACHE = 32
 const NFS_MATTR_ATTRCACHE_ROOTDIR_MIN = 33
 
 const NFS_MATTR_ATTRCACHE_ROOTDIR_MAX = 34
+
+const NFS_MATTR_ACCESS_CACHE = 35
 
 const NFS_MFLAG_SOFT = 0
 
