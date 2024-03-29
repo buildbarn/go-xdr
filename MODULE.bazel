@@ -1,7 +1,22 @@
 module(name = "com_github_buildbarn_go_xdr")
 
 bazel_dep(name = "gazelle", version = "0.35.0")
+bazel_dep(name = "rules_antlr", version = "0.0.0")
 bazel_dep(name = "rules_go", version = "0.46.0")
+
+git_override(
+    module_name = "rules_antlr",
+    commit = "89a29cca479363a5aee53e203719510bdc6be6ff",
+    init_submodules = True,
+    patches = [
+        "//:patches/rules_antlr/antlr-4.10.diff",
+        "//:patches/rules_antlr/bzlmod.diff",
+    ],
+    remote = "https://github.com/marcohu/rules_antlr.git",
+)
+
+antlr = use_extension("@rules_antlr//antlr:extensions.bzl", "antlr")
+antlr.download(version = "4.10")
 
 go_sdk = use_extension("@rules_go//go:extensions.bzl", "go_sdk")
 go_sdk.download(version = "1.22.1")
