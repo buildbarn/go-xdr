@@ -1,17 +1,17 @@
 module github.com/buildbarn/go-xdr
 
-go 1.18
+go 1.21
 
 // Use the same version as in bb-storage.
 replace mvdan.cc/gofumpt => mvdan.cc/gofumpt v0.3.0
 
 require (
-	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20220722194653-14703f21b580
+	github.com/antlr/antlr4/runtime/Go/antlr v1.4.10
 	github.com/golang/mock v1.6.0
-	github.com/gordonklaus/ineffassign v0.0.0-20210914165742-4cc7213b9bc8
-	github.com/stretchr/testify v1.8.0
-	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
-	mvdan.cc/gofumpt v0.3.1
+	github.com/gordonklaus/ineffassign v0.1.0
+	github.com/stretchr/testify v1.9.0
+	golang.org/x/sync v0.6.0
+	mvdan.cc/gofumpt v0.0.0-00010101000000-000000000000
 )
 
 require (

@@ -1,5 +1,5 @@
 load("//:xdr.bzl", "go_xdr_library")
-load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@rules_go//go:def.bzl", "go_library")
 
 go_xdr_library(
     name = "darwin_nfs_sys_prot_xdr",

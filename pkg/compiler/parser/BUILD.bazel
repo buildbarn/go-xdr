@@ -1,5 +1,5 @@
 load("@rules_antlr//antlr:antlr4.bzl", "antlr")
-load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@rules_go//go:def.bzl", "go_library")
 
 antlr(
     name = "xdr",

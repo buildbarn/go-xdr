@@ -1,0 +1,23 @@
+module(name = "com_github_buildbarn_go_xdr")
+
+bazel_dep(name = "gazelle", version = "0.35.0")
+bazel_dep(name = "rules_go", version = "0.46.0")
+
+go_sdk = use_extension("@rules_go//go:extensions.bzl", "go_sdk")
+go_sdk.download(version = "1.22.1")
+
+go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
+go_deps.from_file(go_mod = "//:go.mod")
+go_deps.module_override(
+    patches = ["//:patches/com_github_golang_mock/mocks-for-funcs.diff"],
+    path = "github.com/golang/mock",
+)
+use_repo(
+    go_deps,
+    "cc_mvdan_gofumpt",
+    "com_github_antlr_antlr4_runtime_go_antlr",
+    "com_github_golang_mock",
+    "com_github_gordonklaus_ineffassign",
+    "com_github_stretchr_testify",
+    "org_golang_x_sync",
+)
