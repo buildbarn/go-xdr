@@ -1,7 +1,7 @@
 module(name = "com_github_buildbarn_go_xdr")
 
 bazel_dep(name = "gazelle", version = "0.35.0")
-bazel_dep(name = "rules_antlr", version = "0.0.0")
+bazel_dep(name = "rules_antlr")
 bazel_dep(name = "rules_go", version = "0.46.0")
 
 git_override(

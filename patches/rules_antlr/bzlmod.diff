@@ -20,7 +20,7 @@ index 0000000..eb12741
 +)
 diff --git antlr/extensions.bzl antlr/extensions.bzl
 new file mode 100644
-index 0000000..454cc7b
+index 0000000..3151e01
 --- /dev/null
 +++ antlr/extensions.bzl
 @@ -0,0 +1,17 @@
@@ -31,10 +31,10 @@ index 0000000..454cc7b
 +def _antlr(module_ctx):
 +    rules_antlr_dependencies(
 +        max([
-+            download.version
++            ([int(part) for part in download.version.split(".")], download.version)
 +            for mod in module_ctx.modules
 +            for download in mod.tags.download
-+        ]),
++        ])[1],
 +    )
 +
 +antlr = module_extension(
