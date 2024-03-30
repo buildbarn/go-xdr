@@ -23,10 +23,6 @@ go_sdk.download(version = "1.22.1")
 
 go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
 go_deps.from_file(go_mod = "//:go.mod")
-go_deps.module_override(
-    patches = ["//:patches/com_github_golang_mock/mocks-for-funcs.diff"],
-    path = "github.com/golang/mock",
-)
 use_repo(
     go_deps,
     "cc_mvdan_gofumpt",
@@ -35,4 +31,10 @@ use_repo(
     "com_github_gordonklaus_ineffassign",
     "com_github_stretchr_testify",
     "org_golang_x_sync",
+)
+
+go_deps_dev = use_extension("@gazelle//:extensions.bzl", "go_deps", dev_dependency = True)
+go_deps_dev.module_override(
+    patches = ["//:patches/com_github_golang_mock/mocks-for-funcs.diff"],
+    path = "github.com/golang/mock",
 )

@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 6,
-  "moduleFileHash": "aaa8399eedcdbc891b33b9bf8171b9719e9acc381fe50099082849d58840bdbb",
+  "moduleFileHash": "3284a48eb27e83e0e186ef671ca27a8a0b107dc5102ba657a1671ba661fb2f34",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -119,15 +119,15 @@
                 ],
                 "path": "github.com/golang/mock"
               },
-              "devDependency": false,
+              "devDependency": true,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 26,
-                "column": 24
+                "line": 37,
+                "column": 28
               }
             }
           ],
-          "hasDevUseExtension": false,
+          "hasDevUseExtension": true,
           "hasNonDevUseExtension": true
         }
       ],
