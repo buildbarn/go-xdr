@@ -1,0 +1,22 @@
+load("//:xdr.bzl", "go_xdr_library")
+load("@rules_go//go:def.bzl", "go_library")
+
+go_xdr_library(
+    name = "mount_xdr",
+    src = "mount.x",
+    visibility = ["//visibility:public"],
+    deps = ["//pkg/protocols/rpcv2:rpcv2_xdr"],
+)
+
+go_library(
+    name = "mount",
+    srcs = [
+        ":mount_xdr",  # keep
+    ],
+    importpath = "github.com/buildbarn/go-xdr/pkg/protocols/mount",  # keep
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/protocols/rpcv2",  # keep
+        "//pkg/runtime",  # keep
+    ],
+)

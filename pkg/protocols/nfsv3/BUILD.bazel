@@ -1,0 +1,22 @@
+load("//:xdr.bzl", "go_xdr_library")
+load("@rules_go//go:def.bzl", "go_library")
+
+go_xdr_library(
+    name = "nfsv3_xdr",
+    src = "nfsv3.x",
+    visibility = ["//visibility:public"],
+    deps = ["//pkg/protocols/rpcv2:rpcv2_xdr"],
+)
+
+go_library(
+    name = "nfsv3",
+    srcs = [
+        ":nfsv3_xdr",  # keep
+    ],
+    importpath = "github.com/buildbarn/go-xdr/pkg/protocols/nfsv3",  # keep
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/protocols/rpcv2",  # keep
+        "//pkg/runtime",  # keep
+    ],
+)

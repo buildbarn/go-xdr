@@ -1,0 +1,22 @@
+load("//:xdr.bzl", "go_xdr_library")
+load("@rules_go//go:def.bzl", "go_library")
+
+go_xdr_library(
+    name = "nlm_xdr",
+    src = "nlm.x",
+    visibility = ["//visibility:public"],
+    deps = ["//pkg/protocols/rpcv2:rpcv2_xdr"],
+)
+
+go_library(
+    name = "nlm",
+    srcs = [
+        ":nlm_xdr",  # keep
+    ],
+    importpath = "github.com/buildbarn/go-xdr/pkg/protocols/nlm",  # keep
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/protocols/rpcv2",  # keep
+        "//pkg/runtime",  # keep
+    ],
+)
