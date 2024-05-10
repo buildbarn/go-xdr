@@ -20,7 +20,7 @@ func (vv *enumEmittingValueVisitor) visitConstant(constant *big.Int) error {
 func (vv *enumEmittingValueVisitor) visitIdentifier(name string) error {
 	v, ok := vv.elements[name]
 	if !ok {
-		return fmt.Errorf("%#v is not an valid enumeration value", name)
+		return fmt.Errorf("%#v is not a valid enumeration value", name)
 	}
 	return v.visit(newIntegerEmittingValueVisitor(vv.s, vv.r))
 }
