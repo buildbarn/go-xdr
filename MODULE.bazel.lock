@@ -1618,10 +1618,10 @@
       "general": {
         "bzlTransitiveDigest": "D1+rhhbwX4ufoTmeUVxDpPg+Sknv3QzVXZnyK2zOjj4=",
         "recordedFileInputs": {
-          "@@//go.mod": "6b49e0ea6c06c8c1cadc3257856c8a8aa9bf04ec62b23ce758488b2ec8568778",
+          "@@//go.mod": "3cc7c3d93aac8a8dc0325d311c7e03ce372350ff9cfd849e67840f320b12fca6",
           "@@rules_go~//go.mod": "de22304b720f7f61350ec1c9739de6c0a1b1103fd22bfeb6e92c6c843ddc6d6e",
           "@@gazelle~//go.sum": "7c4460e8ecb5dd8691a51d4fa2e9e4751108b933636497ce46db499fc2e7a88d",
-          "@@//go.sum": "b1e5f20131cf47d0339d501b0abd80b8851edcd738b88f8694948c4f81f97c85",
+          "@@//go.sum": "6c4e8d84c552d9bcfe065587c5201602aa6a67d50e00800650e2dcbb426796a8",
           "@@rules_go~//go.sum": "d56fdb19b21a5f12bcf625c49432371ac39c2def0f564098fbda107f7c080f40",
           "@@gazelle~//go.mod": "48dc6e771c3028ee1c18b9ffc81e596fd5f6d7e0016c5ef280e30f2821f60473"
         },
@@ -1743,9 +1743,9 @@
               "build_extra_args": [],
               "patches": [],
               "patch_args": [],
-              "sum": "h1:zdAyfUGbYmuVokhzVmghFl2ZJh5QhcfebBgmVPFYA+8=",
+              "sum": "h1:qc0xYgIbsSDt9EyWz05J5wfa7LOVW0YTLOXrqdLAWIw=",
               "replace": "",
-              "version": "v0.15.0"
+              "version": "v0.21.0"
             }
           },
           "com_github_bazelbuild_buildtools": {
@@ -1854,9 +1854,9 @@
               "build_extra_args": [],
               "patches": [],
               "patch_args": [],
-              "sum": "h1:5BMeUDZ7vkXGfEr1x9B4bRcTH4lpkTkpdh0T/J+qjbQ=",
+              "sum": "h1:YsImfSBoP9QPYL0xyKJPq0gcaJdG3rInoqxTWbfQu9M=",
               "replace": "",
-              "version": "v0.6.0"
+              "version": "v0.7.0"
             }
           },
           "org_golang_google_grpc": {
@@ -1889,21 +1889,6 @@
               "sum": "h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=",
               "replace": "",
               "version": "v0.6.0"
-            }
-          },
-          "org_golang_x_xerrors": {
-            "bzlFile": "@@gazelle~//internal:go_repository.bzl",
-            "ruleClassName": "go_repository",
-            "attributes": {
-              "importpath": "golang.org/x/xerrors",
-              "build_directives": [],
-              "build_file_generation": "auto",
-              "build_extra_args": [],
-              "patches": [],
-              "patch_args": [],
-              "sum": "h1:go1bK/D/BFZV2I8cIQd1NKEZ+0owSTG1fDTci4IqFcE=",
-              "replace": "",
-              "version": "v0.0.0-20200804184101-5ec99f83aff1"
             }
           },
           "com_github_antlr_antlr4_runtime_go_antlr": {
@@ -1961,9 +1946,9 @@
               "build_extra_args": [],
               "patches": [],
               "patch_args": [],
-              "sum": "h1:dGoOF9QVLYng8IHTm7BAyWqCqSheQ5pYWGhzW00YJr0=",
+              "sum": "h1:zY54UmvipHiNd+pm+m0x9KhZ9hl1/7QNMyxXbc6ICqA=",
               "replace": "",
-              "version": "v0.14.0"
+              "version": "v0.17.0"
             }
           },
           "in_gopkg_yaml_v3": {
@@ -2011,15 +1996,14 @@
                 "com_github_google_go_cmp": "github.com/google/go-cmp",
                 "com_github_pmezard_go_difflib": "github.com/pmezard/go-difflib",
                 "org_golang_x_mod": "golang.org/x/mod",
-                "org_golang_x_sys": "golang.org/x/sys",
                 "org_golang_x_tools": "golang.org/x/tools",
-                "org_golang_x_xerrors": "golang.org/x/xerrors",
                 "in_gopkg_yaml_v3": "gopkg.in/yaml.v3",
                 "com_github_bazelbuild_buildtools": "github.com/bazelbuild/buildtools",
                 "@rules_go~": "github.com/bazelbuild/rules_go",
                 "com_github_bmatcuk_doublestar_v4": "github.com/bmatcuk/doublestar/v4",
                 "com_github_fsnotify_fsnotify": "github.com/fsnotify/fsnotify",
                 "org_golang_x_tools_go_vcs": "golang.org/x/tools/go/vcs",
+                "org_golang_x_sys": "golang.org/x/sys",
                 "com_github_gogo_protobuf": "github.com/gogo/protobuf",
                 "com_github_golang_protobuf": "github.com/golang/protobuf",
                 "org_golang_x_net": "golang.org/x/net",
@@ -2047,9 +2031,9 @@
               "build_extra_args": [],
               "patches": [],
               "patch_args": [],
-              "sum": "h1:kTojdZo9AcEYbQYhGuLf/zszYthRdhDNDUi2JKTxas4=",
-              "replace": "mvdan.cc/gofumpt",
-              "version": "v0.3.0"
+              "sum": "h1:G3QvahNDmpD+Aek/bNOLrFR2XC6ZAdo62dZu65gmwGo=",
+              "replace": "",
+              "version": "v0.6.0"
             }
           },
           "org_golang_x_sys": {
