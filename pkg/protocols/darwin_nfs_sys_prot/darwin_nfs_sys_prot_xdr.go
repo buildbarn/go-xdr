@@ -3,8 +3,9 @@ package darwin_nfs_sys_prot
 
 import (
 	"fmt"
-	"github.com/buildbarn/go-xdr/pkg/runtime"
 	"io"
+
+	"github.com/buildbarn/go-xdr/pkg/runtime"
 )
 
 const NFS_ARGSVERSION_XDR = 88
