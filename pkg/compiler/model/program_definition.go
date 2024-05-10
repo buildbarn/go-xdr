@@ -120,11 +120,28 @@ func (d programDefinition) emitAllDefinitions(s sink, r Resolver) error {
 				if err := argumentType.emitDeclaration(s, r, i); err != nil {
 					return err
 				}
-				s.emitString("\n{\nm := &a")
-				s.emitString(indexStr)
+				s.emitString("\n{\n")
+				large, err := argumentType.isLarge(r)
+				if err != nil {
+					return err
+				}
+				if large {
+					s.emitString("m := &a")
+					s.emitString(indexStr)
+				} else {
+					s.emitString("var m ")
+					if err := argumentType.emitDeclaration(s, r, i); err != nil {
+						return err
+					}
+				}
 				s.emitString("\nvar nField, nTotal int64\n")
 				if err := argumentType.emitReadFrom(s, r, i); err != nil {
 					return err
+				}
+				if !large {
+					s.emitString("a")
+					s.emitString(indexStr)
+					s.emitString(" = m\n")
 				}
 				s.emitString("}\n")
 
