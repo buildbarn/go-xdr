@@ -1,5 +1,18 @@
 package "github.com/buildbarn/go-xdr/pkg/protocols/mount";
 
+/* Definitions copied from RFC 1094, appendix A. */
+
+const FHSIZE = 32;
+
+typedef opaque fhandle[FHSIZE];
+
+union fhstatus switch (unsigned int status) {
+case 0:
+    fhandle directory;
+default:
+    void;
+};
+
 /* Definitions copied from RFC 1813, appendix I. */
 
 /* 5.1.4 Sizes. */
@@ -30,6 +43,15 @@ enum mountstat3 {
 /* 5.2 Server Procedures. */
 
 program MOUNT_PROGRAM {
+   version MOUNT_V1 {
+      void       MOUNTPROC_NULL(void)    = 0;
+      fhstatus   MOUNTPROC_MNT(dirpath)  = 1;
+      mountbody  MOUNTPROC_DUMP(void)    = 2;
+      void       MOUNTPROC_UMNT(dirpath) = 3;
+      void       MOUNTPROC_UMNTALL(void) = 4;
+      exportnode MOUNTPROC_EXPORT(void)  = 5;
+   } = 1;
+
    version MOUNT_V3 {
       void      MOUNTPROC3_NULL(void)    = 0;
       mountres3 MOUNTPROC3_MNT(dirpath)  = 1;

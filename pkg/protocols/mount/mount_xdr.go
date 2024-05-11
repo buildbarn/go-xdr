@@ -10,6 +10,176 @@ import (
 	"github.com/buildbarn/go-xdr/pkg/runtime"
 )
 
+const FHSIZE = 32
+
+// Type definition "fhandle".
+
+type Fhandle = [32]byte
+
+func ReadFhandle(r io.Reader, m *[32]byte) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFhandle(w io.Writer, m *[32]byte) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const FhandleEncodedSizeBytes = 32
+
+// Type definition "fhstatus".
+
+type Fhstatus interface {
+	isFhstatus()
+	GetStatus() uint32
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadFhstatus(r io.Reader) (m Fhstatus, nTotal int64, err error) {
+	var nField int64
+	var discriminant uint32
+	{
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm Fhstatus_0
+		{
+			m := &mArm
+			{
+				m := &m.Directory
+				nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Fhstatus_default
+		{
+			m := &mArm
+			m.Status = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readFhstatusStatus(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeFhstatusStatus(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const fhstatusStatusEncodedSizeBytes = 4
+
+type Fhstatus_0 struct {
+	Directory [32]byte
+}
+
+func (m *Fhstatus_0) isFhstatus() {}
+
+func (m *Fhstatus_0) GetStatus() uint32 {
+	return 0
+}
+
+func (m *Fhstatus_0) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m uint32 = 0
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Directory
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Fhstatus_0) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 32
+	return
+}
+
+type Fhstatus_default struct {
+	Status uint32
+}
+
+func (m *Fhstatus_default) isFhstatus() {}
+
+func (m *Fhstatus_default) GetStatus() uint32 {
+	return m.Status
+}
+
+func (m *Fhstatus_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.Status
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Fhstatus_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
 const MNTPATHLEN = 1024
 
 const MNTNAMLEN = 255
@@ -175,6 +345,12 @@ var Mountstat3_name = map[Mountstat3]string{
 const MOUNT_PROGRAM_PROGRAM_NUMBER uint32 = 100005
 
 type MountProgram interface {
+	MountV1MountprocNull(context.Context) error
+	MountV1MountprocMnt(context.Context, string) (Fhstatus, error)
+	MountV1MountprocDump(context.Context) (*Mountbody, error)
+	MountV1MountprocUmnt(context.Context, string) error
+	MountV1MountprocUmntall(context.Context) error
+	MountV1MountprocExport(context.Context) (*Exportnode, error)
 	MountV3Mountproc3Null(context.Context) error
 	MountV3Mountproc3Mnt(context.Context, string) (Mountres3, error)
 	MountV3Mountproc3Dump(context.Context) (*Mountbody, error)
@@ -187,6 +363,100 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (rpcv2.AcceptedReplyData, error) {
 		var err error
 		switch vers {
+		case 1:
+			switch proc {
+			case 0:
+				r.Close()
+				r = nil
+				err := p.MountV1MountprocNull(ctx)
+				if err != nil {
+					return nil, err
+				}
+			case 1:
+				var a0 string
+				{
+					var m string
+					var nField, nTotal int64
+					m, nField, err = runtime.ReadASCIIString(r, 1024)
+					nTotal += nField
+					if err != nil {
+						goto done
+					}
+					a0 = m
+				}
+				r.Close()
+				r = nil
+				m, err := p.MountV1MountprocMnt(ctx, a0)
+				if err != nil {
+					return nil, err
+				}
+				{
+					var nField, nTotal int64
+					nField, err = m.WriteTo(w)
+					nTotal += nField
+					if err != nil {
+						goto done
+					}
+				}
+			case 2:
+				r.Close()
+				r = nil
+				m, err := p.MountV1MountprocDump(ctx)
+				if err != nil {
+					return nil, err
+				}
+				{
+					var nField, nTotal int64
+					nField, err = m.WriteTo(w)
+					nTotal += nField
+					if err != nil {
+						goto done
+					}
+				}
+			case 3:
+				var a0 string
+				{
+					var m string
+					var nField, nTotal int64
+					m, nField, err = runtime.ReadASCIIString(r, 1024)
+					nTotal += nField
+					if err != nil {
+						goto done
+					}
+					a0 = m
+				}
+				r.Close()
+				r = nil
+				err := p.MountV1MountprocUmnt(ctx, a0)
+				if err != nil {
+					return nil, err
+				}
+			case 4:
+				r.Close()
+				r = nil
+				err := p.MountV1MountprocUmntall(ctx)
+				if err != nil {
+					return nil, err
+				}
+			case 5:
+				r.Close()
+				r = nil
+				m, err := p.MountV1MountprocExport(ctx)
+				if err != nil {
+					return nil, err
+				}
+				{
+					var nField, nTotal int64
+					nField, err = m.WriteTo(w)
+					nTotal += nField
+					if err != nil {
+						goto done
+					}
+				}
+			default:
+				r.Close()
+				return &rpcv2.AcceptedReplyData_default{Stat: rpcv2.PROC_UNAVAIL}, nil
+			}
 		case 3:
 			switch proc {
 			case 0:
@@ -314,7 +584,7 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 		default:
 			r.Close()
 			var replyData rpcv2.AcceptedReplyData_PROG_MISMATCH
-			replyData.MismatchInfo.Low = 3
+			replyData.MismatchInfo.Low = 1
 			replyData.MismatchInfo.High = 3
 			return &replyData, nil
 		}
