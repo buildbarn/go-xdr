@@ -622,9 +622,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 			case 0:
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4Null(ctx)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4Null(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 1:
 				var a0 Nlm4Testargs
@@ -639,9 +639,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				m, err := p.Nlm4VersNlmproc4Test(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.Nlm4VersNlmproc4Test(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -664,9 +664,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				m, err := p.Nlm4VersNlmproc4Lock(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.Nlm4VersNlmproc4Lock(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -689,9 +689,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				m, err := p.Nlm4VersNlmproc4Cancel(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.Nlm4VersNlmproc4Cancel(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -714,9 +714,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				m, err := p.Nlm4VersNlmproc4Unlock(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.Nlm4VersNlmproc4Unlock(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -739,9 +739,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				m, err := p.Nlm4VersNlmproc4Granted(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.Nlm4VersNlmproc4Granted(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -764,9 +764,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4TestMsg(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4TestMsg(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 7:
 				var a0 Nlm4Lockargs
@@ -781,9 +781,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4LockMsg(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4LockMsg(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 8:
 				var a0 Nlm4Cancargs
@@ -798,9 +798,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4CancelMsg(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4CancelMsg(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 9:
 				var a0 Nlm4Unlockargs
@@ -815,9 +815,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4UnlockMsg(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4UnlockMsg(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 10:
 				var a0 Nlm4Testargs
@@ -832,9 +832,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4GrantedMsg(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4GrantedMsg(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 11:
 				var a0 Nlm4Testres
@@ -849,9 +849,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4TestRes(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4TestRes(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 12:
 				var a0 Nlm4Res
@@ -866,9 +866,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4LockRes(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4LockRes(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 13:
 				var a0 Nlm4Res
@@ -883,9 +883,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4CancelRes(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4CancelRes(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 14:
 				var a0 Nlm4Res
@@ -900,9 +900,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4UnlockRes(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4UnlockRes(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 15:
 				var a0 Nlm4Res
@@ -917,9 +917,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4GrantedRes(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4GrantedRes(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 20:
 				var a0 Nlm4Shareargs
@@ -934,9 +934,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				m, err := p.Nlm4VersNlmproc4Share(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.Nlm4VersNlmproc4Share(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -959,9 +959,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				m, err := p.Nlm4VersNlmproc4Unshare(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.Nlm4VersNlmproc4Unshare(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -984,9 +984,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				m, err := p.Nlm4VersNlmproc4NmLock(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.Nlm4VersNlmproc4NmLock(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -1009,9 +1009,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				}
 				r.Close()
 				r = nil
-				err := p.Nlm4VersNlmproc4FreeAll(ctx, &a0)
-				if err != nil {
-					return nil, err
+				errProc := p.Nlm4VersNlmproc4FreeAll(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			default:
 				r.Close()

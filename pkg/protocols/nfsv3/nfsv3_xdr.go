@@ -2802,9 +2802,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 			case 0:
 				r.Close()
 				r = nil
-				err := p.NfsV3Nfsproc3Null(ctx)
-				if err != nil {
-					return nil, err
+				errProc := p.NfsV3Nfsproc3Null(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 1:
 				var a0 Getattr3args
@@ -2819,9 +2819,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Getattr(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Getattr(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -2844,9 +2844,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Setattr(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Setattr(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -2869,9 +2869,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Lookup(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Lookup(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -2894,9 +2894,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Access(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Access(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -2919,9 +2919,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Readlink(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Readlink(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -2944,9 +2944,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Read(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Read(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -2969,9 +2969,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Write(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Write(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -2994,9 +2994,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Create(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Create(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3019,9 +3019,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Mkdir(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Mkdir(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3044,9 +3044,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Symlink(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Symlink(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3069,9 +3069,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Mknod(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Mknod(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3094,9 +3094,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Remove(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Remove(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3119,9 +3119,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Rmdir(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Rmdir(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3144,9 +3144,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Rename(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Rename(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3169,9 +3169,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Link(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Link(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3194,9 +3194,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Readdir(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Readdir(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3219,9 +3219,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Readdirplus(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Readdirplus(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3244,9 +3244,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Fsstat(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Fsstat(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3269,9 +3269,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Fsinfo(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Fsinfo(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3294,9 +3294,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Pathconf(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Pathconf(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -3319,9 +3319,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV3Nfsproc3Commit(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV3Nfsproc3Commit(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64

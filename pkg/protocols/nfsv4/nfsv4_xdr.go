@@ -18594,9 +18594,9 @@ func NewNfs4ProgramService(p Nfs4Program) func(context.Context, uint32, uint32, 
 			case 0:
 				r.Close()
 				r = nil
-				err := p.NfsV4Nfsproc4Null(ctx)
-				if err != nil {
-					return nil, err
+				errProc := p.NfsV4Nfsproc4Null(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 1:
 				var a0 Compound4args
@@ -18611,9 +18611,9 @@ func NewNfs4ProgramService(p Nfs4Program) func(context.Context, uint32, uint32, 
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsV4Nfsproc4Compound(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsV4Nfsproc4Compound(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -19805,9 +19805,9 @@ func NewNfs4CallbackService(p Nfs4Callback) func(context.Context, uint32, uint32
 			case 0:
 				r.Close()
 				r = nil
-				err := p.NfsCbCbNull(ctx)
-				if err != nil {
-					return nil, err
+				errProc := p.NfsCbCbNull(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 1:
 				var a0 CbCompound4args
@@ -19822,9 +19822,9 @@ func NewNfs4CallbackService(p Nfs4Callback) func(context.Context, uint32, uint32
 				}
 				r.Close()
 				r = nil
-				m, err := p.NfsCbCbCompound(ctx, &a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.NfsCbCbCompound(ctx, &a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64

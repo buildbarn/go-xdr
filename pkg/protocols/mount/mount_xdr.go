@@ -368,9 +368,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 			case 0:
 				r.Close()
 				r = nil
-				err := p.MountV1MountprocNull(ctx)
-				if err != nil {
-					return nil, err
+				errProc := p.MountV1MountprocNull(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 1:
 				var a0 string
@@ -386,9 +386,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				}
 				r.Close()
 				r = nil
-				m, err := p.MountV1MountprocMnt(ctx, a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.MountV1MountprocMnt(ctx, a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -401,9 +401,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 			case 2:
 				r.Close()
 				r = nil
-				m, err := p.MountV1MountprocDump(ctx)
-				if err != nil {
-					return nil, err
+				m, errProc := p.MountV1MountprocDump(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -427,23 +427,23 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				}
 				r.Close()
 				r = nil
-				err := p.MountV1MountprocUmnt(ctx, a0)
-				if err != nil {
-					return nil, err
+				errProc := p.MountV1MountprocUmnt(ctx, a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 4:
 				r.Close()
 				r = nil
-				err := p.MountV1MountprocUmntall(ctx)
-				if err != nil {
-					return nil, err
+				errProc := p.MountV1MountprocUmntall(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 5:
 				r.Close()
 				r = nil
-				m, err := p.MountV1MountprocExport(ctx)
-				if err != nil {
-					return nil, err
+				m, errProc := p.MountV1MountprocExport(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -462,9 +462,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 			case 0:
 				r.Close()
 				r = nil
-				err := p.MountV3Mountproc3Null(ctx)
-				if err != nil {
-					return nil, err
+				errProc := p.MountV3Mountproc3Null(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 1:
 				var a0 string
@@ -480,9 +480,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				}
 				r.Close()
 				r = nil
-				m, err := p.MountV3Mountproc3Mnt(ctx, a0)
-				if err != nil {
-					return nil, err
+				m, errProc := p.MountV3Mountproc3Mnt(ctx, a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -495,9 +495,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 			case 2:
 				r.Close()
 				r = nil
-				m, err := p.MountV3Mountproc3Dump(ctx)
-				if err != nil {
-					return nil, err
+				m, errProc := p.MountV3Mountproc3Dump(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64
@@ -536,23 +536,23 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				}
 				r.Close()
 				r = nil
-				err := p.MountV3Mountproc3Umnt(ctx, a0)
-				if err != nil {
-					return nil, err
+				errProc := p.MountV3Mountproc3Umnt(ctx, a0)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 4:
 				r.Close()
 				r = nil
-				err := p.MountV3Mountproc3Umntall(ctx)
-				if err != nil {
-					return nil, err
+				errProc := p.MountV3Mountproc3Umntall(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 			case 5:
 				r.Close()
 				r = nil
-				m, err := p.MountV3Mountproc3Export(ctx)
-				if err != nil {
-					return nil, err
+				m, errProc := p.MountV3Mountproc3Export(ctx)
+				if errProc != nil {
+					return nil, errProc
 				}
 				{
 					var nField, nTotal int64

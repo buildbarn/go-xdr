@@ -151,7 +151,7 @@ func (d programDefinition) emitAllDefinitions(s sink, r Resolver) error {
 			if procedure.returnType != nil {
 				s.emitString("m, ")
 			}
-			s.emitString("err := p.")
+			s.emitString("errProc := p.")
 			emitMixedCase(s, version.name, true)
 			emitMixedCase(s, procedure.name, true)
 			s.emitString("(ctx")
@@ -165,7 +165,7 @@ func (d programDefinition) emitAllDefinitions(s sink, r Resolver) error {
 				s.emitString("a")
 				s.emitString(strconv.FormatInt(int64(index), 10))
 			}
-			s.emitString(")\nif err != nil {\nreturn nil, err\n}\n")
+			s.emitString(")\nif errProc != nil {\nreturn nil, errProc\n}\n")
 			if returnType := procedure.returnType; returnType != nil {
 				s.emitString("{\nvar nField, nTotal int64\n")
 				if err := returnType.emitWriteTo(s, r, i); err != nil {
