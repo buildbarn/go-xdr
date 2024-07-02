@@ -130,6 +130,8 @@ const NFS4_OTHER_SIZE = 12
 
 const NFS4_OPAQUE_LIMIT = 1024
 
+const NFS4_SESSIONID_SIZE = 16
+
 const NFS4_INT64_MAX = 9223372036854775807
 
 const NFS4_UINT64_MAX = 18446744073709551615
@@ -137,6 +139,10 @@ const NFS4_UINT64_MAX = 18446744073709551615
 const NFS4_INT32_MAX = 2147483647
 
 const NFS4_UINT32_MAX = 4294967295
+
+const NFS4_MAXFILELEN = 18446744073709551615
+
+const NFS4_MAXFILEOFF = 18446744073709551614
 
 // Type definition "nfs_ftype4".
 
@@ -234,13 +240,25 @@ const NFS4ERR_ADMIN_REVOKED Nfsstat4 = 10047
 
 const NFS4ERR_ATTRNOTSUPP Nfsstat4 = 10032
 
+const NFS4ERR_BACK_CHAN_BUSY Nfsstat4 = 10057
+
 const NFS4ERR_BADCHAR Nfsstat4 = 10040
 
 const NFS4ERR_BADHANDLE Nfsstat4 = 10001
 
+const NFS4ERR_BADIOMODE Nfsstat4 = 10049
+
+const NFS4ERR_BADLABEL Nfsstat4 = 10093
+
+const NFS4ERR_BADLAYOUT Nfsstat4 = 10050
+
 const NFS4ERR_BADNAME Nfsstat4 = 10041
 
 const NFS4ERR_BADOWNER Nfsstat4 = 10039
+
+const NFS4ERR_BADSESSION Nfsstat4 = 10052
+
+const NFS4ERR_BADSLOT Nfsstat4 = 10053
 
 const NFS4ERR_BADTYPE Nfsstat4 = 10007
 
@@ -248,9 +266,13 @@ const NFS4ERR_BADXDR Nfsstat4 = 10036
 
 const NFS4ERR_BAD_COOKIE Nfsstat4 = 10003
 
+const NFS4ERR_BAD_HIGH_SLOT Nfsstat4 = 10077
+
 const NFS4ERR_BAD_RANGE Nfsstat4 = 10042
 
 const NFS4ERR_BAD_SEQID Nfsstat4 = 10026
+
+const NFS4ERR_BAD_SESSION_DIGEST Nfsstat4 = 10051
 
 const NFS4ERR_BAD_STATEID Nfsstat4 = 10025
 
@@ -258,13 +280,29 @@ const NFS4ERR_CB_PATH_DOWN Nfsstat4 = 10048
 
 const NFS4ERR_CLID_INUSE Nfsstat4 = 10017
 
+const NFS4ERR_CLIENTID_BUSY Nfsstat4 = 10074
+
+const NFS4ERR_COMPLETE_ALREADY Nfsstat4 = 10054
+
+const NFS4ERR_CONN_NOT_BOUND_TO_SESSION Nfsstat4 = 10055
+
 const NFS4ERR_DEADLOCK Nfsstat4 = 10045
+
+const NFS4ERR_DEADSESSION Nfsstat4 = 10078
 
 const NFS4ERR_DELAY Nfsstat4 = 10008
 
+const NFS4ERR_DELEG_ALREADY_WANTED Nfsstat4 = 10056
+
+const NFS4ERR_DELEG_REVOKED Nfsstat4 = 10087
+
 const NFS4ERR_DENIED Nfsstat4 = 10010
 
+const NFS4ERR_DIRDELEG_UNAVAIL Nfsstat4 = 10084
+
 const NFS4ERR_DQUOT Nfsstat4 = 69
+
+const NFS4ERR_ENCR_ALG_UNSUPP Nfsstat4 = 10079
 
 const NFS4ERR_EXIST Nfsstat4 = 17
 
@@ -278,11 +316,17 @@ const NFS4ERR_FILE_OPEN Nfsstat4 = 10046
 
 const NFS4ERR_GRACE Nfsstat4 = 10013
 
+const NFS4ERR_HASH_ALG_UNSUPP Nfsstat4 = 10072
+
 const NFS4ERR_INVAL Nfsstat4 = 22
 
 const NFS4ERR_IO Nfsstat4 = 5
 
 const NFS4ERR_ISDIR Nfsstat4 = 21
+
+const NFS4ERR_LAYOUTTRYLATER Nfsstat4 = 10058
+
+const NFS4ERR_LAYOUTUNAVAILABLE Nfsstat4 = 10059
 
 const NFS4ERR_LEASE_MOVED Nfsstat4 = 10031
 
@@ -306,6 +350,8 @@ const NFS4ERR_NOENT Nfsstat4 = 2
 
 const NFS4ERR_NOFILEHANDLE Nfsstat4 = 10020
 
+const NFS4ERR_NOMATCHING_LAYOUT Nfsstat4 = 10060
+
 const NFS4ERR_NOSPC Nfsstat4 = 28
 
 const NFS4ERR_NOTDIR Nfsstat4 = 20
@@ -314,11 +360,17 @@ const NFS4ERR_NOTEMPTY Nfsstat4 = 66
 
 const NFS4ERR_NOTSUPP Nfsstat4 = 10004
 
+const NFS4ERR_NOT_ONLY_OP Nfsstat4 = 10081
+
 const NFS4ERR_NOT_SAME Nfsstat4 = 10027
 
 const NFS4ERR_NO_GRACE Nfsstat4 = 10033
 
 const NFS4ERR_NXIO Nfsstat4 = 6
+
+const NFS4ERR_OFFLOAD_DENIED Nfsstat4 = 10091
+
+const NFS4ERR_OFFLOAD_NO_REQS Nfsstat4 = 10094
 
 const NFS4ERR_OLD_STATEID Nfsstat4 = 10024
 
@@ -326,19 +378,49 @@ const NFS4ERR_OPENMODE Nfsstat4 = 10038
 
 const NFS4ERR_OP_ILLEGAL Nfsstat4 = 10044
 
+const NFS4ERR_OP_NOT_IN_SESSION Nfsstat4 = 10071
+
+const NFS4ERR_PARTNER_NOTSUPP Nfsstat4 = 10088
+
+const NFS4ERR_PARTNER_NO_AUTH Nfsstat4 = 10089
+
 const NFS4ERR_PERM Nfsstat4 = 1
+
+const NFS4ERR_PNFS_IO_HOLE Nfsstat4 = 10075
+
+const NFS4ERR_PNFS_NO_LAYOUT Nfsstat4 = 10080
+
+const NFS4ERR_RECALLCONFLICT Nfsstat4 = 10061
 
 const NFS4ERR_RECLAIM_BAD Nfsstat4 = 10034
 
 const NFS4ERR_RECLAIM_CONFLICT Nfsstat4 = 10035
 
+const NFS4ERR_REJECT_DELEG Nfsstat4 = 10085
+
+const NFS4ERR_REP_TOO_BIG Nfsstat4 = 10066
+
+const NFS4ERR_REP_TOO_BIG_TO_CACHE Nfsstat4 = 10067
+
+const NFS4ERR_REQ_TOO_BIG Nfsstat4 = 10065
+
 const NFS4ERR_RESOURCE Nfsstat4 = 10018
 
 const NFS4ERR_RESTOREFH Nfsstat4 = 10030
 
+const NFS4ERR_RETRY_UNCACHED_REP Nfsstat4 = 10068
+
+const NFS4ERR_RETURNCONFLICT Nfsstat4 = 10086
+
 const NFS4ERR_ROFS Nfsstat4 = 30
 
 const NFS4ERR_SAME Nfsstat4 = 10009
+
+const NFS4ERR_SEQUENCE_POS Nfsstat4 = 10064
+
+const NFS4ERR_SEQ_FALSE_RETRY Nfsstat4 = 10076
+
+const NFS4ERR_SEQ_MISORDERED Nfsstat4 = 10063
 
 const NFS4ERR_SERVERFAULT Nfsstat4 = 10006
 
@@ -354,7 +436,21 @@ const NFS4ERR_SYMLINK Nfsstat4 = 10029
 
 const NFS4ERR_TOOSMALL Nfsstat4 = 10005
 
+const NFS4ERR_TOO_MANY_OPS Nfsstat4 = 10070
+
+const NFS4ERR_UNION_NOTSUPP Nfsstat4 = 10090
+
+const NFS4ERR_UNKNOWN_LAYOUTTYPE Nfsstat4 = 10062
+
+const NFS4ERR_UNSAFE_COMPOUND Nfsstat4 = 10069
+
 const NFS4ERR_WRONGSEC Nfsstat4 = 10016
+
+const NFS4ERR_WRONG_CRED Nfsstat4 = 10082
+
+const NFS4ERR_WRONG_LFS Nfsstat4 = 10092
+
+const NFS4ERR_WRONG_TYPE Nfsstat4 = 10083
 
 const NFS4ERR_XDEV Nfsstat4 = 18
 
@@ -364,31 +460,50 @@ var Nfsstat4_name = map[Nfsstat4]string{
 	13:    "NFS4ERR_ACCESS",
 	10047: "NFS4ERR_ADMIN_REVOKED",
 	10032: "NFS4ERR_ATTRNOTSUPP",
+	10057: "NFS4ERR_BACK_CHAN_BUSY",
 	10040: "NFS4ERR_BADCHAR",
 	10001: "NFS4ERR_BADHANDLE",
+	10049: "NFS4ERR_BADIOMODE",
+	10093: "NFS4ERR_BADLABEL",
+	10050: "NFS4ERR_BADLAYOUT",
 	10041: "NFS4ERR_BADNAME",
 	10039: "NFS4ERR_BADOWNER",
+	10052: "NFS4ERR_BADSESSION",
+	10053: "NFS4ERR_BADSLOT",
 	10007: "NFS4ERR_BADTYPE",
 	10036: "NFS4ERR_BADXDR",
 	10003: "NFS4ERR_BAD_COOKIE",
+	10077: "NFS4ERR_BAD_HIGH_SLOT",
 	10042: "NFS4ERR_BAD_RANGE",
 	10026: "NFS4ERR_BAD_SEQID",
+	10051: "NFS4ERR_BAD_SESSION_DIGEST",
 	10025: "NFS4ERR_BAD_STATEID",
 	10048: "NFS4ERR_CB_PATH_DOWN",
 	10017: "NFS4ERR_CLID_INUSE",
+	10074: "NFS4ERR_CLIENTID_BUSY",
+	10054: "NFS4ERR_COMPLETE_ALREADY",
+	10055: "NFS4ERR_CONN_NOT_BOUND_TO_SESSION",
 	10045: "NFS4ERR_DEADLOCK",
+	10078: "NFS4ERR_DEADSESSION",
 	10008: "NFS4ERR_DELAY",
+	10056: "NFS4ERR_DELEG_ALREADY_WANTED",
+	10087: "NFS4ERR_DELEG_REVOKED",
 	10010: "NFS4ERR_DENIED",
+	10084: "NFS4ERR_DIRDELEG_UNAVAIL",
 	69:    "NFS4ERR_DQUOT",
+	10079: "NFS4ERR_ENCR_ALG_UNSUPP",
 	17:    "NFS4ERR_EXIST",
 	10011: "NFS4ERR_EXPIRED",
 	27:    "NFS4ERR_FBIG",
 	10014: "NFS4ERR_FHEXPIRED",
 	10046: "NFS4ERR_FILE_OPEN",
 	10013: "NFS4ERR_GRACE",
+	10072: "NFS4ERR_HASH_ALG_UNSUPP",
 	22:    "NFS4ERR_INVAL",
 	5:     "NFS4ERR_IO",
 	21:    "NFS4ERR_ISDIR",
+	10058: "NFS4ERR_LAYOUTTRYLATER",
+	10059: "NFS4ERR_LAYOUTUNAVAILABLE",
 	10031: "NFS4ERR_LEASE_MOVED",
 	10012: "NFS4ERR_LOCKED",
 	10037: "NFS4ERR_LOCKS_HELD",
@@ -400,23 +515,42 @@ var Nfsstat4_name = map[Nfsstat4]string{
 	63:    "NFS4ERR_NAMETOOLONG",
 	2:     "NFS4ERR_NOENT",
 	10020: "NFS4ERR_NOFILEHANDLE",
+	10060: "NFS4ERR_NOMATCHING_LAYOUT",
 	28:    "NFS4ERR_NOSPC",
 	20:    "NFS4ERR_NOTDIR",
 	66:    "NFS4ERR_NOTEMPTY",
 	10004: "NFS4ERR_NOTSUPP",
+	10081: "NFS4ERR_NOT_ONLY_OP",
 	10027: "NFS4ERR_NOT_SAME",
 	10033: "NFS4ERR_NO_GRACE",
 	6:     "NFS4ERR_NXIO",
+	10091: "NFS4ERR_OFFLOAD_DENIED",
+	10094: "NFS4ERR_OFFLOAD_NO_REQS",
 	10024: "NFS4ERR_OLD_STATEID",
 	10038: "NFS4ERR_OPENMODE",
 	10044: "NFS4ERR_OP_ILLEGAL",
+	10071: "NFS4ERR_OP_NOT_IN_SESSION",
+	10088: "NFS4ERR_PARTNER_NOTSUPP",
+	10089: "NFS4ERR_PARTNER_NO_AUTH",
 	1:     "NFS4ERR_PERM",
+	10075: "NFS4ERR_PNFS_IO_HOLE",
+	10080: "NFS4ERR_PNFS_NO_LAYOUT",
+	10061: "NFS4ERR_RECALLCONFLICT",
 	10034: "NFS4ERR_RECLAIM_BAD",
 	10035: "NFS4ERR_RECLAIM_CONFLICT",
+	10085: "NFS4ERR_REJECT_DELEG",
+	10066: "NFS4ERR_REP_TOO_BIG",
+	10067: "NFS4ERR_REP_TOO_BIG_TO_CACHE",
+	10065: "NFS4ERR_REQ_TOO_BIG",
 	10018: "NFS4ERR_RESOURCE",
 	10030: "NFS4ERR_RESTOREFH",
+	10068: "NFS4ERR_RETRY_UNCACHED_REP",
+	10086: "NFS4ERR_RETURNCONFLICT",
 	30:    "NFS4ERR_ROFS",
 	10009: "NFS4ERR_SAME",
+	10064: "NFS4ERR_SEQUENCE_POS",
+	10076: "NFS4ERR_SEQ_FALSE_RETRY",
+	10063: "NFS4ERR_SEQ_MISORDERED",
 	10006: "NFS4ERR_SERVERFAULT",
 	10015: "NFS4ERR_SHARE_DENIED",
 	70:    "NFS4ERR_STALE",
@@ -424,7 +558,14 @@ var Nfsstat4_name = map[Nfsstat4]string{
 	10023: "NFS4ERR_STALE_STATEID",
 	10029: "NFS4ERR_SYMLINK",
 	10005: "NFS4ERR_TOOSMALL",
+	10070: "NFS4ERR_TOO_MANY_OPS",
+	10090: "NFS4ERR_UNION_NOTSUPP",
+	10062: "NFS4ERR_UNKNOWN_LAYOUTTYPE",
+	10069: "NFS4ERR_UNSAFE_COMPOUND",
 	10016: "NFS4ERR_WRONGSEC",
+	10082: "NFS4ERR_WRONG_CRED",
+	10092: "NFS4ERR_WRONG_LFS",
+	10083: "NFS4ERR_WRONG_TYPE",
 	18:    "NFS4ERR_XDEV",
 	0:     "NFS4_OK",
 }
@@ -717,34 +858,6 @@ func GetNfsFh4EncodedSizeBytes(m []byte) (nTotal int) {
 	return
 }
 
-// Type definition "nfs_lease4".
-
-type NfsLease4 = uint32
-
-func ReadNfsLease4(r io.Reader) (m uint32, nTotal int64, err error) {
-	var nField int64
-	m, nField, err = runtime.ReadUnsignedInt(r)
-	nTotal += nField
-	if err != nil {
-		goto done
-	}
-done:
-	return
-}
-
-func WriteNfsLease4(w io.Writer, m uint32) (nTotal int64, err error) {
-	var nField int64
-	nField, err = runtime.WriteUnsignedInt(w, m)
-	nTotal += nField
-	if err != nil {
-		goto done
-	}
-done:
-	return
-}
-
-const NfsLease4EncodedSizeBytes = 4
-
 // Type definition "offset4".
 
 type Offset4 = uint64
@@ -832,6 +945,34 @@ func GetSecOid4EncodedSizeBytes(m []byte) (nTotal int) {
 	return
 }
 
+// Type definition "sequenceid4".
+
+type Sequenceid4 = uint32
+
+func ReadSequenceid4(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteSequenceid4(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Sequenceid4EncodedSizeBytes = 4
+
 // Type definition "seqid4".
 
 type Seqid4 = uint32
@@ -859,6 +1000,62 @@ done:
 }
 
 const Seqid4EncodedSizeBytes = 4
+
+// Type definition "sessionid4".
+
+type Sessionid4 = [16]byte
+
+func ReadSessionid4(r io.Reader, m *[16]byte) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteSessionid4(w io.Writer, m *[16]byte) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Sessionid4EncodedSizeBytes = 16
+
+// Type definition "slotid4".
+
+type Slotid4 = uint32
+
+func ReadSlotid4(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteSlotid4(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Slotid4EncodedSizeBytes = 4
 
 // Type definition "utf8str_cis".
 
@@ -1107,34 +1304,6 @@ func GetPathname4EncodedSizeBytes(m []string) (nTotal int) {
 	return
 }
 
-// Type definition "nfs_lockid4".
-
-type NfsLockid4 = uint64
-
-func ReadNfsLockid4(r io.Reader) (m uint64, nTotal int64, err error) {
-	var nField int64
-	m, nField, err = runtime.ReadUnsignedHyper(r)
-	nTotal += nField
-	if err != nil {
-		goto done
-	}
-done:
-	return
-}
-
-func WriteNfsLockid4(w io.Writer, m uint64) (nTotal int64, err error) {
-	var nField int64
-	nField, err = runtime.WriteUnsignedHyper(w, m)
-	nTotal += nField
-	if err != nil {
-		goto done
-	}
-done:
-	return
-}
-
-const NfsLockid4EncodedSizeBytes = 8
-
 // Type definition "verifier4".
 
 type Verifier4 = [8]byte
@@ -1162,6 +1331,65 @@ done:
 }
 
 const Verifier4EncodedSizeBytes = 8
+
+// Type definition "secret4".
+
+type Secret4 = string
+
+func ReadSecret4(r io.Reader) (m string, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadASCIIString(r, 4294967295)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteSecret4(w io.Writer, m string) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteASCIIString(w, 4294967295, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetSecret4EncodedSizeBytes(m string) (nTotal int) {
+	nTotal += (len(m) + 7) &^ 3
+	return
+}
+
+// Type definition "policy4".
+
+type Policy4 = uint32
+
+func ReadPolicy4(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WritePolicy4(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Policy4EncodedSizeBytes = 4
 
 // Type definition "nfstime4".
 
@@ -1399,6 +1627,34 @@ func (m *Settime4_default) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
+// Type definition "nfs_lease4".
+
+type NfsLease4 = uint32
+
+func ReadNfsLease4(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNfsLease4(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsLease4EncodedSizeBytes = 4
+
 // Type definition "fsid4".
 
 type Fsid4 struct {
@@ -1455,6 +1711,63 @@ done:
 }
 
 const Fsid4EncodedSizeBytes = 16
+
+// Type definition "change_policy4".
+
+type ChangePolicy4 struct {
+	CpMajor uint64
+	CpMinor uint64
+}
+
+func (m *ChangePolicy4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CpMajor
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CpMinor
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ChangePolicy4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CpMajor
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CpMinor
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const ChangePolicy4EncodedSizeBytes = 16
 
 // Type definition "fs_location4".
 
@@ -1795,6 +2108,8 @@ const ACE4_FAILED_ACCESS_ACE_FLAG = 32
 
 const ACE4_IDENTIFIER_GROUP = 64
 
+const ACE4_INHERITED_ACE = 128
+
 // Type definition "acemask4".
 
 type Acemask4 = uint32
@@ -1846,6 +2161,10 @@ const ACE4_DELETE_CHILD = 64
 const ACE4_READ_ATTRIBUTES = 128
 
 const ACE4_WRITE_ATTRIBUTES = 256
+
+const ACE4_WRITE_RETENTION = 512
+
+const ACE4_WRITE_RETENTION_HOLD = 1024
 
 const ACE4_DELETE = 65536
 
@@ -1967,6 +2286,133 @@ func (m *Nfsace4) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
+// Type definition "aclflag4".
+
+type Aclflag4 = uint32
+
+func ReadAclflag4(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteAclflag4(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Aclflag4EncodedSizeBytes = 4
+
+const ACL4_AUTO_INHERIT = 1
+
+const ACL4_PROTECTED = 2
+
+const ACL4_DEFAULTED = 4
+
+// Type definition "nfsacl41".
+
+type Nfsacl41 struct {
+	Na41Flag uint32
+	Na41Aces []Nfsace4
+}
+
+func (m *Nfsacl41) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.Na41Flag
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.Na41Aces
+		var m []Nfsace4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds nfsacl41.na41_aces's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, Nfsace4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Nfsacl41) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.Na41Flag
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Na41Aces
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds nfsacl41.na41_aces's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *Nfsacl41) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Na41Aces
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
 const MODE4_SUID = 2048
 
 const MODE4_SGID = 1024
@@ -1990,6 +2436,63 @@ const MODE4_ROTH = 4
 const MODE4_WOTH = 2
 
 const MODE4_XOTH = 1
+
+// Type definition "mode_masked4".
+
+type ModeMasked4 struct {
+	MmValueToSet uint32
+	MmMaskBits   uint32
+}
+
+func (m *ModeMasked4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.MmValueToSet
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.MmMaskBits
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ModeMasked4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.MmValueToSet
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.MmMaskBits
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const ModeMasked4EncodedSizeBytes = 8
 
 // Type definition "specdata4".
 
@@ -2057,6 +2560,2896 @@ const FH4_VOLATILE_ANY = 2
 const FH4_VOL_MIGRATION = 4
 
 const FH4_VOL_RENAME = 8
+
+// Type definition "netaddr4".
+
+type Netaddr4 struct {
+	NaRNetid string
+	NaRAddr  string
+}
+
+func (m *Netaddr4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.NaRNetid
+		var m string
+		m, nField, err = runtime.ReadASCIIString(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NaRAddr
+		var m string
+		m, nField, err = runtime.ReadASCIIString(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Netaddr4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.NaRNetid
+		nField, err = runtime.WriteASCIIString(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NaRAddr
+		nField, err = runtime.WriteASCIIString(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Netaddr4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.NaRNetid
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.NaRAddr
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "nfs_impl_id4".
+
+type NfsImplId4 struct {
+	NiiDomain string
+	NiiName   string
+	NiiDate   Nfstime4
+}
+
+func (m *NfsImplId4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.NiiDomain
+		var m string
+		m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NiiName
+		var m string
+		m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.NiiDate
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsImplId4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.NiiDomain
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NiiName
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NiiDate
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsImplId4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.NiiDomain
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.NiiName
+		nTotal += (len(m) + 7) &^ 3
+	}
+	nTotal += 12
+	return
+}
+
+// Type definition "stateid4".
+
+type Stateid4 struct {
+	Seqid uint32
+	Other [12]byte
+}
+
+func (m *Stateid4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.Seqid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.Other
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Stateid4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.Seqid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Other
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Stateid4EncodedSizeBytes = 16
+
+// Type definition "layouttype4".
+
+type Layouttype4 int32
+
+func (mParent *Layouttype4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m Layouttype4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m Layouttype4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Layouttype4EncodedSizeBytes = 4
+
+const LAYOUT4_BLOCK_VOLUME Layouttype4 = 3
+
+const LAYOUT4_NFSV4_1_FILES Layouttype4 = 1
+
+const LAYOUT4_OSD2_OBJECTS Layouttype4 = 2
+
+var Layouttype4_name = map[Layouttype4]string{
+	3: "LAYOUT4_BLOCK_VOLUME",
+	1: "LAYOUT4_NFSV4_1_FILES",
+	2: "LAYOUT4_OSD2_OBJECTS",
+}
+
+// Type definition "layout_content4".
+
+type LayoutContent4 struct {
+	LocType Layouttype4
+	LocBody []byte
+}
+
+func (m *LayoutContent4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LocType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LocBody
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *LayoutContent4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LocType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LocBody
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *LayoutContent4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.LocBody
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "layouthint4".
+
+type Layouthint4 struct {
+	LohType Layouttype4
+	LohBody []byte
+}
+
+func (m *Layouthint4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LohType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LohBody
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Layouthint4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LohType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LohBody
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layouthint4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.LohBody
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "layoutiomode4".
+
+type Layoutiomode4 int32
+
+func (mParent *Layoutiomode4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m Layoutiomode4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m Layoutiomode4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Layoutiomode4EncodedSizeBytes = 4
+
+const LAYOUTIOMODE4_ANY Layoutiomode4 = 3
+
+const LAYOUTIOMODE4_READ Layoutiomode4 = 1
+
+const LAYOUTIOMODE4_RW Layoutiomode4 = 2
+
+var Layoutiomode4_name = map[Layoutiomode4]string{
+	3: "LAYOUTIOMODE4_ANY",
+	1: "LAYOUTIOMODE4_READ",
+	2: "LAYOUTIOMODE4_RW",
+}
+
+// Type definition "layout4".
+
+type Layout4 struct {
+	LoOffset  uint64
+	LoLength  uint64
+	LoIomode  Layoutiomode4
+	LoContent LayoutContent4
+}
+
+func (m *Layout4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LoOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LoLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LoIomode
+		var m Layoutiomode4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.LoContent
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layout4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LoOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LoLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LoIomode
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LoContent
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layout4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 8
+	nTotal += 4
+	{
+		m := &m.LoContent
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+const NFS4_DEVICEID4_SIZE = 16
+
+// Type definition "deviceid4".
+
+type Deviceid4 = [16]byte
+
+func ReadDeviceid4(r io.Reader, m *[16]byte) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteDeviceid4(w io.Writer, m *[16]byte) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Deviceid4EncodedSizeBytes = 16
+
+// Type definition "device_addr4".
+
+type DeviceAddr4 struct {
+	DaLayoutType Layouttype4
+	DaAddrBody   []byte
+}
+
+func (m *DeviceAddr4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.DaLayoutType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.DaAddrBody
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *DeviceAddr4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.DaLayoutType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.DaAddrBody
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *DeviceAddr4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.DaAddrBody
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "layoutupdate4".
+
+type Layoutupdate4 struct {
+	LouType Layouttype4
+	LouBody []byte
+}
+
+func (m *Layoutupdate4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LouType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LouBody
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Layoutupdate4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LouType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LouBody
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutupdate4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.LouBody
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+const LAYOUT4_RET_REC_FILE = 1
+
+const LAYOUT4_RET_REC_FSID = 2
+
+const LAYOUT4_RET_REC_ALL = 3
+
+// Type definition "layoutreturn_type4".
+
+type LayoutreturnType4 int32
+
+func (mParent *LayoutreturnType4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m LayoutreturnType4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m LayoutreturnType4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const LayoutreturnType4EncodedSizeBytes = 4
+
+const LAYOUTRETURN4_ALL LayoutreturnType4 = 3
+
+const LAYOUTRETURN4_FILE LayoutreturnType4 = 1
+
+const LAYOUTRETURN4_FSID LayoutreturnType4 = 2
+
+var LayoutreturnType4_name = map[LayoutreturnType4]string{
+	3: "LAYOUTRETURN4_ALL",
+	1: "LAYOUTRETURN4_FILE",
+	2: "LAYOUTRETURN4_FSID",
+}
+
+// Type definition "layoutreturn_file4".
+
+type LayoutreturnFile4 struct {
+	LrfOffset  uint64
+	LrfLength  uint64
+	LrfStateid Stateid4
+	LrfBody    []byte
+}
+
+func (m *LayoutreturnFile4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LrfOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LrfLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.LrfStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.LrfBody
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *LayoutreturnFile4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LrfOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LrfLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LrfStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LrfBody
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *LayoutreturnFile4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 8
+	nTotal += 16
+	{
+		m := m.LrfBody
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "layoutreturn4".
+
+type Layoutreturn4 interface {
+	isLayoutreturn4()
+	GetLrReturntype() LayoutreturnType4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadLayoutreturn4(r io.Reader) (m Layoutreturn4, nTotal int64, err error) {
+	var nField int64
+	var discriminant LayoutreturnType4
+	{
+		var m LayoutreturnType4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 1:
+		var mArm Layoutreturn4_LAYOUTRETURN4_FILE
+		{
+			m := &mArm
+			{
+				m := &m.LrLayout
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Layoutreturn4_default
+		{
+			m := &mArm
+			m.LrReturntype = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readLayoutreturn4LrReturntype(r io.Reader) (m LayoutreturnType4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeLayoutreturn4LrReturntype(w io.Writer, m LayoutreturnType4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const layoutreturn4LrReturntypeEncodedSizeBytes = 4
+
+type Layoutreturn4_LAYOUTRETURN4_FILE struct {
+	LrLayout LayoutreturnFile4
+}
+
+func (m *Layoutreturn4_LAYOUTRETURN4_FILE) isLayoutreturn4() {}
+
+func (m *Layoutreturn4_LAYOUTRETURN4_FILE) GetLrReturntype() LayoutreturnType4 {
+	return 1
+}
+
+func (m *Layoutreturn4_LAYOUTRETURN4_FILE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m LayoutreturnType4 = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LrLayout
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutreturn4_LAYOUTRETURN4_FILE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.LrLayout
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type Layoutreturn4_default struct {
+	LrReturntype LayoutreturnType4
+}
+
+func (m *Layoutreturn4_default) isLayoutreturn4() {}
+
+func (m *Layoutreturn4_default) GetLrReturntype() LayoutreturnType4 {
+	return m.LrReturntype
+}
+
+func (m *Layoutreturn4_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LrReturntype
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutreturn4_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "fs4_status_type".
+
+type Fs4StatusType int32
+
+func (mParent *Fs4StatusType) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m Fs4StatusType
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m Fs4StatusType) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fs4StatusTypeEncodedSizeBytes = 4
+
+const STATUS4_FIXED Fs4StatusType = 1
+
+const STATUS4_REFERRAL Fs4StatusType = 5
+
+const STATUS4_UPDATED Fs4StatusType = 2
+
+const STATUS4_VERSIONED Fs4StatusType = 3
+
+const STATUS4_WRITABLE Fs4StatusType = 4
+
+var Fs4StatusType_name = map[Fs4StatusType]string{
+	1: "STATUS4_FIXED",
+	5: "STATUS4_REFERRAL",
+	2: "STATUS4_UPDATED",
+	3: "STATUS4_VERSIONED",
+	4: "STATUS4_WRITABLE",
+}
+
+// Type definition "fs4_status".
+
+type Fs4Status struct {
+	FssAbsent  bool
+	FssType    Fs4StatusType
+	FssSource  string
+	FssCurrent string
+	FssAge     int32
+	FssVersion Nfstime4
+}
+
+func (m *Fs4Status) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.FssAbsent
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FssType
+		var m Fs4StatusType
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FssSource
+		var m string
+		m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FssCurrent
+		var m string
+		m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FssAge
+		var m int32
+		m, nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.FssVersion
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Fs4Status) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.FssAbsent
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.FssType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.FssSource
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.FssCurrent
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.FssAge
+		nField, err = runtime.WriteInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.FssVersion
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Fs4Status) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.FssSource
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.FssCurrent
+		nTotal += (len(m) + 7) &^ 3
+	}
+	nTotal += 4
+	nTotal += 12
+	return
+}
+
+const TH4_READ_SIZE = 0
+
+const TH4_WRITE_SIZE = 1
+
+const TH4_READ_IOSIZE = 2
+
+const TH4_WRITE_IOSIZE = 3
+
+// Type definition "threshold4_read_size".
+
+type Threshold4ReadSize = uint64
+
+func ReadThreshold4ReadSize(r io.Reader) (m uint64, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedHyper(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteThreshold4ReadSize(w io.Writer, m uint64) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedHyper(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Threshold4ReadSizeEncodedSizeBytes = 8
+
+// Type definition "threshold4_write_size".
+
+type Threshold4WriteSize = uint64
+
+func ReadThreshold4WriteSize(r io.Reader) (m uint64, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedHyper(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteThreshold4WriteSize(w io.Writer, m uint64) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedHyper(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Threshold4WriteSizeEncodedSizeBytes = 8
+
+// Type definition "threshold4_read_iosize".
+
+type Threshold4ReadIosize = uint64
+
+func ReadThreshold4ReadIosize(r io.Reader) (m uint64, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedHyper(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteThreshold4ReadIosize(w io.Writer, m uint64) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedHyper(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Threshold4ReadIosizeEncodedSizeBytes = 8
+
+// Type definition "threshold4_write_iosize".
+
+type Threshold4WriteIosize = uint64
+
+func ReadThreshold4WriteIosize(r io.Reader) (m uint64, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedHyper(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteThreshold4WriteIosize(w io.Writer, m uint64) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedHyper(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Threshold4WriteIosizeEncodedSizeBytes = 8
+
+// Type definition "threshold_item4".
+
+type ThresholdItem4 struct {
+	ThiLayoutType Layouttype4
+	ThiHintset    []uint32
+	ThiHintlist   []byte
+}
+
+func (m *ThresholdItem4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.ThiLayoutType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.ThiHintset
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.ThiHintlist
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ThresholdItem4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.ThiLayoutType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.ThiHintset
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.ThiHintlist
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ThresholdItem4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.ThiHintset
+		nTotal += 4 + 4*len(m)
+	}
+	{
+		m := m.ThiHintlist
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "mdsthreshold4".
+
+type Mdsthreshold4 struct {
+	MthHints []ThresholdItem4
+}
+
+func (m *Mdsthreshold4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.MthHints
+		var m []ThresholdItem4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds mdsthreshold4.mth_hints's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, ThresholdItem4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Mdsthreshold4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.MthHints
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds mdsthreshold4.mth_hints's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *Mdsthreshold4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.MthHints
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+const RET4_DURATION_INFINITE = 18446744073709551615
+
+// Type definition "retention_get4".
+
+type RetentionGet4 struct {
+	RgDuration  uint64
+	RgBeginTime []Nfstime4
+}
+
+func (m *RetentionGet4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.RgDuration
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.RgBeginTime
+		var m []Nfstime4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds retention_get4.rg_begin_time's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, Nfstime4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *RetentionGet4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RgDuration
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.RgBeginTime
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds retention_get4.rg_begin_time's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *RetentionGet4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	{
+		m := m.RgBeginTime
+		nTotal += 4 + 12*len(m)
+	}
+	return
+}
+
+// Type definition "retention_set4".
+
+type RetentionSet4 struct {
+	RsEnable   bool
+	RsDuration []uint64
+}
+
+func (m *RetentionSet4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.RsEnable
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.RsDuration
+		var m []uint64
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds retention_set4.rs_duration's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint64
+			m, nField, err = runtime.ReadUnsignedHyper(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *RetentionSet4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RsEnable
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.RsDuration
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds retention_set4.rs_duration's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedHyper(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *RetentionSet4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.RsDuration
+		nTotal += 4 + 8*len(m)
+	}
+	return
+}
+
+const FSCHARSET_CAP4_CONTAINS_NON_UTF8 = 1
+
+const FSCHARSET_CAP4_ALLOWS_ONLY_UTF8 = 2
+
+// Type definition "fs_charset_cap4".
+
+type FsCharsetCap4 = uint32
+
+func ReadFsCharsetCap4(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFsCharsetCap4(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const FsCharsetCap4EncodedSizeBytes = 4
+
+// Type definition "netloc_type4".
+
+type NetlocType4 int32
+
+func (mParent *NetlocType4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m NetlocType4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m NetlocType4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NetlocType4EncodedSizeBytes = 4
+
+const NL4_NAME NetlocType4 = 1
+
+const NL4_NETADDR NetlocType4 = 3
+
+const NL4_URL NetlocType4 = 2
+
+var NetlocType4_name = map[NetlocType4]string{
+	1: "NL4_NAME",
+	3: "NL4_NETADDR",
+	2: "NL4_URL",
+}
+
+// Type definition "netloc4".
+
+type Netloc4 interface {
+	isNetloc4()
+	GetNlType() NetlocType4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadNetloc4(r io.Reader) (m Netloc4, nTotal int64, err error) {
+	var nField int64
+	var discriminant NetlocType4
+	{
+		var m NetlocType4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 1:
+		var mArm Netloc4_NL4_NAME
+		{
+			m := &mArm
+			{
+				mSave := &m.NlName
+				var m string
+				m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 2:
+		var mArm Netloc4_NL4_URL
+		{
+			m := &mArm
+			{
+				mSave := &m.NlUrl
+				var m string
+				m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 3:
+		var mArm Netloc4_NL4_NETADDR
+		{
+			m := &mArm
+			{
+				m := &m.NlAddr
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant netloc4.nl_type has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readNetloc4NlType(r io.Reader) (m NetlocType4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeNetloc4NlType(w io.Writer, m NetlocType4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const netloc4NlTypeEncodedSizeBytes = 4
+
+type Netloc4_NL4_NAME struct {
+	NlName string
+}
+
+func (m *Netloc4_NL4_NAME) isNetloc4() {}
+
+func (m *Netloc4_NL4_NAME) GetNlType() NetlocType4 {
+	return 1
+}
+
+func (m *Netloc4_NL4_NAME) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NetlocType4 = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NlName
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Netloc4_NL4_NAME) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.NlName
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+type Netloc4_NL4_URL struct {
+	NlUrl string
+}
+
+func (m *Netloc4_NL4_URL) isNetloc4() {}
+
+func (m *Netloc4_NL4_URL) GetNlType() NetlocType4 {
+	return 2
+}
+
+func (m *Netloc4_NL4_URL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NetlocType4 = 2
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NlUrl
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Netloc4_NL4_URL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.NlUrl
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+type Netloc4_NL4_NETADDR struct {
+	NlAddr Netaddr4
+}
+
+func (m *Netloc4_NL4_NETADDR) isNetloc4() {}
+
+func (m *Netloc4_NL4_NETADDR) GetNlType() NetlocType4 {
+	return 3
+}
+
+func (m *Netloc4_NL4_NETADDR) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NetlocType4 = 3
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NlAddr
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Netloc4_NL4_NETADDR) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.NlAddr
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "change_attr_type4".
+
+type ChangeAttrType4 int32
+
+func (mParent *ChangeAttrType4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m ChangeAttrType4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m ChangeAttrType4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const ChangeAttrType4EncodedSizeBytes = 4
+
+const NFS4_CHANGE_TYPE_IS_MONOTONIC_INCR ChangeAttrType4 = 0
+
+const NFS4_CHANGE_TYPE_IS_TIME_METADATA ChangeAttrType4 = 3
+
+const NFS4_CHANGE_TYPE_IS_UNDEFINED ChangeAttrType4 = 4
+
+const NFS4_CHANGE_TYPE_IS_VERSION_COUNTER ChangeAttrType4 = 1
+
+const NFS4_CHANGE_TYPE_IS_VERSION_COUNTER_NOPNFS ChangeAttrType4 = 2
+
+var ChangeAttrType4_name = map[ChangeAttrType4]string{
+	0: "NFS4_CHANGE_TYPE_IS_MONOTONIC_INCR",
+	3: "NFS4_CHANGE_TYPE_IS_TIME_METADATA",
+	4: "NFS4_CHANGE_TYPE_IS_UNDEFINED",
+	1: "NFS4_CHANGE_TYPE_IS_VERSION_COUNTER",
+	2: "NFS4_CHANGE_TYPE_IS_VERSION_COUNTER_NOPNFS",
+}
+
+// Type definition "labelformat_spec4".
+
+type LabelformatSpec4 struct {
+	LfsLfs uint32
+	LfsPi  uint32
+}
+
+func (m *LabelformatSpec4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LfsLfs
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LfsPi
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *LabelformatSpec4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LfsLfs
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LfsPi
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const LabelformatSpec4EncodedSizeBytes = 8
+
+// Type definition "sec_label4".
+
+type SecLabel4 struct {
+	SlaiLfs  LabelformatSpec4
+	SlaiData []byte
+}
+
+func (m *SecLabel4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SlaiLfs
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.SlaiData
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SecLabel4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SlaiLfs
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SlaiData
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SecLabel4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	{
+		m := m.SlaiData
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "copy_from_auth_priv".
+
+type CopyFromAuthPriv struct {
+	CfapSharedSecret string
+	CfapDestination  Netloc4
+	CfapUsername     string
+}
+
+func (m *CopyFromAuthPriv) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CfapSharedSecret
+		var m string
+		m, nField, err = runtime.ReadASCIIString(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CfapDestination
+		var m Netloc4
+		m, nField, err = ReadNetloc4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CfapUsername
+		var m string
+		m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CopyFromAuthPriv) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CfapSharedSecret
+		nField, err = runtime.WriteASCIIString(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CfapDestination
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CfapUsername
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CopyFromAuthPriv) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.CfapSharedSecret
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.CfapDestination
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := m.CfapUsername
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "copy_to_auth_priv".
+
+type CopyToAuthPriv struct {
+	CtapSharedSecret string
+	CtapSource       []Netloc4
+	CtapUsername     string
+}
+
+func (m *CopyToAuthPriv) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CtapSharedSecret
+		var m string
+		m, nField, err = runtime.ReadASCIIString(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CtapSource
+		var m []Netloc4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds copy_to_auth_priv.ctap_source's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m Netloc4
+			m, nField, err = ReadNetloc4(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CtapUsername
+		var m string
+		m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CopyToAuthPriv) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CtapSharedSecret
+		nField, err = runtime.WriteASCIIString(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CtapSource
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds copy_to_auth_priv.ctap_source's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.CtapUsername
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CopyToAuthPriv) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.CtapSharedSecret
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.CtapSource
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	{
+		m := m.CtapUsername
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "copy_confirm_auth_priv".
+
+type CopyConfirmAuthPriv struct {
+	CcapSharedSecretMic []byte
+	CcapUsername        string
+}
+
+func (m *CopyConfirmAuthPriv) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CcapSharedSecretMic
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CcapUsername
+		var m string
+		m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CopyConfirmAuthPriv) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CcapSharedSecretMic
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CcapUsername
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CopyConfirmAuthPriv) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.CcapSharedSecretMic
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.CcapUsername
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "app_data_block4".
+
+type AppDataBlock4 struct {
+	AdbOffset         uint64
+	AdbBlockSize      uint64
+	AdbBlockCount     uint64
+	AdbReloffBlocknum uint64
+	AdbBlockNum       uint32
+	AdbReloffPattern  uint64
+	AdbPattern        []byte
+}
+
+func (m *AppDataBlock4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.AdbOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.AdbBlockSize
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.AdbBlockCount
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.AdbReloffBlocknum
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.AdbBlockNum
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.AdbReloffPattern
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.AdbPattern
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *AppDataBlock4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.AdbOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.AdbBlockSize
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.AdbBlockCount
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.AdbReloffBlocknum
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.AdbBlockNum
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.AdbReloffPattern
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.AdbPattern
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *AppDataBlock4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 8
+	nTotal += 8
+	nTotal += 8
+	nTotal += 4
+	nTotal += 8
+	{
+		m := m.AdbPattern
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "data4".
+
+type Data4 struct {
+	DOffset uint64
+	DData   []byte
+}
+
+func (m *Data4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.DOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.DData
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Data4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.DOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.DData
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Data4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	{
+		m := m.DData
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "data_info4".
+
+type DataInfo4 struct {
+	DiOffset uint64
+	DiLength uint64
+}
+
+func (m *DataInfo4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.DiOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.DiLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *DataInfo4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.DiOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.DiLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const DataInfo4EncodedSizeBytes = 16
+
+// Type definition "data_content4".
+
+type DataContent4 int32
+
+func (mParent *DataContent4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m DataContent4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m DataContent4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const DataContent4EncodedSizeBytes = 4
+
+const NFS4_CONTENT_DATA DataContent4 = 0
+
+const NFS4_CONTENT_HOLE DataContent4 = 1
+
+var DataContent4_name = map[DataContent4]string{
+	0: "NFS4_CONTENT_DATA",
+	1: "NFS4_CONTENT_HOLE",
+}
+
+// Type definition "stable_how4".
+
+type StableHow4 int32
+
+func (mParent *StableHow4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m StableHow4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m StableHow4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const StableHow4EncodedSizeBytes = 4
+
+const DATA_SYNC4 StableHow4 = 1
+
+const FILE_SYNC4 StableHow4 = 2
+
+const UNSTABLE4 StableHow4 = 0
+
+var StableHow4_name = map[StableHow4]string{
+	1: "DATA_SYNC4",
+	2: "FILE_SYNC4",
+	0: "UNSTABLE4",
+}
+
+// Type definition "write_response4".
+
+type WriteResponse4 struct {
+	WrCallbackId []Stateid4
+	WrCount      uint64
+	WrCommitted  StableHow4
+	WrWriteverf  [8]byte
+}
+
+func (m *WriteResponse4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.WrCallbackId
+		var m []Stateid4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds write_response4.wr_callback_id's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, Stateid4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.WrCount
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.WrCommitted
+		var m StableHow4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.WrWriteverf
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *WriteResponse4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.WrCallbackId
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds write_response4.wr_callback_id's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.WrCount
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.WrCommitted
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.WrWriteverf
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *WriteResponse4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.WrCallbackId
+		nTotal += 4 + 16*len(m)
+	}
+	nTotal += 8
+	nTotal += 4
+	nTotal += 8
+	return
+}
 
 // Type definition "fattr4_supported_attrs".
 
@@ -3081,6 +6474,34 @@ done:
 
 const Fattr4ModeEncodedSizeBytes = 4
 
+// Type definition "fattr4_mode_set_masked".
+
+type Fattr4ModeSetMasked = ModeMasked4
+
+func ReadFattr4ModeSetMasked(r io.Reader, m *ModeMasked4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4ModeSetMasked(w io.Writer, m *ModeMasked4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4ModeSetMaskedEncodedSizeBytes = 8
+
 // Type definition "fattr4_mounted_on_fileid".
 
 type Fattr4MountedOnFileid = uint64
@@ -3709,6 +7130,770 @@ func GetFattr4TimeModifySetEncodedSizeBytes(m Settime4) (nTotal int) {
 	return
 }
 
+// Type definition "fattr4_suppattr_exclcreat".
+
+type Fattr4SuppattrExclcreat = []uint32
+
+func ReadFattr4SuppattrExclcreat(r io.Reader) (m []uint32, nTotal int64, err error) {
+	var nField int64
+	var nElements uint32
+	nElements, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	if nElements > 4294967295 {
+		err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+		goto done
+	}
+	for nElements > 0 {
+		nElements--
+		mParent := &m
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mParent = append(*mParent, m)
+	}
+done:
+	return
+}
+
+func WriteFattr4SuppattrExclcreat(w io.Writer, m []uint32) (nTotal int64, err error) {
+	var nField int64
+	if uint(len(m)) > 4294967295 {
+		err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+		goto done
+	}
+	nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	for _, m := range m {
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func GetFattr4SuppattrExclcreatEncodedSizeBytes(m []uint32) (nTotal int) {
+	nTotal += 4 + 4*len(m)
+	return
+}
+
+// Type definition "fattr4_dir_notif_delay".
+
+type Fattr4DirNotifDelay = Nfstime4
+
+func ReadFattr4DirNotifDelay(r io.Reader, m *Nfstime4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4DirNotifDelay(w io.Writer, m *Nfstime4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4DirNotifDelayEncodedSizeBytes = 12
+
+// Type definition "fattr4_dirent_notif_delay".
+
+type Fattr4DirentNotifDelay = Nfstime4
+
+func ReadFattr4DirentNotifDelay(r io.Reader, m *Nfstime4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4DirentNotifDelay(w io.Writer, m *Nfstime4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4DirentNotifDelayEncodedSizeBytes = 12
+
+// Type definition "fattr4_fs_layout_types".
+
+type Fattr4FsLayoutTypes = []Layouttype4
+
+func ReadFattr4FsLayoutTypes(r io.Reader) (m []Layouttype4, nTotal int64, err error) {
+	var nField int64
+	var nElements uint32
+	nElements, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	if nElements > 4294967295 {
+		err = fmt.Errorf("size of %d elements exceeds fattr4_fs_layout_types's maximum of 4294967295 elements", nElements)
+		goto done
+	}
+	for nElements > 0 {
+		nElements--
+		mParent := &m
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mParent = append(*mParent, m)
+	}
+done:
+	return
+}
+
+func WriteFattr4FsLayoutTypes(w io.Writer, m []Layouttype4) (nTotal int64, err error) {
+	var nField int64
+	if uint(len(m)) > 4294967295 {
+		err = fmt.Errorf("size of %d elements exceeds fattr4_fs_layout_types's maximum of 4294967295 elements", len(m))
+		goto done
+	}
+	nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	for _, m := range m {
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func GetFattr4FsLayoutTypesEncodedSizeBytes(m []Layouttype4) (nTotal int) {
+	nTotal += 4 + 4*len(m)
+	return
+}
+
+// Type definition "fattr4_fs_status".
+
+type Fattr4FsStatus = Fs4Status
+
+func ReadFattr4FsStatus(r io.Reader, m *Fs4Status) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4FsStatus(w io.Writer, m *Fs4Status) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4FsStatusEncodedSizeBytes(m *Fs4Status) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_fs_charset_cap".
+
+type Fattr4FsCharsetCap = uint32
+
+func ReadFattr4FsCharsetCap(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4FsCharsetCap(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4FsCharsetCapEncodedSizeBytes = 4
+
+// Type definition "fattr4_layout_alignment".
+
+type Fattr4LayoutAlignment = uint32
+
+func ReadFattr4LayoutAlignment(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4LayoutAlignment(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4LayoutAlignmentEncodedSizeBytes = 4
+
+// Type definition "fattr4_layout_blksize".
+
+type Fattr4LayoutBlksize = uint32
+
+func ReadFattr4LayoutBlksize(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4LayoutBlksize(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4LayoutBlksizeEncodedSizeBytes = 4
+
+// Type definition "fattr4_layout_hint".
+
+type Fattr4LayoutHint = Layouthint4
+
+func ReadFattr4LayoutHint(r io.Reader, m *Layouthint4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4LayoutHint(w io.Writer, m *Layouthint4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4LayoutHintEncodedSizeBytes(m *Layouthint4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_layout_types".
+
+type Fattr4LayoutTypes = []Layouttype4
+
+func ReadFattr4LayoutTypes(r io.Reader) (m []Layouttype4, nTotal int64, err error) {
+	var nField int64
+	var nElements uint32
+	nElements, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	if nElements > 4294967295 {
+		err = fmt.Errorf("size of %d elements exceeds fattr4_layout_types's maximum of 4294967295 elements", nElements)
+		goto done
+	}
+	for nElements > 0 {
+		nElements--
+		mParent := &m
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mParent = append(*mParent, m)
+	}
+done:
+	return
+}
+
+func WriteFattr4LayoutTypes(w io.Writer, m []Layouttype4) (nTotal int64, err error) {
+	var nField int64
+	if uint(len(m)) > 4294967295 {
+		err = fmt.Errorf("size of %d elements exceeds fattr4_layout_types's maximum of 4294967295 elements", len(m))
+		goto done
+	}
+	nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	for _, m := range m {
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func GetFattr4LayoutTypesEncodedSizeBytes(m []Layouttype4) (nTotal int) {
+	nTotal += 4 + 4*len(m)
+	return
+}
+
+// Type definition "fattr4_mdsthreshold".
+
+type Fattr4Mdsthreshold = Mdsthreshold4
+
+func ReadFattr4Mdsthreshold(r io.Reader, m *Mdsthreshold4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4Mdsthreshold(w io.Writer, m *Mdsthreshold4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4MdsthresholdEncodedSizeBytes(m *Mdsthreshold4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_retention_get".
+
+type Fattr4RetentionGet = RetentionGet4
+
+func ReadFattr4RetentionGet(r io.Reader, m *RetentionGet4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4RetentionGet(w io.Writer, m *RetentionGet4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4RetentionGetEncodedSizeBytes(m *RetentionGet4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_retention_set".
+
+type Fattr4RetentionSet = RetentionSet4
+
+func ReadFattr4RetentionSet(r io.Reader, m *RetentionSet4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4RetentionSet(w io.Writer, m *RetentionSet4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4RetentionSetEncodedSizeBytes(m *RetentionSet4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_retentevt_get".
+
+type Fattr4RetentevtGet = RetentionGet4
+
+func ReadFattr4RetentevtGet(r io.Reader, m *RetentionGet4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4RetentevtGet(w io.Writer, m *RetentionGet4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4RetentevtGetEncodedSizeBytes(m *RetentionGet4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_retentevt_set".
+
+type Fattr4RetentevtSet = RetentionSet4
+
+func ReadFattr4RetentevtSet(r io.Reader, m *RetentionSet4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4RetentevtSet(w io.Writer, m *RetentionSet4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4RetentevtSetEncodedSizeBytes(m *RetentionSet4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_retention_hold".
+
+type Fattr4RetentionHold = uint64
+
+func ReadFattr4RetentionHold(r io.Reader) (m uint64, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedHyper(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4RetentionHold(w io.Writer, m uint64) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedHyper(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4RetentionHoldEncodedSizeBytes = 8
+
+// Type definition "fattr4_dacl".
+
+type Fattr4Dacl = Nfsacl41
+
+func ReadFattr4Dacl(r io.Reader, m *Nfsacl41) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4Dacl(w io.Writer, m *Nfsacl41) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4DaclEncodedSizeBytes(m *Nfsacl41) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_sacl".
+
+type Fattr4Sacl = Nfsacl41
+
+func ReadFattr4Sacl(r io.Reader, m *Nfsacl41) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4Sacl(w io.Writer, m *Nfsacl41) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4SaclEncodedSizeBytes(m *Nfsacl41) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_change_policy".
+
+type Fattr4ChangePolicy = ChangePolicy4
+
+func ReadFattr4ChangePolicy(r io.Reader, m *ChangePolicy4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4ChangePolicy(w io.Writer, m *ChangePolicy4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4ChangePolicyEncodedSizeBytes = 16
+
+// Type definition "fattr4_space_freed".
+
+type Fattr4SpaceFreed = uint64
+
+func ReadFattr4SpaceFreed(r io.Reader) (m uint64, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedHyper(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4SpaceFreed(w io.Writer, m uint64) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedHyper(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4SpaceFreedEncodedSizeBytes = 8
+
+// Type definition "fattr4_change_attr_type".
+
+type Fattr4ChangeAttrType = ChangeAttrType4
+
+func ReadFattr4ChangeAttrType(r io.Reader) (m ChangeAttrType4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4ChangeAttrType(w io.Writer, m ChangeAttrType4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4ChangeAttrTypeEncodedSizeBytes = 4
+
+// Type definition "fattr4_sec_label".
+
+type Fattr4SecLabel = SecLabel4
+
+func ReadFattr4SecLabel(r io.Reader, m *SecLabel4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4SecLabel(w io.Writer, m *SecLabel4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4SecLabelEncodedSizeBytes(m *SecLabel4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "fattr4_clone_blksize".
+
+type Fattr4CloneBlksize = uint32
+
+func ReadFattr4CloneBlksize(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4CloneBlksize(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Fattr4CloneBlksizeEncodedSizeBytes = 4
+
 const FATTR4_SUPPORTED_ATTRS = 0
 
 const FATTR4_TYPE = 1
@@ -3734,6 +7919,8 @@ const FATTR4_LEASE_TIME = 10
 const FATTR4_RDATTR_ERROR = 11
 
 const FATTR4_FILEHANDLE = 19
+
+const FATTR4_SUPPATTR_EXCLCREAT = 75
 
 const FATTR4_ACL = 12
 
@@ -3820,6 +8007,54 @@ const FATTR4_TIME_MODIFY = 53
 const FATTR4_TIME_MODIFY_SET = 54
 
 const FATTR4_MOUNTED_ON_FILEID = 55
+
+const FATTR4_DIR_NOTIF_DELAY = 56
+
+const FATTR4_DIRENT_NOTIF_DELAY = 57
+
+const FATTR4_DACL = 58
+
+const FATTR4_SACL = 59
+
+const FATTR4_CHANGE_POLICY = 60
+
+const FATTR4_FS_STATUS = 61
+
+const FATTR4_FS_LAYOUT_TYPES = 62
+
+const FATTR4_LAYOUT_HINT = 63
+
+const FATTR4_LAYOUT_TYPES = 64
+
+const FATTR4_LAYOUT_BLKSIZE = 65
+
+const FATTR4_LAYOUT_ALIGNMENT = 66
+
+const FATTR4_FS_LOCATIONS_INFO = 67
+
+const FATTR4_MDSTHRESHOLD = 68
+
+const FATTR4_RETENTION_GET = 69
+
+const FATTR4_RETENTION_SET = 70
+
+const FATTR4_RETENTEVT_GET = 71
+
+const FATTR4_RETENTEVT_SET = 72
+
+const FATTR4_RETENTION_HOLD = 73
+
+const FATTR4_MODE_SET_MASKED = 74
+
+const FATTR4_FS_CHARSET_CAP = 76
+
+const FATTR4_CLONE_BLKSIZE = 77
+
+const FATTR4_SPACE_FREED = 78
+
+const FATTR4_CHANGE_ATTR_TYPE = 79
+
+const FATTR4_SEC_LABEL = 80
 
 // Type definition "fattr4".
 
@@ -3993,68 +8228,32 @@ const ChangeInfo4EncodedSizeBytes = 20
 
 // Type definition "clientaddr4".
 
-type Clientaddr4 struct {
-	RNetid string
-	RAddr  string
-}
+type Clientaddr4 = Netaddr4
 
-func (m *Clientaddr4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+func ReadClientaddr4(r io.Reader, m *Netaddr4) (nTotal int64, err error) {
 	var nField int64
-	{
-		mSave := &m.RNetid
-		var m string
-		m, nField, err = runtime.ReadASCIIString(r, 4294967295)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-		*mSave = m
-	}
-	{
-		mSave := &m.RAddr
-		var m string
-		m, nField, err = runtime.ReadASCIIString(r, 4294967295)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-		*mSave = m
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
 	}
 done:
 	return
 }
 
-func (m *Clientaddr4) WriteTo(w io.Writer) (nTotal int64, err error) {
+func WriteClientaddr4(w io.Writer, m *Netaddr4) (nTotal int64, err error) {
 	var nField int64
-	{
-		m := m.RNetid
-		nField, err = runtime.WriteASCIIString(w, 4294967295, m)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-	}
-	{
-		m := m.RAddr
-		nField, err = runtime.WriteASCIIString(w, 4294967295, m)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
 	}
 done:
 	return
 }
 
-func (m *Clientaddr4) GetEncodedSizeBytes() (nTotal int) {
-	{
-		m := m.RNetid
-		nTotal += (len(m) + 7) &^ 3
-	}
-	{
-		m := m.RAddr
-		nTotal += (len(m) + 7) &^ 3
-	}
+func GetClientaddr4EncodedSizeBytes(m *Netaddr4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
 	return
 }
 
@@ -4062,7 +8261,7 @@ func (m *Clientaddr4) GetEncodedSizeBytes() (nTotal int) {
 
 type CbClient4 struct {
 	CbProgram  uint32
-	CbLocation Clientaddr4
+	CbLocation Netaddr4
 }
 
 func (m *CbClient4) ReadFrom(r io.Reader) (nTotal int64, err error) {
@@ -4119,61 +8318,6 @@ func (m *CbClient4) GetEncodedSizeBytes() (nTotal int) {
 	}
 	return
 }
-
-// Type definition "stateid4".
-
-type Stateid4 struct {
-	Seqid uint32
-	Other [12]byte
-}
-
-func (m *Stateid4) ReadFrom(r io.Reader) (nTotal int64, err error) {
-	var nField int64
-	{
-		mSave := &m.Seqid
-		var m uint32
-		m, nField, err = runtime.ReadUnsignedInt(r)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-		*mSave = m
-	}
-	{
-		m := &m.Other
-		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-	}
-done:
-	return
-}
-
-func (m *Stateid4) WriteTo(w io.Writer) (nTotal int64, err error) {
-	var nField int64
-	{
-		m := m.Seqid
-		nField, err = runtime.WriteUnsignedInt(w, m)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-	}
-	{
-		m := &m.Other
-		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-	}
-done:
-	return
-}
-
-const Stateid4EncodedSizeBytes = 16
 
 // Type definition "nfs_client_id4".
 
@@ -4237,14 +8381,140 @@ func (m *NfsClientId4) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
-// Type definition "open_owner4".
+// Type definition "client_owner4".
 
-type OpenOwner4 struct {
+type ClientOwner4 struct {
+	CoVerifier [8]byte
+	CoOwnerid  []byte
+}
+
+func (m *ClientOwner4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CoVerifier
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CoOwnerid
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 1024)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ClientOwner4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CoVerifier
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CoOwnerid
+		nField, err = runtime.WriteVariableLengthOpaque(w, 1024, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ClientOwner4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	{
+		m := m.CoOwnerid
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "server_owner4".
+
+type ServerOwner4 struct {
+	SoMinorId uint64
+	SoMajorId []byte
+}
+
+func (m *ServerOwner4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SoMinorId
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SoMajorId
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 1024)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ServerOwner4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SoMinorId
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SoMajorId
+		nField, err = runtime.WriteVariableLengthOpaque(w, 1024, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ServerOwner4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	{
+		m := m.SoMajorId
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "state_owner4".
+
+type StateOwner4 struct {
 	Clientid uint64
 	Owner    []byte
 }
 
-func (m *OpenOwner4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+func (m *StateOwner4) ReadFrom(r io.Reader) (nTotal int64, err error) {
 	var nField int64
 	{
 		mSave := &m.Clientid
@@ -4270,7 +8540,7 @@ done:
 	return
 }
 
-func (m *OpenOwner4) WriteTo(w io.Writer) (nTotal int64, err error) {
+func (m *StateOwner4) WriteTo(w io.Writer) (nTotal int64, err error) {
 	var nField int64
 	{
 		m := m.Clientid
@@ -4292,76 +8562,74 @@ done:
 	return
 }
 
-func (m *OpenOwner4) GetEncodedSizeBytes() (nTotal int) {
+func (m *StateOwner4) GetEncodedSizeBytes() (nTotal int) {
 	nTotal += 8
 	{
 		m := m.Owner
 		nTotal += (len(m) + 7) &^ 3
 	}
+	return
+}
+
+// Type definition "open_owner4".
+
+type OpenOwner4 = StateOwner4
+
+func ReadOpenOwner4(r io.Reader, m *StateOwner4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteOpenOwner4(w io.Writer, m *StateOwner4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetOpenOwner4EncodedSizeBytes(m *StateOwner4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
 	return
 }
 
 // Type definition "lock_owner4".
 
-type LockOwner4 struct {
-	Clientid uint64
-	Owner    []byte
-}
+type LockOwner4 = StateOwner4
 
-func (m *LockOwner4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+func ReadLockOwner4(r io.Reader, m *StateOwner4) (nTotal int64, err error) {
 	var nField int64
-	{
-		mSave := &m.Clientid
-		var m uint64
-		m, nField, err = runtime.ReadUnsignedHyper(r)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-		*mSave = m
-	}
-	{
-		mSave := &m.Owner
-		var m []byte
-		m, nField, err = runtime.ReadVariableLengthOpaque(r, 1024)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-		*mSave = m
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
 	}
 done:
 	return
 }
 
-func (m *LockOwner4) WriteTo(w io.Writer) (nTotal int64, err error) {
+func WriteLockOwner4(w io.Writer, m *StateOwner4) (nTotal int64, err error) {
 	var nField int64
-	{
-		m := m.Clientid
-		nField, err = runtime.WriteUnsignedHyper(w, m)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
-	}
-	{
-		m := m.Owner
-		nField, err = runtime.WriteVariableLengthOpaque(w, 1024, m)
-		nTotal += nField
-		if err != nil {
-			goto done
-		}
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
 	}
 done:
 	return
 }
 
-func (m *LockOwner4) GetEncodedSizeBytes() (nTotal int) {
-	nTotal += 8
-	{
-		m := m.Owner
-		nTotal += (len(m) + 7) &^ 3
-	}
+func GetLockOwner4EncodedSizeBytes(m *StateOwner4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
 	return
 }
 
@@ -4408,6 +8676,1617 @@ var NfsLockType4_name = map[NfsLockType4]string{
 	1: "READ_LT",
 	4: "WRITEW_LT",
 	2: "WRITE_LT",
+}
+
+// Type definition "ssv_subkey4".
+
+type SsvSubkey4 int32
+
+func (mParent *SsvSubkey4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m SsvSubkey4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m SsvSubkey4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const SsvSubkey4EncodedSizeBytes = 4
+
+const SSV4_SUBKEY_MIC_I2T SsvSubkey4 = 1
+
+const SSV4_SUBKEY_MIC_T2I SsvSubkey4 = 2
+
+const SSV4_SUBKEY_SEAL_I2T SsvSubkey4 = 3
+
+const SSV4_SUBKEY_SEAL_T2I SsvSubkey4 = 4
+
+var SsvSubkey4_name = map[SsvSubkey4]string{
+	1: "SSV4_SUBKEY_MIC_I2T",
+	2: "SSV4_SUBKEY_MIC_T2I",
+	3: "SSV4_SUBKEY_SEAL_I2T",
+	4: "SSV4_SUBKEY_SEAL_T2I",
+}
+
+// Type definition "ssv_mic_plain_tkn4".
+
+type SsvMicPlainTkn4 struct {
+	SmptSsvSeq    uint32
+	SmptOrigPlain []byte
+}
+
+func (m *SsvMicPlainTkn4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SmptSsvSeq
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SmptOrigPlain
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SsvMicPlainTkn4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SmptSsvSeq
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SmptOrigPlain
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SsvMicPlainTkn4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.SmptOrigPlain
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "ssv_mic_tkn4".
+
+type SsvMicTkn4 struct {
+	SmtSsvSeq uint32
+	SmtHmac   []byte
+}
+
+func (m *SsvMicTkn4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SmtSsvSeq
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SmtHmac
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SsvMicTkn4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SmtSsvSeq
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SmtHmac
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SsvMicTkn4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.SmtHmac
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "ssv_seal_plain_tkn4".
+
+type SsvSealPlainTkn4 struct {
+	SsptConfounder []byte
+	SsptSsvSeq     uint32
+	SsptOrigPlain  []byte
+	SsptPad        []byte
+}
+
+func (m *SsvSealPlainTkn4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SsptConfounder
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SsptSsvSeq
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SsptOrigPlain
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SsptPad
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SsvSealPlainTkn4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SsptConfounder
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SsptSsvSeq
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SsptOrigPlain
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SsptPad
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SsvSealPlainTkn4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.SsptConfounder
+		nTotal += (len(m) + 7) &^ 3
+	}
+	nTotal += 4
+	{
+		m := m.SsptOrigPlain
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.SsptPad
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "ssv_seal_cipher_tkn4".
+
+type SsvSealCipherTkn4 struct {
+	SsctSsvSeq   uint32
+	SsctIv       []byte
+	SsctEncrData []byte
+	SsctHmac     []byte
+}
+
+func (m *SsvSealCipherTkn4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SsctSsvSeq
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SsctIv
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SsctEncrData
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SsctHmac
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SsvSealCipherTkn4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SsctSsvSeq
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SsctIv
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SsctEncrData
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SsctHmac
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SsvSealCipherTkn4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.SsctIv
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.SsctEncrData
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.SsctHmac
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "fs_locations_server4".
+
+type FsLocationsServer4 struct {
+	FlsCurrency int32
+	FlsInfo     []byte
+	FlsServer   string
+}
+
+func (m *FsLocationsServer4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.FlsCurrency
+		var m int32
+		m, nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FlsInfo
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FlsServer
+		var m string
+		m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *FsLocationsServer4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.FlsCurrency
+		nField, err = runtime.WriteInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.FlsInfo
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.FlsServer
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *FsLocationsServer4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.FlsInfo
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.FlsServer
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+const FSLI4BX_GFLAGS = 0
+
+const FSLI4BX_TFLAGS = 1
+
+const FSLI4BX_CLSIMUL = 2
+
+const FSLI4BX_CLHANDLE = 3
+
+const FSLI4BX_CLFILEID = 4
+
+const FSLI4BX_CLWRITEVER = 5
+
+const FSLI4BX_CLCHANGE = 6
+
+const FSLI4BX_CLREADDIR = 7
+
+const FSLI4BX_READRANK = 8
+
+const FSLI4BX_WRITERANK = 9
+
+const FSLI4BX_READORDER = 10
+
+const FSLI4BX_WRITEORDER = 11
+
+const FSLI4GF_WRITABLE = 1
+
+const FSLI4GF_CUR_REQ = 2
+
+const FSLI4GF_ABSENT = 4
+
+const FSLI4GF_GOING = 8
+
+const FSLI4GF_SPLIT = 16
+
+const FSLI4TF_RDMA = 1
+
+// Type definition "fs_locations_item4".
+
+type FsLocationsItem4 struct {
+	FliEntries  []FsLocationsServer4
+	FliRootpath []string
+}
+
+func (m *FsLocationsItem4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.FliEntries
+		var m []FsLocationsServer4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds fs_locations_item4.fli_entries's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, FsLocationsServer4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FliRootpath
+		var m []string
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds pathname4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m string
+			m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *FsLocationsItem4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.FliEntries
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds fs_locations_item4.fli_entries's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.FliRootpath
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds pathname4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *FsLocationsItem4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.FliEntries
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	{
+		m := m.FliRootpath
+		nTotal += 4
+		for _, m := range m {
+			nTotal += (len(m) + 7) &^ 3
+		}
+	}
+	return
+}
+
+// Type definition "fs_locations_info4".
+
+type FsLocationsInfo4 struct {
+	FliFlags    uint32
+	FliValidFor int32
+	FliFsRoot   []string
+	FliItems    []FsLocationsItem4
+}
+
+func (m *FsLocationsInfo4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.FliFlags
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FliValidFor
+		var m int32
+		m, nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FliFsRoot
+		var m []string
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds pathname4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m string
+			m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.FliItems
+		var m []FsLocationsItem4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds fs_locations_info4.fli_items's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, FsLocationsItem4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *FsLocationsInfo4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.FliFlags
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.FliValidFor
+		nField, err = runtime.WriteInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.FliFsRoot
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds pathname4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.FliItems
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds fs_locations_info4.fli_items's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *FsLocationsInfo4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.FliFsRoot
+		nTotal += 4
+		for _, m := range m {
+			nTotal += (len(m) + 7) &^ 3
+		}
+	}
+	{
+		m := m.FliItems
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+const FSLI4IF_VAR_SUB = 1
+
+// Type definition "fattr4_fs_locations_info".
+
+type Fattr4FsLocationsInfo = FsLocationsInfo4
+
+func ReadFattr4FsLocationsInfo(r io.Reader, m *FsLocationsInfo4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteFattr4FsLocationsInfo(w io.Writer, m *FsLocationsInfo4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetFattr4FsLocationsInfoEncodedSizeBytes(m *FsLocationsInfo4) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+const NFL4_UFLG_MASK = 63
+
+const NFL4_UFLG_DENSE = 1
+
+const NFL4_UFLG_COMMIT_THRU_MDS = 2
+
+const NFL42_UFLG_IO_ADVISE_THRU_MDS = 4
+
+const NFL4_UFLG_STRIPE_UNIT_SIZE_MASK = 4294967232
+
+// Type definition "nfl_util4".
+
+type NflUtil4 = uint32
+
+func ReadNflUtil4(r io.Reader) (m uint32, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNflUtil4(w io.Writer, m uint32) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteUnsignedInt(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NflUtil4EncodedSizeBytes = 4
+
+// Type definition "filelayout_hint_care4".
+
+type FilelayoutHintCare4 int32
+
+func (mParent *FilelayoutHintCare4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m FilelayoutHintCare4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m FilelayoutHintCare4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const FilelayoutHintCare4EncodedSizeBytes = 4
+
+const NFL42_CARE_IO_ADVISE_THRU_MDS FilelayoutHintCare4 = 4
+
+const NFLH4_CARE_COMMIT_THRU_MDS FilelayoutHintCare4 = 2
+
+const NFLH4_CARE_DENSE FilelayoutHintCare4 = 1
+
+const NFLH4_CARE_STRIPE_COUNT FilelayoutHintCare4 = 128
+
+const NFLH4_CARE_STRIPE_UNIT_SIZE FilelayoutHintCare4 = 64
+
+var FilelayoutHintCare4_name = map[FilelayoutHintCare4]string{
+	4:   "NFL42_CARE_IO_ADVISE_THRU_MDS",
+	2:   "NFLH4_CARE_COMMIT_THRU_MDS",
+	1:   "NFLH4_CARE_DENSE",
+	128: "NFLH4_CARE_STRIPE_COUNT",
+	64:  "NFLH4_CARE_STRIPE_UNIT_SIZE",
+}
+
+// Type definition "nfsv4_1_file_layouthint4".
+
+type Nfsv41FileLayouthint4 struct {
+	NflhCare        uint32
+	NflhUtil        uint32
+	NflhStripeCount uint32
+}
+
+func (m *Nfsv41FileLayouthint4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.NflhCare
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NflhUtil
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NflhStripeCount
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Nfsv41FileLayouthint4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.NflhCare
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NflhUtil
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NflhStripeCount
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Nfsv41FileLayouthint4EncodedSizeBytes = 12
+
+// Type definition "multipath_list4".
+
+type MultipathList4 = []Netaddr4
+
+func ReadMultipathList4(r io.Reader) (m []Netaddr4, nTotal int64, err error) {
+	var nField int64
+	var nElements uint32
+	nElements, nField, err = runtime.ReadUnsignedInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	if nElements > 4294967295 {
+		err = fmt.Errorf("size of %d elements exceeds multipath_list4's maximum of 4294967295 elements", nElements)
+		goto done
+	}
+	for nElements > 0 {
+		nElements--
+		m = append(m, Netaddr4{})
+		m := &m[len(m)-1]
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func WriteMultipathList4(w io.Writer, m []Netaddr4) (nTotal int64, err error) {
+	var nField int64
+	if uint(len(m)) > 4294967295 {
+		err = fmt.Errorf("size of %d elements exceeds multipath_list4's maximum of 4294967295 elements", len(m))
+		goto done
+	}
+	nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	for _, m := range m {
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func GetMultipathList4EncodedSizeBytes(m []Netaddr4) (nTotal int) {
+	nTotal += 4
+	for _, m := range m {
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "nfsv4_1_file_layout_ds_addr4".
+
+type Nfsv41FileLayoutDsAddr4 struct {
+	NfldaStripeIndices   []uint32
+	NfldaMultipathDsList [][]Netaddr4
+}
+
+func (m *Nfsv41FileLayoutDsAddr4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.NfldaStripeIndices
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds nfsv4_1_file_layout_ds_addr4.nflda_stripe_indices's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NfldaMultipathDsList
+		var m [][]Netaddr4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds nfsv4_1_file_layout_ds_addr4.nflda_multipath_ds_list's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m []Netaddr4
+			var nElements uint32
+			nElements, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			if nElements > 4294967295 {
+				err = fmt.Errorf("size of %d elements exceeds multipath_list4's maximum of 4294967295 elements", nElements)
+				goto done
+			}
+			for nElements > 0 {
+				nElements--
+				m = append(m, Netaddr4{})
+				m := &m[len(m)-1]
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Nfsv41FileLayoutDsAddr4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.NfldaStripeIndices
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds nfsv4_1_file_layout_ds_addr4.nflda_stripe_indices's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.NfldaMultipathDsList
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds nfsv4_1_file_layout_ds_addr4.nflda_multipath_ds_list's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			if uint(len(m)) > 4294967295 {
+				err = fmt.Errorf("size of %d elements exceeds multipath_list4's maximum of 4294967295 elements", len(m))
+				goto done
+			}
+			nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			for _, m := range m {
+				nField, err = m.WriteTo(w)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *Nfsv41FileLayoutDsAddr4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.NfldaStripeIndices
+		nTotal += 4 + 4*len(m)
+	}
+	{
+		m := m.NfldaMultipathDsList
+		nTotal += 4
+		for _, m := range m {
+			nTotal += 4
+			for _, m := range m {
+				nTotal += m.GetEncodedSizeBytes()
+			}
+		}
+	}
+	return
+}
+
+// Type definition "nfsv4_1_file_layout4".
+
+type Nfsv41FileLayout4 struct {
+	NflDeviceid         [16]byte
+	NflUtil             uint32
+	NflFirstStripeIndex uint32
+	NflPatternOffset    uint64
+	NflFhList           [][]byte
+}
+
+func (m *Nfsv41FileLayout4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NflDeviceid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.NflUtil
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NflFirstStripeIndex
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NflPatternOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NflFhList
+		var m [][]byte
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds nfsv4_1_file_layout4.nfl_fh_list's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m []byte
+			m, nField, err = runtime.ReadVariableLengthOpaque(r, 128)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Nfsv41FileLayout4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NflDeviceid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NflUtil
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NflFirstStripeIndex
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NflPatternOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NflFhList
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds nfsv4_1_file_layout4.nfl_fh_list's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteVariableLengthOpaque(w, 128, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *Nfsv41FileLayout4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	nTotal += 4
+	nTotal += 4
+	nTotal += 8
+	{
+		m := m.NflFhList
+		nTotal += 4
+		for _, m := range m {
+			nTotal += (len(m) + 7) &^ 3
+		}
+	}
+	return
+}
+
+// Type definition "nfs_opnum4".
+
+type NfsOpnum4 int32
+
+func (mParent *NfsOpnum4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m NfsOpnum4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m NfsOpnum4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NfsOpnum4EncodedSizeBytes = 4
+
+const OP_ACCESS NfsOpnum4 = 3
+
+const OP_ALLOCATE NfsOpnum4 = 59
+
+const OP_BACKCHANNEL_CTL NfsOpnum4 = 40
+
+const OP_BIND_CONN_TO_SESSION NfsOpnum4 = 41
+
+const OP_CLONE NfsOpnum4 = 71
+
+const OP_CLOSE NfsOpnum4 = 4
+
+const OP_COMMIT NfsOpnum4 = 5
+
+const OP_COPY NfsOpnum4 = 60
+
+const OP_COPY_NOTIFY NfsOpnum4 = 61
+
+const OP_CREATE NfsOpnum4 = 6
+
+const OP_CREATE_SESSION NfsOpnum4 = 43
+
+const OP_DEALLOCATE NfsOpnum4 = 62
+
+const OP_DELEGPURGE NfsOpnum4 = 7
+
+const OP_DELEGRETURN NfsOpnum4 = 8
+
+const OP_DESTROY_CLIENTID NfsOpnum4 = 57
+
+const OP_DESTROY_SESSION NfsOpnum4 = 44
+
+const OP_EXCHANGE_ID NfsOpnum4 = 42
+
+const OP_FREE_STATEID NfsOpnum4 = 45
+
+const OP_GETATTR NfsOpnum4 = 9
+
+const OP_GETDEVICEINFO NfsOpnum4 = 47
+
+const OP_GETDEVICELIST NfsOpnum4 = 48
+
+const OP_GETFH NfsOpnum4 = 10
+
+const OP_GET_DIR_DELEGATION NfsOpnum4 = 46
+
+const OP_ILLEGAL NfsOpnum4 = 10044
+
+const OP_IO_ADVISE NfsOpnum4 = 63
+
+const OP_LAYOUTCOMMIT NfsOpnum4 = 49
+
+const OP_LAYOUTERROR NfsOpnum4 = 64
+
+const OP_LAYOUTGET NfsOpnum4 = 50
+
+const OP_LAYOUTRETURN NfsOpnum4 = 51
+
+const OP_LAYOUTSTATS NfsOpnum4 = 65
+
+const OP_LINK NfsOpnum4 = 11
+
+const OP_LOCK NfsOpnum4 = 12
+
+const OP_LOCKT NfsOpnum4 = 13
+
+const OP_LOCKU NfsOpnum4 = 14
+
+const OP_LOOKUP NfsOpnum4 = 15
+
+const OP_LOOKUPP NfsOpnum4 = 16
+
+const OP_NVERIFY NfsOpnum4 = 17
+
+const OP_OFFLOAD_CANCEL NfsOpnum4 = 66
+
+const OP_OFFLOAD_STATUS NfsOpnum4 = 67
+
+const OP_OPEN NfsOpnum4 = 18
+
+const OP_OPENATTR NfsOpnum4 = 19
+
+const OP_OPEN_CONFIRM NfsOpnum4 = 20
+
+const OP_OPEN_DOWNGRADE NfsOpnum4 = 21
+
+const OP_PUTFH NfsOpnum4 = 22
+
+const OP_PUTPUBFH NfsOpnum4 = 23
+
+const OP_PUTROOTFH NfsOpnum4 = 24
+
+const OP_READ NfsOpnum4 = 25
+
+const OP_READDIR NfsOpnum4 = 26
+
+const OP_READLINK NfsOpnum4 = 27
+
+const OP_READ_PLUS NfsOpnum4 = 68
+
+const OP_RECLAIM_COMPLETE NfsOpnum4 = 58
+
+const OP_RELEASE_LOCKOWNER NfsOpnum4 = 39
+
+const OP_REMOVE NfsOpnum4 = 28
+
+const OP_RENAME NfsOpnum4 = 29
+
+const OP_RENEW NfsOpnum4 = 30
+
+const OP_RESTOREFH NfsOpnum4 = 31
+
+const OP_SAVEFH NfsOpnum4 = 32
+
+const OP_SECINFO NfsOpnum4 = 33
+
+const OP_SECINFO_NO_NAME NfsOpnum4 = 52
+
+const OP_SEEK NfsOpnum4 = 69
+
+const OP_SEQUENCE NfsOpnum4 = 53
+
+const OP_SETATTR NfsOpnum4 = 34
+
+const OP_SETCLIENTID NfsOpnum4 = 35
+
+const OP_SETCLIENTID_CONFIRM NfsOpnum4 = 36
+
+const OP_SET_SSV NfsOpnum4 = 54
+
+const OP_TEST_STATEID NfsOpnum4 = 55
+
+const OP_VERIFY NfsOpnum4 = 37
+
+const OP_WANT_DELEGATION NfsOpnum4 = 56
+
+const OP_WRITE NfsOpnum4 = 38
+
+const OP_WRITE_SAME NfsOpnum4 = 70
+
+var NfsOpnum4_name = map[NfsOpnum4]string{
+	3:     "OP_ACCESS",
+	59:    "OP_ALLOCATE",
+	40:    "OP_BACKCHANNEL_CTL",
+	41:    "OP_BIND_CONN_TO_SESSION",
+	71:    "OP_CLONE",
+	4:     "OP_CLOSE",
+	5:     "OP_COMMIT",
+	60:    "OP_COPY",
+	61:    "OP_COPY_NOTIFY",
+	6:     "OP_CREATE",
+	43:    "OP_CREATE_SESSION",
+	62:    "OP_DEALLOCATE",
+	7:     "OP_DELEGPURGE",
+	8:     "OP_DELEGRETURN",
+	57:    "OP_DESTROY_CLIENTID",
+	44:    "OP_DESTROY_SESSION",
+	42:    "OP_EXCHANGE_ID",
+	45:    "OP_FREE_STATEID",
+	9:     "OP_GETATTR",
+	47:    "OP_GETDEVICEINFO",
+	48:    "OP_GETDEVICELIST",
+	10:    "OP_GETFH",
+	46:    "OP_GET_DIR_DELEGATION",
+	10044: "OP_ILLEGAL",
+	63:    "OP_IO_ADVISE",
+	49:    "OP_LAYOUTCOMMIT",
+	64:    "OP_LAYOUTERROR",
+	50:    "OP_LAYOUTGET",
+	51:    "OP_LAYOUTRETURN",
+	65:    "OP_LAYOUTSTATS",
+	11:    "OP_LINK",
+	12:    "OP_LOCK",
+	13:    "OP_LOCKT",
+	14:    "OP_LOCKU",
+	15:    "OP_LOOKUP",
+	16:    "OP_LOOKUPP",
+	17:    "OP_NVERIFY",
+	66:    "OP_OFFLOAD_CANCEL",
+	67:    "OP_OFFLOAD_STATUS",
+	18:    "OP_OPEN",
+	19:    "OP_OPENATTR",
+	20:    "OP_OPEN_CONFIRM",
+	21:    "OP_OPEN_DOWNGRADE",
+	22:    "OP_PUTFH",
+	23:    "OP_PUTPUBFH",
+	24:    "OP_PUTROOTFH",
+	25:    "OP_READ",
+	26:    "OP_READDIR",
+	27:    "OP_READLINK",
+	68:    "OP_READ_PLUS",
+	58:    "OP_RECLAIM_COMPLETE",
+	39:    "OP_RELEASE_LOCKOWNER",
+	28:    "OP_REMOVE",
+	29:    "OP_RENAME",
+	30:    "OP_RENEW",
+	31:    "OP_RESTOREFH",
+	32:    "OP_SAVEFH",
+	33:    "OP_SECINFO",
+	52:    "OP_SECINFO_NO_NAME",
+	69:    "OP_SEEK",
+	53:    "OP_SEQUENCE",
+	34:    "OP_SETATTR",
+	35:    "OP_SETCLIENTID",
+	36:    "OP_SETCLIENTID_CONFIRM",
+	54:    "OP_SET_SSV",
+	55:    "OP_TEST_STATEID",
+	37:    "OP_VERIFY",
+	56:    "OP_WANT_DELEGATION",
+	38:    "OP_WRITE",
+	70:    "OP_WRITE_SAME",
 }
 
 const ACCESS4_READ = 1
@@ -4656,6 +10535,154 @@ func (m *Access4res_default) GetEncodedSizeBytes() (nTotal int) {
 	nTotal += 4
 	return
 }
+
+// Type definition "CLONE4args".
+
+type Clone4args struct {
+	ClSrcStateid Stateid4
+	ClDstStateid Stateid4
+	ClSrcOffset  uint64
+	ClDstOffset  uint64
+	ClCount      uint64
+}
+
+func (m *Clone4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.ClSrcStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.ClDstStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.ClSrcOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.ClDstOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.ClCount
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Clone4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.ClSrcStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.ClDstStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.ClSrcOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.ClDstOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.ClCount
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Clone4argsEncodedSizeBytes = 56
+
+// Type definition "CLONE4res".
+
+type Clone4res struct {
+	ClStatus Nfsstat4
+}
+
+func (m *Clone4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.ClStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Clone4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.ClStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Clone4resEncodedSizeBytes = 4
 
 // Type definition "CLOSE4args".
 
@@ -6575,7 +12602,7 @@ type OpenToLockOwner4 struct {
 	OpenSeqid   uint32
 	OpenStateid Stateid4
 	LockSeqid   uint32
-	LockOwner   LockOwner4
+	LockOwner   StateOwner4
 }
 
 func (m *OpenToLockOwner4) ReadFrom(r io.Reader) (nTotal int64, err error) {
@@ -7015,7 +13042,7 @@ type Lock4denied struct {
 	Offset   uint64
 	Length   uint64
 	Locktype NfsLockType4
-	Owner    LockOwner4
+	Owner    StateOwner4
 }
 
 func (m *Lock4denied) ReadFrom(r io.Reader) (nTotal int64, err error) {
@@ -7348,7 +13375,7 @@ type Lockt4args struct {
 	Locktype NfsLockType4
 	Offset   uint64
 	Length   uint64
-	Owner    LockOwner4
+	Owner    StateOwner4
 }
 
 func (m *Lockt4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
@@ -8073,20 +14100,6 @@ done:
 
 const Nverify4resEncodedSizeBytes = 4
 
-const OPEN4_SHARE_ACCESS_READ = 1
-
-const OPEN4_SHARE_ACCESS_WRITE = 2
-
-const OPEN4_SHARE_ACCESS_BOTH = 3
-
-const OPEN4_SHARE_DENY_NONE = 0
-
-const OPEN4_SHARE_DENY_READ = 1
-
-const OPEN4_SHARE_DENY_WRITE = 2
-
-const OPEN4_SHARE_DENY_BOTH = 3
-
 // Type definition "createmode4".
 
 type Createmode4 int32
@@ -8119,14 +14132,77 @@ const Createmode4EncodedSizeBytes = 4
 
 const EXCLUSIVE4 Createmode4 = 2
 
+const EXCLUSIVE4_1 Createmode4 = 3
+
 const GUARDED4 Createmode4 = 1
 
 const UNCHECKED4 Createmode4 = 0
 
 var Createmode4_name = map[Createmode4]string{
 	2: "EXCLUSIVE4",
+	3: "EXCLUSIVE4_1",
 	1: "GUARDED4",
 	0: "UNCHECKED4",
+}
+
+// Type definition "creatverfattr".
+
+type Creatverfattr struct {
+	CvaVerf  [8]byte
+	CvaAttrs Fattr4
+}
+
+func (m *Creatverfattr) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CvaVerf
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CvaAttrs
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Creatverfattr) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CvaVerf
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CvaAttrs
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Creatverfattr) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	{
+		m := &m.CvaAttrs
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
 }
 
 // Type definition "createhow4".
@@ -8186,6 +14262,20 @@ func ReadCreatehow4(r io.Reader) (m Createhow4, nTotal int64, err error) {
 			{
 				m := &m.Createverf
 				nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 3:
+		var mArm Createhow4_EXCLUSIVE4_1
+		{
+			m := &mArm
+			{
+				m := &m.ChCreateboth
+				nField, err = m.ReadFrom(r)
 				nTotal += nField
 				if err != nil {
 					goto done
@@ -8342,6 +14432,47 @@ done:
 func (m *Createhow4_EXCLUSIVE4) GetEncodedSizeBytes() (nTotal int) {
 	nTotal += 4
 	nTotal += 8
+	return
+}
+
+type Createhow4_EXCLUSIVE4_1 struct {
+	ChCreateboth Creatverfattr
+}
+
+func (m *Createhow4_EXCLUSIVE4_1) isCreatehow4() {}
+
+func (m *Createhow4_EXCLUSIVE4_1) GetMode() Createmode4 {
+	return 3
+}
+
+func (m *Createhow4_EXCLUSIVE4_1) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Createmode4 = 3
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.ChCreateboth
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Createhow4_EXCLUSIVE4_1) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.ChCreateboth
+		nTotal += m.GetEncodedSizeBytes()
+	}
 	return
 }
 
@@ -8772,6 +14903,38 @@ done:
 	return
 }
 
+const OPEN4_SHARE_ACCESS_READ = 1
+
+const OPEN4_SHARE_ACCESS_WRITE = 2
+
+const OPEN4_SHARE_ACCESS_BOTH = 3
+
+const OPEN4_SHARE_DENY_NONE = 0
+
+const OPEN4_SHARE_DENY_READ = 1
+
+const OPEN4_SHARE_DENY_WRITE = 2
+
+const OPEN4_SHARE_DENY_BOTH = 3
+
+const OPEN4_SHARE_ACCESS_WANT_DELEG_MASK = 65280
+
+const OPEN4_SHARE_ACCESS_WANT_NO_PREFERENCE = 0
+
+const OPEN4_SHARE_ACCESS_WANT_READ_DELEG = 256
+
+const OPEN4_SHARE_ACCESS_WANT_WRITE_DELEG = 512
+
+const OPEN4_SHARE_ACCESS_WANT_ANY_DELEG = 768
+
+const OPEN4_SHARE_ACCESS_WANT_NO_DELEG = 1024
+
+const OPEN4_SHARE_ACCESS_WANT_CANCEL = 1280
+
+const OPEN4_SHARE_ACCESS_WANT_SIGNAL_DELEG_WHEN_RESRC_AVAIL = 65536
+
+const OPEN4_SHARE_ACCESS_WANT_PUSH_DELEG_WHEN_UNCONTENDED = 131072
+
 // Type definition "open_delegation_type4".
 
 type OpenDelegationType4 int32
@@ -8804,12 +14967,15 @@ const OpenDelegationType4EncodedSizeBytes = 4
 
 const OPEN_DELEGATE_NONE OpenDelegationType4 = 0
 
+const OPEN_DELEGATE_NONE_EXT OpenDelegationType4 = 3
+
 const OPEN_DELEGATE_READ OpenDelegationType4 = 1
 
 const OPEN_DELEGATE_WRITE OpenDelegationType4 = 2
 
 var OpenDelegationType4_name = map[OpenDelegationType4]string{
 	0: "OPEN_DELEGATE_NONE",
+	3: "OPEN_DELEGATE_NONE_EXT",
 	1: "OPEN_DELEGATE_READ",
 	2: "OPEN_DELEGATE_WRITE",
 }
@@ -8848,6 +15014,12 @@ const CLAIM_DELEGATE_CUR OpenClaimType4 = 2
 
 const CLAIM_DELEGATE_PREV OpenClaimType4 = 3
 
+const CLAIM_DELEG_CUR_FH OpenClaimType4 = 5
+
+const CLAIM_DELEG_PREV_FH OpenClaimType4 = 6
+
+const CLAIM_FH OpenClaimType4 = 4
+
 const CLAIM_NULL OpenClaimType4 = 0
 
 const CLAIM_PREVIOUS OpenClaimType4 = 1
@@ -8855,6 +15027,9 @@ const CLAIM_PREVIOUS OpenClaimType4 = 1
 var OpenClaimType4_name = map[OpenClaimType4]string{
 	2: "CLAIM_DELEGATE_CUR",
 	3: "CLAIM_DELEGATE_PREV",
+	5: "CLAIM_DELEG_CUR_FH",
+	6: "CLAIM_DELEG_PREV_FH",
+	4: "CLAIM_FH",
 	0: "CLAIM_NULL",
 	1: "CLAIM_PREVIOUS",
 }
@@ -9002,6 +15177,34 @@ func ReadOpenClaim4(r io.Reader) (m OpenClaim4, nTotal int64, err error) {
 					goto done
 				}
 				*mSave = m
+			}
+		}
+		m = &mArm
+	case 4:
+		var mArm OpenClaim4_CLAIM_FH
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	case 6:
+		var mArm OpenClaim4_CLAIM_DELEG_PREV_FH
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	case 5:
+		var mArm OpenClaim4_CLAIM_DELEG_CUR_FH
+		{
+			m := &mArm
+			{
+				m := &m.OcDelegateStateid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
 			}
 		}
 		m = &mArm
@@ -9198,13 +15401,105 @@ func (m *OpenClaim4_CLAIM_DELEGATE_PREV) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
+type OpenClaim4_CLAIM_FH struct{}
+
+func (m *OpenClaim4_CLAIM_FH) isOpenClaim4() {}
+
+func (m *OpenClaim4_CLAIM_FH) GetClaim() OpenClaimType4 {
+	return 4
+}
+
+func (m *OpenClaim4_CLAIM_FH) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m OpenClaimType4 = 4
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OpenClaim4_CLAIM_FH) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+type OpenClaim4_CLAIM_DELEG_PREV_FH struct{}
+
+func (m *OpenClaim4_CLAIM_DELEG_PREV_FH) isOpenClaim4() {}
+
+func (m *OpenClaim4_CLAIM_DELEG_PREV_FH) GetClaim() OpenClaimType4 {
+	return 6
+}
+
+func (m *OpenClaim4_CLAIM_DELEG_PREV_FH) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m OpenClaimType4 = 6
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OpenClaim4_CLAIM_DELEG_PREV_FH) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+type OpenClaim4_CLAIM_DELEG_CUR_FH struct {
+	OcDelegateStateid Stateid4
+}
+
+func (m *OpenClaim4_CLAIM_DELEG_CUR_FH) isOpenClaim4() {}
+
+func (m *OpenClaim4_CLAIM_DELEG_CUR_FH) GetClaim() OpenClaimType4 {
+	return 5
+}
+
+func (m *OpenClaim4_CLAIM_DELEG_CUR_FH) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m OpenClaimType4 = 5
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OcDelegateStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OpenClaim4_CLAIM_DELEG_CUR_FH) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 16
+	return
+}
+
 // Type definition "OPEN4args".
 
 type Open4args struct {
 	Seqid       uint32
 	ShareAccess uint32
 	ShareDeny   uint32
-	Owner       OpenOwner4
+	Owner       StateOwner4
 	Openhow     Openflag4
 	Claim       OpenClaim4
 }
@@ -9526,6 +15821,262 @@ func (m *OpenWriteDelegation4) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
+// Type definition "why_no_delegation4".
+
+type WhyNoDelegation4 int32
+
+func (mParent *WhyNoDelegation4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m WhyNoDelegation4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m WhyNoDelegation4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const WhyNoDelegation4EncodedSizeBytes = 4
+
+const WND4_CANCELLED WhyNoDelegation4 = 7
+
+const WND4_CONTENTION WhyNoDelegation4 = 1
+
+const WND4_IS_DIR WhyNoDelegation4 = 8
+
+const WND4_NOT_SUPP_DOWNGRADE WhyNoDelegation4 = 6
+
+const WND4_NOT_SUPP_FTYPE WhyNoDelegation4 = 3
+
+const WND4_NOT_SUPP_UPGRADE WhyNoDelegation4 = 5
+
+const WND4_NOT_WANTED WhyNoDelegation4 = 0
+
+const WND4_RESOURCE WhyNoDelegation4 = 2
+
+const WND4_WRITE_DELEG_NOT_SUPP_FTYPE WhyNoDelegation4 = 4
+
+var WhyNoDelegation4_name = map[WhyNoDelegation4]string{
+	7: "WND4_CANCELLED",
+	1: "WND4_CONTENTION",
+	8: "WND4_IS_DIR",
+	6: "WND4_NOT_SUPP_DOWNGRADE",
+	3: "WND4_NOT_SUPP_FTYPE",
+	5: "WND4_NOT_SUPP_UPGRADE",
+	0: "WND4_NOT_WANTED",
+	2: "WND4_RESOURCE",
+	4: "WND4_WRITE_DELEG_NOT_SUPP_FTYPE",
+}
+
+// Type definition "open_none_delegation4".
+
+type OpenNoneDelegation4 interface {
+	isOpenNoneDelegation4()
+	GetOndWhy() WhyNoDelegation4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadOpenNoneDelegation4(r io.Reader) (m OpenNoneDelegation4, nTotal int64, err error) {
+	var nField int64
+	var discriminant WhyNoDelegation4
+	{
+		var m WhyNoDelegation4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 1:
+		var mArm OpenNoneDelegation4_WND4_CONTENTION
+		{
+			m := &mArm
+			{
+				mSave := &m.OndServerWillPushDeleg
+				var m bool
+				m, nField, err = runtime.ReadBool(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 2:
+		var mArm OpenNoneDelegation4_WND4_RESOURCE
+		{
+			m := &mArm
+			{
+				mSave := &m.OndServerWillSignalAvail
+				var m bool
+				m, nField, err = runtime.ReadBool(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	default:
+		var mArm OpenNoneDelegation4_default
+		{
+			m := &mArm
+			m.OndWhy = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readOpenNoneDelegation4OndWhy(r io.Reader) (m WhyNoDelegation4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeOpenNoneDelegation4OndWhy(w io.Writer, m WhyNoDelegation4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const openNoneDelegation4OndWhyEncodedSizeBytes = 4
+
+type OpenNoneDelegation4_WND4_CONTENTION struct {
+	OndServerWillPushDeleg bool
+}
+
+func (m *OpenNoneDelegation4_WND4_CONTENTION) isOpenNoneDelegation4() {}
+
+func (m *OpenNoneDelegation4_WND4_CONTENTION) GetOndWhy() WhyNoDelegation4 {
+	return 1
+}
+
+func (m *OpenNoneDelegation4_WND4_CONTENTION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m WhyNoDelegation4 = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OndServerWillPushDeleg
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OpenNoneDelegation4_WND4_CONTENTION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type OpenNoneDelegation4_WND4_RESOURCE struct {
+	OndServerWillSignalAvail bool
+}
+
+func (m *OpenNoneDelegation4_WND4_RESOURCE) isOpenNoneDelegation4() {}
+
+func (m *OpenNoneDelegation4_WND4_RESOURCE) GetOndWhy() WhyNoDelegation4 {
+	return 2
+}
+
+func (m *OpenNoneDelegation4_WND4_RESOURCE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m WhyNoDelegation4 = 2
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OndServerWillSignalAvail
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OpenNoneDelegation4_WND4_RESOURCE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type OpenNoneDelegation4_default struct {
+	OndWhy WhyNoDelegation4
+}
+
+func (m *OpenNoneDelegation4_default) isOpenNoneDelegation4() {}
+
+func (m *OpenNoneDelegation4_default) GetOndWhy() WhyNoDelegation4 {
+	return m.OndWhy
+}
+
+func (m *OpenNoneDelegation4_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.OndWhy
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OpenNoneDelegation4_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
 // Type definition "open_delegation4".
 
 type OpenDelegation4 interface {
@@ -9580,6 +16131,22 @@ func ReadOpenDelegation4(r io.Reader) (m OpenDelegation4, nTotal int64, err erro
 				if err != nil {
 					goto done
 				}
+			}
+		}
+		m = &mArm
+	case 3:
+		var mArm OpenDelegation4_OPEN_DELEGATE_NONE_EXT
+		{
+			m := &mArm
+			{
+				mSave := &m.OdWhynone
+				var m OpenNoneDelegation4
+				m, nField, err = ReadOpenNoneDelegation4(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
 			}
 		}
 		m = &mArm
@@ -9724,9 +16291,54 @@ func (m *OpenDelegation4_OPEN_DELEGATE_WRITE) GetEncodedSizeBytes() (nTotal int)
 	return
 }
 
+type OpenDelegation4_OPEN_DELEGATE_NONE_EXT struct {
+	OdWhynone OpenNoneDelegation4
+}
+
+func (m *OpenDelegation4_OPEN_DELEGATE_NONE_EXT) isOpenDelegation4() {}
+
+func (m *OpenDelegation4_OPEN_DELEGATE_NONE_EXT) GetDelegationType() OpenDelegationType4 {
+	return 3
+}
+
+func (m *OpenDelegation4_OPEN_DELEGATE_NONE_EXT) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m OpenDelegationType4 = 3
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OdWhynone
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OpenDelegation4_OPEN_DELEGATE_NONE_EXT) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OdWhynone
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
 const OPEN4_RESULT_CONFIRM = 2
 
 const OPEN4_RESULT_LOCKTYPE_POSIX = 4
+
+const OPEN4_RESULT_PRESERVE_UNLINKED = 8
+
+const OPEN4_RESULT_MAY_NOTIFY_LOCK = 32
 
 // Type definition "OPEN4resok".
 
@@ -13401,7 +20013,7 @@ func (m *Setclientid4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
 }
 
 type Setclientid4res_NFS4ERR_CLID_INUSE struct {
-	ClientUsing Clientaddr4
+	ClientUsing Netaddr4
 }
 
 func (m *Setclientid4res_NFS4ERR_CLID_INUSE) isSetclientid4res() {}
@@ -13642,48 +20254,6 @@ done:
 }
 
 const Verify4resEncodedSizeBytes = 4
-
-// Type definition "stable_how4".
-
-type StableHow4 int32
-
-func (mParent *StableHow4) ReadFrom(r io.Reader) (nTotal int64, err error) {
-	var nField int64
-	var m StableHow4
-	*(*int32)(&m), nField, err = runtime.ReadInt(r)
-	nTotal += nField
-	if err != nil {
-		goto done
-	}
-	*mParent = m
-done:
-	return
-}
-
-func (m StableHow4) WriteTo(w io.Writer) (nTotal int64, err error) {
-	var nField int64
-	nField, err = runtime.WriteInt(w, int32(m))
-	nTotal += nField
-	if err != nil {
-		goto done
-	}
-done:
-	return
-}
-
-const StableHow4EncodedSizeBytes = 4
-
-const DATA_SYNC4 StableHow4 = 1
-
-const FILE_SYNC4 StableHow4 = 2
-
-const UNSTABLE4 StableHow4 = 0
-
-var StableHow4_name = map[StableHow4]string{
-	1: "DATA_SYNC4",
-	2: "FILE_SYNC4",
-	0: "UNSTABLE4",
-}
 
 // Type definition "WRITE4args".
 
@@ -14004,7 +20574,7 @@ func (m *Write4res_default) GetEncodedSizeBytes() (nTotal int) {
 // Type definition "RELEASE_LOCKOWNER4args".
 
 type ReleaseLockowner4args struct {
-	LockOwner LockOwner4
+	LockOwner StateOwner4
 }
 
 func (m *ReleaseLockowner4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
@@ -14119,24 +20689,201 @@ done:
 
 const Illegal4resEncodedSizeBytes = 4
 
-// Type definition "nfs_opnum4".
+// Type definition "gsshandle4_t".
 
-type NfsOpnum4 int32
+type Gsshandle4T = []byte
 
-func (mParent *NfsOpnum4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+func ReadGsshandle4T(r io.Reader) (m []byte, nTotal int64, err error) {
 	var nField int64
-	var m NfsOpnum4
+	m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteGsshandle4T(w io.Writer, m []byte) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetGsshandle4TEncodedSizeBytes(m []byte) (nTotal int) {
+	nTotal += (len(m) + 7) &^ 3
+	return
+}
+
+// Type definition "gss_cb_handles4".
+
+type GssCbHandles4 struct {
+	GcbpService          RpcGssSvcT
+	GcbpHandleFromServer []byte
+	GcbpHandleFromClient []byte
+}
+
+func (m *GssCbHandles4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.GcbpService
+		var m RpcGssSvcT
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GcbpHandleFromServer
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GcbpHandleFromClient
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *GssCbHandles4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.GcbpService
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GcbpHandleFromServer
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GcbpHandleFromClient
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *GssCbHandles4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.GcbpHandleFromServer
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.GcbpHandleFromClient
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "callback_sec_parms4".
+
+type CallbackSecParms4 interface {
+	isCallbackSecParms4()
+	GetCbSecflavor() rpcv2.AuthFlavor
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadCallbackSecParms4(r io.Reader) (m CallbackSecParms4, nTotal int64, err error) {
+	var nField int64
+	var discriminant rpcv2.AuthFlavor
+	{
+		var m rpcv2.AuthFlavor
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm CallbackSecParms4_AUTH_NONE
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	case 1:
+		var mArm CallbackSecParms4_AUTH_SYS
+		{
+			m := &mArm
+			{
+				m := &m.CbspSysCred
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 6:
+		var mArm CallbackSecParms4_RPCSEC_GSS
+		{
+			m := &mArm
+			{
+				m := &m.CbspGssHandles
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant callback_sec_parms4.cb_secflavor has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readCallbackSecParms4CbSecflavor(r io.Reader) (m rpcv2.AuthFlavor, nTotal int64, err error) {
+	var nField int64
 	*(*int32)(&m), nField, err = runtime.ReadInt(r)
 	nTotal += nField
 	if err != nil {
 		goto done
 	}
-	*mParent = m
 done:
 	return
 }
 
-func (m NfsOpnum4) WriteTo(w io.Writer) (nTotal int64, err error) {
+func writeCallbackSecParms4CbSecflavor(w io.Writer, m rpcv2.AuthFlavor) (nTotal int64, err error) {
 	var nField int64
 	nField, err = runtime.WriteInt(w, int32(m))
 	nTotal += nField
@@ -14147,123 +20894,11048 @@ done:
 	return
 }
 
-const NfsOpnum4EncodedSizeBytes = 4
+const callbackSecParms4CbSecflavorEncodedSizeBytes = 4
 
-const OP_ACCESS NfsOpnum4 = 3
+type CallbackSecParms4_AUTH_NONE struct{}
 
-const OP_CLOSE NfsOpnum4 = 4
+func (m *CallbackSecParms4_AUTH_NONE) isCallbackSecParms4() {}
 
-const OP_COMMIT NfsOpnum4 = 5
+func (m *CallbackSecParms4_AUTH_NONE) GetCbSecflavor() rpcv2.AuthFlavor {
+	return 0
+}
 
-const OP_CREATE NfsOpnum4 = 6
+func (m *CallbackSecParms4_AUTH_NONE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m rpcv2.AuthFlavor = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
 
-const OP_DELEGPURGE NfsOpnum4 = 7
+func (m *CallbackSecParms4_AUTH_NONE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
 
-const OP_DELEGRETURN NfsOpnum4 = 8
+type CallbackSecParms4_AUTH_SYS struct {
+	CbspSysCred rpcv2.AuthsysParms
+}
 
-const OP_GETATTR NfsOpnum4 = 9
+func (m *CallbackSecParms4_AUTH_SYS) isCallbackSecParms4() {}
 
-const OP_GETFH NfsOpnum4 = 10
+func (m *CallbackSecParms4_AUTH_SYS) GetCbSecflavor() rpcv2.AuthFlavor {
+	return 1
+}
 
-const OP_ILLEGAL NfsOpnum4 = 10044
+func (m *CallbackSecParms4_AUTH_SYS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m rpcv2.AuthFlavor = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CbspSysCred
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
 
-const OP_LINK NfsOpnum4 = 11
+func (m *CallbackSecParms4_AUTH_SYS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.CbspSysCred
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
 
-const OP_LOCK NfsOpnum4 = 12
+type CallbackSecParms4_RPCSEC_GSS struct {
+	CbspGssHandles GssCbHandles4
+}
 
-const OP_LOCKT NfsOpnum4 = 13
+func (m *CallbackSecParms4_RPCSEC_GSS) isCallbackSecParms4() {}
 
-const OP_LOCKU NfsOpnum4 = 14
+func (m *CallbackSecParms4_RPCSEC_GSS) GetCbSecflavor() rpcv2.AuthFlavor {
+	return 6
+}
 
-const OP_LOOKUP NfsOpnum4 = 15
+func (m *CallbackSecParms4_RPCSEC_GSS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m rpcv2.AuthFlavor = 6
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CbspGssHandles
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
 
-const OP_LOOKUPP NfsOpnum4 = 16
+func (m *CallbackSecParms4_RPCSEC_GSS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.CbspGssHandles
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
 
-const OP_NVERIFY NfsOpnum4 = 17
+// Type definition "BACKCHANNEL_CTL4args".
 
-const OP_OPEN NfsOpnum4 = 18
+type BackchannelCtl4args struct {
+	BcaCbProgram uint32
+	BcaSecParms  []CallbackSecParms4
+}
 
-const OP_OPENATTR NfsOpnum4 = 19
+func (m *BackchannelCtl4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.BcaCbProgram
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.BcaSecParms
+		var m []CallbackSecParms4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds BACKCHANNEL_CTL4args.bca_sec_parms's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m CallbackSecParms4
+			m, nField, err = ReadCallbackSecParms4(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
 
-const OP_OPEN_CONFIRM NfsOpnum4 = 20
+func (m *BackchannelCtl4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.BcaCbProgram
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.BcaSecParms
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds BACKCHANNEL_CTL4args.bca_sec_parms's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
 
-const OP_OPEN_DOWNGRADE NfsOpnum4 = 21
+func (m *BackchannelCtl4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.BcaSecParms
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
 
-const OP_PUTFH NfsOpnum4 = 22
+// Type definition "BACKCHANNEL_CTL4res".
 
-const OP_PUTPUBFH NfsOpnum4 = 23
+type BackchannelCtl4res struct {
+	BcrStatus Nfsstat4
+}
 
-const OP_PUTROOTFH NfsOpnum4 = 24
+func (m *BackchannelCtl4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.BcrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
 
-const OP_READ NfsOpnum4 = 25
+func (m *BackchannelCtl4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.BcrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
 
-const OP_READDIR NfsOpnum4 = 26
+const BackchannelCtl4resEncodedSizeBytes = 4
 
-const OP_READLINK NfsOpnum4 = 27
+// Type definition "channel_dir_from_client4".
 
-const OP_RELEASE_LOCKOWNER NfsOpnum4 = 39
+type ChannelDirFromClient4 int32
 
-const OP_REMOVE NfsOpnum4 = 28
+func (mParent *ChannelDirFromClient4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m ChannelDirFromClient4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
 
-const OP_RENAME NfsOpnum4 = 29
+func (m ChannelDirFromClient4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
 
-const OP_RENEW NfsOpnum4 = 30
+const ChannelDirFromClient4EncodedSizeBytes = 4
 
-const OP_RESTOREFH NfsOpnum4 = 31
+const CDFC4_BACK ChannelDirFromClient4 = 2
 
-const OP_SAVEFH NfsOpnum4 = 32
+const CDFC4_BACK_OR_BOTH ChannelDirFromClient4 = 7
 
-const OP_SECINFO NfsOpnum4 = 33
+const CDFC4_FORE ChannelDirFromClient4 = 1
 
-const OP_SETATTR NfsOpnum4 = 34
+const CDFC4_FORE_OR_BOTH ChannelDirFromClient4 = 3
 
-const OP_SETCLIENTID NfsOpnum4 = 35
+var ChannelDirFromClient4_name = map[ChannelDirFromClient4]string{
+	2: "CDFC4_BACK",
+	7: "CDFC4_BACK_OR_BOTH",
+	1: "CDFC4_FORE",
+	3: "CDFC4_FORE_OR_BOTH",
+}
 
-const OP_SETCLIENTID_CONFIRM NfsOpnum4 = 36
+// Type definition "BIND_CONN_TO_SESSION4args".
 
-const OP_VERIFY NfsOpnum4 = 37
+type BindConnToSession4args struct {
+	BctsaSessid            [16]byte
+	BctsaDir               ChannelDirFromClient4
+	BctsaUseConnInRdmaMode bool
+}
 
-const OP_WRITE NfsOpnum4 = 38
+func (m *BindConnToSession4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.BctsaSessid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.BctsaDir
+		var m ChannelDirFromClient4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.BctsaUseConnInRdmaMode
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
 
-var NfsOpnum4_name = map[NfsOpnum4]string{
-	3:     "OP_ACCESS",
-	4:     "OP_CLOSE",
-	5:     "OP_COMMIT",
-	6:     "OP_CREATE",
-	7:     "OP_DELEGPURGE",
-	8:     "OP_DELEGRETURN",
-	9:     "OP_GETATTR",
-	10:    "OP_GETFH",
-	10044: "OP_ILLEGAL",
-	11:    "OP_LINK",
-	12:    "OP_LOCK",
-	13:    "OP_LOCKT",
-	14:    "OP_LOCKU",
-	15:    "OP_LOOKUP",
-	16:    "OP_LOOKUPP",
-	17:    "OP_NVERIFY",
-	18:    "OP_OPEN",
-	19:    "OP_OPENATTR",
-	20:    "OP_OPEN_CONFIRM",
-	21:    "OP_OPEN_DOWNGRADE",
-	22:    "OP_PUTFH",
-	23:    "OP_PUTPUBFH",
-	24:    "OP_PUTROOTFH",
-	25:    "OP_READ",
-	26:    "OP_READDIR",
-	27:    "OP_READLINK",
-	39:    "OP_RELEASE_LOCKOWNER",
-	28:    "OP_REMOVE",
-	29:    "OP_RENAME",
-	30:    "OP_RENEW",
-	31:    "OP_RESTOREFH",
-	32:    "OP_SAVEFH",
-	33:    "OP_SECINFO",
-	34:    "OP_SETATTR",
-	35:    "OP_SETCLIENTID",
-	36:    "OP_SETCLIENTID_CONFIRM",
-	37:    "OP_VERIFY",
-	38:    "OP_WRITE",
+func (m *BindConnToSession4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.BctsaSessid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.BctsaDir
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.BctsaUseConnInRdmaMode
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const BindConnToSession4argsEncodedSizeBytes = 24
+
+// Type definition "channel_dir_from_server4".
+
+type ChannelDirFromServer4 int32
+
+func (mParent *ChannelDirFromServer4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m ChannelDirFromServer4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m ChannelDirFromServer4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const ChannelDirFromServer4EncodedSizeBytes = 4
+
+const CDFS4_BACK ChannelDirFromServer4 = 2
+
+const CDFS4_BOTH ChannelDirFromServer4 = 3
+
+const CDFS4_FORE ChannelDirFromServer4 = 1
+
+var ChannelDirFromServer4_name = map[ChannelDirFromServer4]string{
+	2: "CDFS4_BACK",
+	3: "CDFS4_BOTH",
+	1: "CDFS4_FORE",
+}
+
+// Type definition "BIND_CONN_TO_SESSION4resok".
+
+type BindConnToSession4resok struct {
+	BctsrSessid            [16]byte
+	BctsrDir               ChannelDirFromServer4
+	BctsrUseConnInRdmaMode bool
+}
+
+func (m *BindConnToSession4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.BctsrSessid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.BctsrDir
+		var m ChannelDirFromServer4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.BctsrUseConnInRdmaMode
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *BindConnToSession4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.BctsrSessid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.BctsrDir
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.BctsrUseConnInRdmaMode
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const BindConnToSession4resokEncodedSizeBytes = 24
+
+// Type definition "BIND_CONN_TO_SESSION4res".
+
+type BindConnToSession4res interface {
+	isBindConnToSession4res()
+	GetBctsrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadBindConnToSession4res(r io.Reader) (m BindConnToSession4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm BindConnToSession4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.BctsrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm BindConnToSession4res_default
+		{
+			m := &mArm
+			m.BctsrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readBindConnToSession4resBctsrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeBindConnToSession4resBctsrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const bindConnToSession4resBctsrStatusEncodedSizeBytes = 4
+
+type BindConnToSession4res_NFS4_OK struct {
+	BctsrResok4 BindConnToSession4resok
+}
+
+func (m *BindConnToSession4res_NFS4_OK) isBindConnToSession4res() {}
+
+func (m *BindConnToSession4res_NFS4_OK) GetBctsrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *BindConnToSession4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.BctsrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *BindConnToSession4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 24
+	return
+}
+
+type BindConnToSession4res_default struct {
+	BctsrStatus Nfsstat4
+}
+
+func (m *BindConnToSession4res_default) isBindConnToSession4res() {}
+
+func (m *BindConnToSession4res_default) GetBctsrStatus() Nfsstat4 {
+	return m.BctsrStatus
+}
+
+func (m *BindConnToSession4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.BctsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *BindConnToSession4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+const EXCHGID4_FLAG_SUPP_MOVED_REFER = 1
+
+const EXCHGID4_FLAG_SUPP_MOVED_MIGR = 2
+
+const EXCHGID4_FLAG_SUPP_FENCE_OPS = 4
+
+const EXCHGID4_FLAG_BIND_PRINC_STATEID = 256
+
+const EXCHGID4_FLAG_USE_NON_PNFS = 65536
+
+const EXCHGID4_FLAG_USE_PNFS_MDS = 131072
+
+const EXCHGID4_FLAG_USE_PNFS_DS = 262144
+
+const EXCHGID4_FLAG_MASK_PNFS = 458752
+
+const EXCHGID4_FLAG_UPD_CONFIRMED_REC_A = 1073741824
+
+const EXCHGID4_FLAG_CONFIRMED_R = 2147483648
+
+// Type definition "state_protect_ops4".
+
+type StateProtectOps4 struct {
+	SpoMustEnforce []uint32
+	SpoMustAllow   []uint32
+}
+
+func (m *StateProtectOps4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SpoMustEnforce
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SpoMustAllow
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *StateProtectOps4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SpoMustEnforce
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.SpoMustAllow
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *StateProtectOps4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.SpoMustEnforce
+		nTotal += 4 + 4*len(m)
+	}
+	{
+		m := m.SpoMustAllow
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "ssv_sp_parms4".
+
+type SsvSpParms4 struct {
+	SspOps           StateProtectOps4
+	SspHashAlgs      [][]byte
+	SspEncrAlgs      [][]byte
+	SspWindow        uint32
+	SspNumGssHandles uint32
+}
+
+func (m *SsvSpParms4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SspOps
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.SspHashAlgs
+		var m [][]byte
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds ssv_sp_parms4.ssp_hash_algs's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m []byte
+			m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SspEncrAlgs
+		var m [][]byte
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds ssv_sp_parms4.ssp_encr_algs's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m []byte
+			m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SspWindow
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SspNumGssHandles
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SsvSpParms4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SspOps
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SspHashAlgs
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds ssv_sp_parms4.ssp_hash_algs's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.SspEncrAlgs
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds ssv_sp_parms4.ssp_encr_algs's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.SspWindow
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SspNumGssHandles
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SsvSpParms4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := &m.SspOps
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := m.SspHashAlgs
+		nTotal += 4
+		for _, m := range m {
+			nTotal += (len(m) + 7) &^ 3
+		}
+	}
+	{
+		m := m.SspEncrAlgs
+		nTotal += 4
+		for _, m := range m {
+			nTotal += (len(m) + 7) &^ 3
+		}
+	}
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+// Type definition "state_protect_how4".
+
+type StateProtectHow4 int32
+
+func (mParent *StateProtectHow4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m StateProtectHow4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m StateProtectHow4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const StateProtectHow4EncodedSizeBytes = 4
+
+const SP4_MACH_CRED StateProtectHow4 = 1
+
+const SP4_NONE StateProtectHow4 = 0
+
+const SP4_SSV StateProtectHow4 = 2
+
+var StateProtectHow4_name = map[StateProtectHow4]string{
+	1: "SP4_MACH_CRED",
+	0: "SP4_NONE",
+	2: "SP4_SSV",
+}
+
+// Type definition "state_protect4_a".
+
+type StateProtect4A interface {
+	isStateProtect4A()
+	GetSpaHow() StateProtectHow4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadStateProtect4A(r io.Reader) (m StateProtect4A, nTotal int64, err error) {
+	var nField int64
+	var discriminant StateProtectHow4
+	{
+		var m StateProtectHow4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm StateProtect4A_SP4_NONE
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	case 1:
+		var mArm StateProtect4A_SP4_MACH_CRED
+		{
+			m := &mArm
+			{
+				m := &m.SpaMachOps
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 2:
+		var mArm StateProtect4A_SP4_SSV
+		{
+			m := &mArm
+			{
+				m := &m.SpaSsvParms
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant state_protect4_a.spa_how has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readStateProtect4ASpaHow(r io.Reader) (m StateProtectHow4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeStateProtect4ASpaHow(w io.Writer, m StateProtectHow4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const stateProtect4ASpaHowEncodedSizeBytes = 4
+
+type StateProtect4A_SP4_NONE struct{}
+
+func (m *StateProtect4A_SP4_NONE) isStateProtect4A() {}
+
+func (m *StateProtect4A_SP4_NONE) GetSpaHow() StateProtectHow4 {
+	return 0
+}
+
+func (m *StateProtect4A_SP4_NONE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m StateProtectHow4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *StateProtect4A_SP4_NONE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+type StateProtect4A_SP4_MACH_CRED struct {
+	SpaMachOps StateProtectOps4
+}
+
+func (m *StateProtect4A_SP4_MACH_CRED) isStateProtect4A() {}
+
+func (m *StateProtect4A_SP4_MACH_CRED) GetSpaHow() StateProtectHow4 {
+	return 1
+}
+
+func (m *StateProtect4A_SP4_MACH_CRED) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m StateProtectHow4 = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.SpaMachOps
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *StateProtect4A_SP4_MACH_CRED) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.SpaMachOps
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type StateProtect4A_SP4_SSV struct {
+	SpaSsvParms SsvSpParms4
+}
+
+func (m *StateProtect4A_SP4_SSV) isStateProtect4A() {}
+
+func (m *StateProtect4A_SP4_SSV) GetSpaHow() StateProtectHow4 {
+	return 2
+}
+
+func (m *StateProtect4A_SP4_SSV) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m StateProtectHow4 = 2
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.SpaSsvParms
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *StateProtect4A_SP4_SSV) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.SpaSsvParms
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "EXCHANGE_ID4args".
+
+type ExchangeId4args struct {
+	EiaClientowner  ClientOwner4
+	EiaFlags        uint32
+	EiaStateProtect StateProtect4A
+	EiaClientImplId []NfsImplId4
+}
+
+func (m *ExchangeId4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.EiaClientowner
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.EiaFlags
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.EiaStateProtect
+		var m StateProtect4A
+		m, nField, err = ReadStateProtect4A(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.EiaClientImplId
+		var m []NfsImplId4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds EXCHANGE_ID4args.eia_client_impl_id's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, NfsImplId4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ExchangeId4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.EiaClientowner
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.EiaFlags
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.EiaStateProtect
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.EiaClientImplId
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds EXCHANGE_ID4args.eia_client_impl_id's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *ExchangeId4args) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := &m.EiaClientowner
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	nTotal += 4
+	{
+		m := m.EiaStateProtect
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := m.EiaClientImplId
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "ssv_prot_info4".
+
+type SsvProtInfo4 struct {
+	SpiOps     StateProtectOps4
+	SpiHashAlg uint32
+	SpiEncrAlg uint32
+	SpiSsvLen  uint32
+	SpiWindow  uint32
+	SpiHandles [][]byte
+}
+
+func (m *SsvProtInfo4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SpiOps
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.SpiHashAlg
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SpiEncrAlg
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SpiSsvLen
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SpiWindow
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SpiHandles
+		var m [][]byte
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds ssv_prot_info4.spi_handles's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m []byte
+			m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SsvProtInfo4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SpiOps
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SpiHashAlg
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SpiEncrAlg
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SpiSsvLen
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SpiWindow
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SpiHandles
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds ssv_prot_info4.spi_handles's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *SsvProtInfo4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := &m.SpiOps
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.SpiHandles
+		nTotal += 4
+		for _, m := range m {
+			nTotal += (len(m) + 7) &^ 3
+		}
+	}
+	return
+}
+
+// Type definition "state_protect4_r".
+
+type StateProtect4R interface {
+	isStateProtect4R()
+	GetSprHow() StateProtectHow4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadStateProtect4R(r io.Reader) (m StateProtect4R, nTotal int64, err error) {
+	var nField int64
+	var discriminant StateProtectHow4
+	{
+		var m StateProtectHow4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm StateProtect4R_SP4_NONE
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	case 1:
+		var mArm StateProtect4R_SP4_MACH_CRED
+		{
+			m := &mArm
+			{
+				m := &m.SprMachOps
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 2:
+		var mArm StateProtect4R_SP4_SSV
+		{
+			m := &mArm
+			{
+				m := &m.SprSsvInfo
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant state_protect4_r.spr_how has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readStateProtect4RSprHow(r io.Reader) (m StateProtectHow4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeStateProtect4RSprHow(w io.Writer, m StateProtectHow4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const stateProtect4RSprHowEncodedSizeBytes = 4
+
+type StateProtect4R_SP4_NONE struct{}
+
+func (m *StateProtect4R_SP4_NONE) isStateProtect4R() {}
+
+func (m *StateProtect4R_SP4_NONE) GetSprHow() StateProtectHow4 {
+	return 0
+}
+
+func (m *StateProtect4R_SP4_NONE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m StateProtectHow4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *StateProtect4R_SP4_NONE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+type StateProtect4R_SP4_MACH_CRED struct {
+	SprMachOps StateProtectOps4
+}
+
+func (m *StateProtect4R_SP4_MACH_CRED) isStateProtect4R() {}
+
+func (m *StateProtect4R_SP4_MACH_CRED) GetSprHow() StateProtectHow4 {
+	return 1
+}
+
+func (m *StateProtect4R_SP4_MACH_CRED) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m StateProtectHow4 = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.SprMachOps
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *StateProtect4R_SP4_MACH_CRED) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.SprMachOps
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type StateProtect4R_SP4_SSV struct {
+	SprSsvInfo SsvProtInfo4
+}
+
+func (m *StateProtect4R_SP4_SSV) isStateProtect4R() {}
+
+func (m *StateProtect4R_SP4_SSV) GetSprHow() StateProtectHow4 {
+	return 2
+}
+
+func (m *StateProtect4R_SP4_SSV) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m StateProtectHow4 = 2
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.SprSsvInfo
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *StateProtect4R_SP4_SSV) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.SprSsvInfo
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "EXCHANGE_ID4resok".
+
+type ExchangeId4resok struct {
+	EirClientid     uint64
+	EirSequenceid   uint32
+	EirFlags        uint32
+	EirStateProtect StateProtect4R
+	EirServerOwner  ServerOwner4
+	EirServerScope  []byte
+	EirServerImplId []NfsImplId4
+}
+
+func (m *ExchangeId4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.EirClientid
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.EirSequenceid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.EirFlags
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.EirStateProtect
+		var m StateProtect4R
+		m, nField, err = ReadStateProtect4R(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.EirServerOwner
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.EirServerScope
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 1024)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.EirServerImplId
+		var m []NfsImplId4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds EXCHANGE_ID4resok.eir_server_impl_id's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, NfsImplId4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ExchangeId4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.EirClientid
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.EirSequenceid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.EirFlags
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.EirStateProtect
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.EirServerOwner
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.EirServerScope
+		nField, err = runtime.WriteVariableLengthOpaque(w, 1024, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.EirServerImplId
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds EXCHANGE_ID4resok.eir_server_impl_id's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *ExchangeId4resok) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.EirStateProtect
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := &m.EirServerOwner
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := m.EirServerScope
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.EirServerImplId
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "EXCHANGE_ID4res".
+
+type ExchangeId4res interface {
+	isExchangeId4res()
+	GetEirStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadExchangeId4res(r io.Reader) (m ExchangeId4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm ExchangeId4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.EirResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm ExchangeId4res_default
+		{
+			m := &mArm
+			m.EirStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readExchangeId4resEirStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeExchangeId4resEirStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const exchangeId4resEirStatusEncodedSizeBytes = 4
+
+type ExchangeId4res_NFS4_OK struct {
+	EirResok4 ExchangeId4resok
+}
+
+func (m *ExchangeId4res_NFS4_OK) isExchangeId4res() {}
+
+func (m *ExchangeId4res_NFS4_OK) GetEirStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *ExchangeId4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.EirResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ExchangeId4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.EirResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type ExchangeId4res_default struct {
+	EirStatus Nfsstat4
+}
+
+func (m *ExchangeId4res_default) isExchangeId4res() {}
+
+func (m *ExchangeId4res_default) GetEirStatus() Nfsstat4 {
+	return m.EirStatus
+}
+
+func (m *ExchangeId4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.EirStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ExchangeId4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "channel_attrs4".
+
+type ChannelAttrs4 struct {
+	CaHeaderpadsize         uint32
+	CaMaxrequestsize        uint32
+	CaMaxresponsesize       uint32
+	CaMaxresponsesizeCached uint32
+	CaMaxoperations         uint32
+	CaMaxrequests           uint32
+	CaRdmaIrd               []uint32
+}
+
+func (m *ChannelAttrs4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CaHeaderpadsize
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaMaxrequestsize
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaMaxresponsesize
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaMaxresponsesizeCached
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaMaxoperations
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaMaxrequests
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaRdmaIrd
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds channel_attrs4.ca_rdma_ird's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ChannelAttrs4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CaHeaderpadsize
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaMaxrequestsize
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaMaxresponsesize
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaMaxresponsesizeCached
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaMaxoperations
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaMaxrequests
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaRdmaIrd
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds channel_attrs4.ca_rdma_ird's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *ChannelAttrs4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.CaRdmaIrd
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+const CREATE_SESSION4_FLAG_PERSIST = 1
+
+const CREATE_SESSION4_FLAG_CONN_BACK_CHAN = 2
+
+const CREATE_SESSION4_FLAG_CONN_RDMA = 4
+
+// Type definition "CREATE_SESSION4args".
+
+type CreateSession4args struct {
+	CsaClientid      uint64
+	CsaSequence      uint32
+	CsaFlags         uint32
+	CsaForeChanAttrs ChannelAttrs4
+	CsaBackChanAttrs ChannelAttrs4
+	CsaCbProgram     uint32
+	CsaSecParms      []CallbackSecParms4
+}
+
+func (m *CreateSession4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CsaClientid
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsaSequence
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsaFlags
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.CsaForeChanAttrs
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CsaBackChanAttrs
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CsaCbProgram
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsaSecParms
+		var m []CallbackSecParms4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds CREATE_SESSION4args.csa_sec_parms's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m CallbackSecParms4
+			m, nField, err = ReadCallbackSecParms4(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CreateSession4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CsaClientid
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsaSequence
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsaFlags
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CsaForeChanAttrs
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CsaBackChanAttrs
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsaCbProgram
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsaSecParms
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds CREATE_SESSION4args.csa_sec_parms's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *CreateSession4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 4
+	nTotal += 4
+	{
+		m := &m.CsaForeChanAttrs
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := &m.CsaBackChanAttrs
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	nTotal += 4
+	{
+		m := m.CsaSecParms
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "CREATE_SESSION4resok".
+
+type CreateSession4resok struct {
+	CsrSessionid     [16]byte
+	CsrSequence      uint32
+	CsrFlags         uint32
+	CsrForeChanAttrs ChannelAttrs4
+	CsrBackChanAttrs ChannelAttrs4
+}
+
+func (m *CreateSession4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CsrSessionid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CsrSequence
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsrFlags
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.CsrForeChanAttrs
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CsrBackChanAttrs
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CreateSession4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CsrSessionid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsrSequence
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsrFlags
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CsrForeChanAttrs
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CsrBackChanAttrs
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CreateSession4resok) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	nTotal += 4
+	nTotal += 4
+	{
+		m := &m.CsrForeChanAttrs
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := &m.CsrBackChanAttrs
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "CREATE_SESSION4res".
+
+type CreateSession4res interface {
+	isCreateSession4res()
+	GetCsrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadCreateSession4res(r io.Reader) (m CreateSession4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm CreateSession4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.CsrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm CreateSession4res_default
+		{
+			m := &mArm
+			m.CsrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readCreateSession4resCsrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeCreateSession4resCsrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const createSession4resCsrStatusEncodedSizeBytes = 4
+
+type CreateSession4res_NFS4_OK struct {
+	CsrResok4 CreateSession4resok
+}
+
+func (m *CreateSession4res_NFS4_OK) isCreateSession4res() {}
+
+func (m *CreateSession4res_NFS4_OK) GetCsrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *CreateSession4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CsrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CreateSession4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.CsrResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type CreateSession4res_default struct {
+	CsrStatus Nfsstat4
+}
+
+func (m *CreateSession4res_default) isCreateSession4res() {}
+
+func (m *CreateSession4res_default) GetCsrStatus() Nfsstat4 {
+	return m.CsrStatus
+}
+
+func (m *CreateSession4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CreateSession4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "DESTROY_SESSION4args".
+
+type DestroySession4args struct {
+	DsaSessionid [16]byte
+}
+
+func (m *DestroySession4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.DsaSessionid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *DestroySession4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.DsaSessionid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const DestroySession4argsEncodedSizeBytes = 16
+
+// Type definition "DESTROY_SESSION4res".
+
+type DestroySession4res struct {
+	DsrStatus Nfsstat4
+}
+
+func (m *DestroySession4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.DsrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *DestroySession4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.DsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const DestroySession4resEncodedSizeBytes = 4
+
+// Type definition "FREE_STATEID4args".
+
+type FreeStateid4args struct {
+	FsaStateid Stateid4
+}
+
+func (m *FreeStateid4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.FsaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *FreeStateid4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.FsaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const FreeStateid4argsEncodedSizeBytes = 16
+
+// Type definition "FREE_STATEID4res".
+
+type FreeStateid4res struct {
+	FsrStatus Nfsstat4
+}
+
+func (m *FreeStateid4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.FsrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *FreeStateid4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.FsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const FreeStateid4resEncodedSizeBytes = 4
+
+// Type definition "attr_notice4".
+
+type AttrNotice4 = Nfstime4
+
+func ReadAttrNotice4(r io.Reader, m *Nfstime4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteAttrNotice4(w io.Writer, m *Nfstime4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const AttrNotice4EncodedSizeBytes = 12
+
+// Type definition "GET_DIR_DELEGATION4args".
+
+type GetDirDelegation4args struct {
+	GddaSignalDelegAvail  bool
+	GddaNotificationTypes []uint32
+	GddaChildAttrDelay    Nfstime4
+	GddaDirAttrDelay      Nfstime4
+	GddaChildAttributes   []uint32
+	GddaDirAttributes     []uint32
+}
+
+func (m *GetDirDelegation4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.GddaSignalDelegAvail
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GddaNotificationTypes
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		m := &m.GddaChildAttrDelay
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.GddaDirAttrDelay
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.GddaChildAttributes
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GddaDirAttributes
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *GetDirDelegation4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.GddaSignalDelegAvail
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GddaNotificationTypes
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := &m.GddaChildAttrDelay
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.GddaDirAttrDelay
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GddaChildAttributes
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.GddaDirAttributes
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *GetDirDelegation4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.GddaNotificationTypes
+		nTotal += 4 + 4*len(m)
+	}
+	nTotal += 12
+	nTotal += 12
+	{
+		m := m.GddaChildAttributes
+		nTotal += 4 + 4*len(m)
+	}
+	{
+		m := m.GddaDirAttributes
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "GET_DIR_DELEGATION4resok".
+
+type GetDirDelegation4resok struct {
+	GddrCookieverf      [8]byte
+	GddrStateid         Stateid4
+	GddrNotification    []uint32
+	GddrChildAttributes []uint32
+	GddrDirAttributes   []uint32
+}
+
+func (m *GetDirDelegation4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.GddrCookieverf
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.GddrStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.GddrNotification
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GddrChildAttributes
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GddrDirAttributes
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *GetDirDelegation4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.GddrCookieverf
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.GddrStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GddrNotification
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.GddrChildAttributes
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.GddrDirAttributes
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *GetDirDelegation4resok) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 16
+	{
+		m := m.GddrNotification
+		nTotal += 4 + 4*len(m)
+	}
+	{
+		m := m.GddrChildAttributes
+		nTotal += 4 + 4*len(m)
+	}
+	{
+		m := m.GddrDirAttributes
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "gddrnf4_status".
+
+type Gddrnf4Status int32
+
+func (mParent *Gddrnf4Status) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m Gddrnf4Status
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m Gddrnf4Status) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const Gddrnf4StatusEncodedSizeBytes = 4
+
+const GDD4_OK Gddrnf4Status = 0
+
+const GDD4_UNAVAIL Gddrnf4Status = 1
+
+var Gddrnf4Status_name = map[Gddrnf4Status]string{
+	0: "GDD4_OK",
+	1: "GDD4_UNAVAIL",
+}
+
+// Type definition "GET_DIR_DELEGATION4res_non_fatal".
+
+type GetDirDelegation4resNonFatal interface {
+	isGetDirDelegation4resNonFatal()
+	GetGddrnfStatus() Gddrnf4Status
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadGetDirDelegation4resNonFatal(r io.Reader) (m GetDirDelegation4resNonFatal, nTotal int64, err error) {
+	var nField int64
+	var discriminant Gddrnf4Status
+	{
+		var m Gddrnf4Status
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm GetDirDelegation4resNonFatal_GDD4_OK
+		{
+			m := &mArm
+			{
+				m := &m.GddrnfResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 1:
+		var mArm GetDirDelegation4resNonFatal_GDD4_UNAVAIL
+		{
+			m := &mArm
+			{
+				mSave := &m.GddrnfWillSignalDelegAvail
+				var m bool
+				m, nField, err = runtime.ReadBool(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant GET_DIR_DELEGATION4res_non_fatal.gddrnf_status has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readGetDirDelegation4resNonFatalGddrnfStatus(r io.Reader) (m Gddrnf4Status, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeGetDirDelegation4resNonFatalGddrnfStatus(w io.Writer, m Gddrnf4Status) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const getDirDelegation4resNonFatalGddrnfStatusEncodedSizeBytes = 4
+
+type GetDirDelegation4resNonFatal_GDD4_OK struct {
+	GddrnfResok4 GetDirDelegation4resok
+}
+
+func (m *GetDirDelegation4resNonFatal_GDD4_OK) isGetDirDelegation4resNonFatal() {}
+
+func (m *GetDirDelegation4resNonFatal_GDD4_OK) GetGddrnfStatus() Gddrnf4Status {
+	return 0
+}
+
+func (m *GetDirDelegation4resNonFatal_GDD4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Gddrnf4Status = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.GddrnfResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *GetDirDelegation4resNonFatal_GDD4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.GddrnfResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type GetDirDelegation4resNonFatal_GDD4_UNAVAIL struct {
+	GddrnfWillSignalDelegAvail bool
+}
+
+func (m *GetDirDelegation4resNonFatal_GDD4_UNAVAIL) isGetDirDelegation4resNonFatal() {}
+
+func (m *GetDirDelegation4resNonFatal_GDD4_UNAVAIL) GetGddrnfStatus() Gddrnf4Status {
+	return 1
+}
+
+func (m *GetDirDelegation4resNonFatal_GDD4_UNAVAIL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Gddrnf4Status = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GddrnfWillSignalDelegAvail
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *GetDirDelegation4resNonFatal_GDD4_UNAVAIL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+// Type definition "GET_DIR_DELEGATION4res".
+
+type GetDirDelegation4res interface {
+	isGetDirDelegation4res()
+	GetGddrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadGetDirDelegation4res(r io.Reader) (m GetDirDelegation4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm GetDirDelegation4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				mSave := &m.GddrResNonFatal4
+				var m GetDirDelegation4resNonFatal
+				m, nField, err = ReadGetDirDelegation4resNonFatal(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	default:
+		var mArm GetDirDelegation4res_default
+		{
+			m := &mArm
+			m.GddrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readGetDirDelegation4resGddrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeGetDirDelegation4resGddrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const getDirDelegation4resGddrStatusEncodedSizeBytes = 4
+
+type GetDirDelegation4res_NFS4_OK struct {
+	GddrResNonFatal4 GetDirDelegation4resNonFatal
+}
+
+func (m *GetDirDelegation4res_NFS4_OK) isGetDirDelegation4res() {}
+
+func (m *GetDirDelegation4res_NFS4_OK) GetGddrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *GetDirDelegation4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GddrResNonFatal4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *GetDirDelegation4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.GddrResNonFatal4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type GetDirDelegation4res_default struct {
+	GddrStatus Nfsstat4
+}
+
+func (m *GetDirDelegation4res_default) isGetDirDelegation4res() {}
+
+func (m *GetDirDelegation4res_default) GetGddrStatus() Nfsstat4 {
+	return m.GddrStatus
+}
+
+func (m *GetDirDelegation4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.GddrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *GetDirDelegation4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "GETDEVICEINFO4args".
+
+type Getdeviceinfo4args struct {
+	GdiaDeviceId    [16]byte
+	GdiaLayoutType  Layouttype4
+	GdiaMaxcount    uint32
+	GdiaNotifyTypes []uint32
+}
+
+func (m *Getdeviceinfo4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.GdiaDeviceId
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.GdiaLayoutType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GdiaMaxcount
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GdiaNotifyTypes
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Getdeviceinfo4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.GdiaDeviceId
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GdiaLayoutType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GdiaMaxcount
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GdiaNotifyTypes
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *Getdeviceinfo4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.GdiaNotifyTypes
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "GETDEVICEINFO4resok".
+
+type Getdeviceinfo4resok struct {
+	GdirDeviceAddr   DeviceAddr4
+	GdirNotification []uint32
+}
+
+func (m *Getdeviceinfo4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.GdirDeviceAddr
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.GdirNotification
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Getdeviceinfo4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.GdirDeviceAddr
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GdirNotification
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *Getdeviceinfo4resok) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := &m.GdirDeviceAddr
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := m.GdirNotification
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "GETDEVICEINFO4res".
+
+type Getdeviceinfo4res interface {
+	isGetdeviceinfo4res()
+	GetGdirStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadGetdeviceinfo4res(r io.Reader) (m Getdeviceinfo4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm Getdeviceinfo4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.GdirResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 10005:
+		var mArm Getdeviceinfo4res_NFS4ERR_TOOSMALL
+		{
+			m := &mArm
+			{
+				mSave := &m.GdirMincount
+				var m uint32
+				m, nField, err = runtime.ReadUnsignedInt(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Getdeviceinfo4res_default
+		{
+			m := &mArm
+			m.GdirStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readGetdeviceinfo4resGdirStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeGetdeviceinfo4resGdirStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const getdeviceinfo4resGdirStatusEncodedSizeBytes = 4
+
+type Getdeviceinfo4res_NFS4_OK struct {
+	GdirResok4 Getdeviceinfo4resok
+}
+
+func (m *Getdeviceinfo4res_NFS4_OK) isGetdeviceinfo4res() {}
+
+func (m *Getdeviceinfo4res_NFS4_OK) GetGdirStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *Getdeviceinfo4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.GdirResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Getdeviceinfo4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.GdirResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type Getdeviceinfo4res_NFS4ERR_TOOSMALL struct {
+	GdirMincount uint32
+}
+
+func (m *Getdeviceinfo4res_NFS4ERR_TOOSMALL) isGetdeviceinfo4res() {}
+
+func (m *Getdeviceinfo4res_NFS4ERR_TOOSMALL) GetGdirStatus() Nfsstat4 {
+	return 10005
+}
+
+func (m *Getdeviceinfo4res_NFS4ERR_TOOSMALL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 10005
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GdirMincount
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Getdeviceinfo4res_NFS4ERR_TOOSMALL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type Getdeviceinfo4res_default struct {
+	GdirStatus Nfsstat4
+}
+
+func (m *Getdeviceinfo4res_default) isGetdeviceinfo4res() {}
+
+func (m *Getdeviceinfo4res_default) GetGdirStatus() Nfsstat4 {
+	return m.GdirStatus
+}
+
+func (m *Getdeviceinfo4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.GdirStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Getdeviceinfo4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "GETDEVICELIST4args".
+
+type Getdevicelist4args struct {
+	GdlaLayoutType Layouttype4
+	GdlaMaxdevices uint32
+	GdlaCookie     uint64
+	GdlaCookieverf [8]byte
+}
+
+func (m *Getdevicelist4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.GdlaLayoutType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GdlaMaxdevices
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GdlaCookie
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.GdlaCookieverf
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Getdevicelist4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.GdlaLayoutType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GdlaMaxdevices
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GdlaCookie
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.GdlaCookieverf
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Getdevicelist4argsEncodedSizeBytes = 24
+
+// Type definition "GETDEVICELIST4resok".
+
+type Getdevicelist4resok struct {
+	GdlrCookie       uint64
+	GdlrCookieverf   [8]byte
+	GdlrDeviceidList [][16]byte
+	GdlrEof          bool
+}
+
+func (m *Getdevicelist4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.GdlrCookie
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.GdlrCookieverf
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.GdlrDeviceidList
+		var m [][16]byte
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds GETDEVICELIST4resok.gdlr_deviceid_list's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, [16]byte{})
+			m := &m[len(m)-1]
+			nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.GdlrEof
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Getdevicelist4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.GdlrCookie
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.GdlrCookieverf
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.GdlrDeviceidList
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds GETDEVICELIST4resok.gdlr_deviceid_list's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.GdlrEof
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Getdevicelist4resok) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 8
+	{
+		m := m.GdlrDeviceidList
+		nTotal += 4 + 16*len(m)
+	}
+	nTotal += 4
+	return
+}
+
+// Type definition "GETDEVICELIST4res".
+
+type Getdevicelist4res interface {
+	isGetdevicelist4res()
+	GetGdlrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadGetdevicelist4res(r io.Reader) (m Getdevicelist4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm Getdevicelist4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.GdlrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Getdevicelist4res_default
+		{
+			m := &mArm
+			m.GdlrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readGetdevicelist4resGdlrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeGetdevicelist4resGdlrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const getdevicelist4resGdlrStatusEncodedSizeBytes = 4
+
+type Getdevicelist4res_NFS4_OK struct {
+	GdlrResok4 Getdevicelist4resok
+}
+
+func (m *Getdevicelist4res_NFS4_OK) isGetdevicelist4res() {}
+
+func (m *Getdevicelist4res_NFS4_OK) GetGdlrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *Getdevicelist4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.GdlrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Getdevicelist4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.GdlrResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type Getdevicelist4res_default struct {
+	GdlrStatus Nfsstat4
+}
+
+func (m *Getdevicelist4res_default) isGetdevicelist4res() {}
+
+func (m *Getdevicelist4res_default) GetGdlrStatus() Nfsstat4 {
+	return m.GdlrStatus
+}
+
+func (m *Getdevicelist4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.GdlrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Getdevicelist4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "newtime4".
+
+type Newtime4 interface {
+	isNewtime4()
+	GetNtTimechanged() bool
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadNewtime4(r io.Reader) (m Newtime4, nTotal int64, err error) {
+	var nField int64
+	var discriminant bool
+	{
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case true:
+		var mArm Newtime4_TRUE
+		{
+			m := &mArm
+			{
+				m := &m.NtTime
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case false:
+		var mArm Newtime4_FALSE
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant newtime4.nt_timechanged has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readNewtime4NtTimechanged(r io.Reader) (m bool, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadBool(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeNewtime4NtTimechanged(w io.Writer, m bool) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteBool(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const newtime4NtTimechangedEncodedSizeBytes = 4
+
+type Newtime4_TRUE struct {
+	NtTime Nfstime4
+}
+
+func (m *Newtime4_TRUE) isNewtime4() {}
+
+func (m *Newtime4_TRUE) GetNtTimechanged() bool {
+	return true
+}
+
+func (m *Newtime4_TRUE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m bool = true
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NtTime
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Newtime4_TRUE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 12
+	return
+}
+
+type Newtime4_FALSE struct{}
+
+func (m *Newtime4_FALSE) isNewtime4() {}
+
+func (m *Newtime4_FALSE) GetNtTimechanged() bool {
+	return false
+}
+
+func (m *Newtime4_FALSE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m bool = false
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Newtime4_FALSE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "newoffset4".
+
+type Newoffset4 interface {
+	isNewoffset4()
+	GetNoNewoffset() bool
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadNewoffset4(r io.Reader) (m Newoffset4, nTotal int64, err error) {
+	var nField int64
+	var discriminant bool
+	{
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case true:
+		var mArm Newoffset4_TRUE
+		{
+			m := &mArm
+			{
+				mSave := &m.NoOffset
+				var m uint64
+				m, nField, err = runtime.ReadUnsignedHyper(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case false:
+		var mArm Newoffset4_FALSE
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant newoffset4.no_newoffset has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readNewoffset4NoNewoffset(r io.Reader) (m bool, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadBool(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeNewoffset4NoNewoffset(w io.Writer, m bool) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteBool(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const newoffset4NoNewoffsetEncodedSizeBytes = 4
+
+type Newoffset4_TRUE struct {
+	NoOffset uint64
+}
+
+func (m *Newoffset4_TRUE) isNewoffset4() {}
+
+func (m *Newoffset4_TRUE) GetNoNewoffset() bool {
+	return true
+}
+
+func (m *Newoffset4_TRUE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m bool = true
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NoOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Newoffset4_TRUE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 8
+	return
+}
+
+type Newoffset4_FALSE struct{}
+
+func (m *Newoffset4_FALSE) isNewoffset4() {}
+
+func (m *Newoffset4_FALSE) GetNoNewoffset() bool {
+	return false
+}
+
+func (m *Newoffset4_FALSE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m bool = false
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Newoffset4_FALSE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "LAYOUTCOMMIT4args".
+
+type Layoutcommit4args struct {
+	LocaOffset          uint64
+	LocaLength          uint64
+	LocaReclaim         bool
+	LocaStateid         Stateid4
+	LocaLastWriteOffset Newoffset4
+	LocaTimeModify      Newtime4
+	LocaLayoutupdate    Layoutupdate4
+}
+
+func (m *Layoutcommit4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LocaOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LocaLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LocaReclaim
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.LocaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.LocaLastWriteOffset
+		var m Newoffset4
+		m, nField, err = ReadNewoffset4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LocaTimeModify
+		var m Newtime4
+		m, nField, err = ReadNewtime4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.LocaLayoutupdate
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutcommit4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LocaOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LocaLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LocaReclaim
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LocaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LocaLastWriteOffset
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LocaTimeModify
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LocaLayoutupdate
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutcommit4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 8
+	nTotal += 4
+	nTotal += 16
+	{
+		m := m.LocaLastWriteOffset
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := m.LocaTimeModify
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := &m.LocaLayoutupdate
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "newsize4".
+
+type Newsize4 interface {
+	isNewsize4()
+	GetNsSizechanged() bool
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadNewsize4(r io.Reader) (m Newsize4, nTotal int64, err error) {
+	var nField int64
+	var discriminant bool
+	{
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case true:
+		var mArm Newsize4_TRUE
+		{
+			m := &mArm
+			{
+				mSave := &m.NsSize
+				var m uint64
+				m, nField, err = runtime.ReadUnsignedHyper(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case false:
+		var mArm Newsize4_FALSE
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant newsize4.ns_sizechanged has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readNewsize4NsSizechanged(r io.Reader) (m bool, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadBool(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeNewsize4NsSizechanged(w io.Writer, m bool) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteBool(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const newsize4NsSizechangedEncodedSizeBytes = 4
+
+type Newsize4_TRUE struct {
+	NsSize uint64
+}
+
+func (m *Newsize4_TRUE) isNewsize4() {}
+
+func (m *Newsize4_TRUE) GetNsSizechanged() bool {
+	return true
+}
+
+func (m *Newsize4_TRUE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m bool = true
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NsSize
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Newsize4_TRUE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 8
+	return
+}
+
+type Newsize4_FALSE struct{}
+
+func (m *Newsize4_FALSE) isNewsize4() {}
+
+func (m *Newsize4_FALSE) GetNsSizechanged() bool {
+	return false
+}
+
+func (m *Newsize4_FALSE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m bool = false
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Newsize4_FALSE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "LAYOUTCOMMIT4resok".
+
+type Layoutcommit4resok struct {
+	LocrNewsize Newsize4
+}
+
+func (m *Layoutcommit4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LocrNewsize
+		var m Newsize4
+		m, nField, err = ReadNewsize4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Layoutcommit4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LocrNewsize
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutcommit4resok) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.LocrNewsize
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "LAYOUTCOMMIT4res".
+
+type Layoutcommit4res interface {
+	isLayoutcommit4res()
+	GetLocrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadLayoutcommit4res(r io.Reader) (m Layoutcommit4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm Layoutcommit4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.LocrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Layoutcommit4res_default
+		{
+			m := &mArm
+			m.LocrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readLayoutcommit4resLocrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeLayoutcommit4resLocrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const layoutcommit4resLocrStatusEncodedSizeBytes = 4
+
+type Layoutcommit4res_NFS4_OK struct {
+	LocrResok4 Layoutcommit4resok
+}
+
+func (m *Layoutcommit4res_NFS4_OK) isLayoutcommit4res() {}
+
+func (m *Layoutcommit4res_NFS4_OK) GetLocrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *Layoutcommit4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LocrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutcommit4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.LocrResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type Layoutcommit4res_default struct {
+	LocrStatus Nfsstat4
+}
+
+func (m *Layoutcommit4res_default) isLayoutcommit4res() {}
+
+func (m *Layoutcommit4res_default) GetLocrStatus() Nfsstat4 {
+	return m.LocrStatus
+}
+
+func (m *Layoutcommit4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LocrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutcommit4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "LAYOUTGET4args".
+
+type Layoutget4args struct {
+	LogaSignalLayoutAvail bool
+	LogaLayoutType        Layouttype4
+	LogaIomode            Layoutiomode4
+	LogaOffset            uint64
+	LogaLength            uint64
+	LogaMinlength         uint64
+	LogaStateid           Stateid4
+	LogaMaxcount          uint32
+}
+
+func (m *Layoutget4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LogaSignalLayoutAvail
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LogaLayoutType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LogaIomode
+		var m Layoutiomode4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LogaOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LogaLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LogaMinlength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.LogaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.LogaMaxcount
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Layoutget4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LogaSignalLayoutAvail
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LogaLayoutType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LogaIomode
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LogaOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LogaLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LogaMinlength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LogaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LogaMaxcount
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Layoutget4argsEncodedSizeBytes = 56
+
+// Type definition "LAYOUTGET4resok".
+
+type Layoutget4resok struct {
+	LogrReturnOnClose bool
+	LogrStateid       Stateid4
+	LogrLayout        []Layout4
+}
+
+func (m *Layoutget4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LogrReturnOnClose
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.LogrStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.LogrLayout
+		var m []Layout4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds LAYOUTGET4resok.logr_layout's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, Layout4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Layoutget4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LogrReturnOnClose
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LogrStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LogrLayout
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds LAYOUTGET4resok.logr_layout's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutget4resok) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 16
+	{
+		m := m.LogrLayout
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "LAYOUTGET4res".
+
+type Layoutget4res interface {
+	isLayoutget4res()
+	GetLogrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadLayoutget4res(r io.Reader) (m Layoutget4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm Layoutget4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.LogrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 10058:
+		var mArm Layoutget4res_NFS4ERR_LAYOUTTRYLATER
+		{
+			m := &mArm
+			{
+				mSave := &m.LogrWillSignalLayoutAvail
+				var m bool
+				m, nField, err = runtime.ReadBool(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Layoutget4res_default
+		{
+			m := &mArm
+			m.LogrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readLayoutget4resLogrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeLayoutget4resLogrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const layoutget4resLogrStatusEncodedSizeBytes = 4
+
+type Layoutget4res_NFS4_OK struct {
+	LogrResok4 Layoutget4resok
+}
+
+func (m *Layoutget4res_NFS4_OK) isLayoutget4res() {}
+
+func (m *Layoutget4res_NFS4_OK) GetLogrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *Layoutget4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LogrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutget4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.LogrResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type Layoutget4res_NFS4ERR_LAYOUTTRYLATER struct {
+	LogrWillSignalLayoutAvail bool
+}
+
+func (m *Layoutget4res_NFS4ERR_LAYOUTTRYLATER) isLayoutget4res() {}
+
+func (m *Layoutget4res_NFS4ERR_LAYOUTTRYLATER) GetLogrStatus() Nfsstat4 {
+	return 10058
+}
+
+func (m *Layoutget4res_NFS4ERR_LAYOUTTRYLATER) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 10058
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LogrWillSignalLayoutAvail
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutget4res_NFS4ERR_LAYOUTTRYLATER) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type Layoutget4res_default struct {
+	LogrStatus Nfsstat4
+}
+
+func (m *Layoutget4res_default) isLayoutget4res() {}
+
+func (m *Layoutget4res_default) GetLogrStatus() Nfsstat4 {
+	return m.LogrStatus
+}
+
+func (m *Layoutget4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LogrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutget4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "LAYOUTRETURN4args".
+
+type Layoutreturn4args struct {
+	LoraReclaim      bool
+	LoraLayoutType   Layouttype4
+	LoraIomode       Layoutiomode4
+	LoraLayoutreturn Layoutreturn4
+}
+
+func (m *Layoutreturn4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LoraReclaim
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LoraLayoutType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LoraIomode
+		var m Layoutiomode4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LoraLayoutreturn
+		var m Layoutreturn4
+		m, nField, err = ReadLayoutreturn4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Layoutreturn4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LoraReclaim
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LoraLayoutType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LoraIomode
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LoraLayoutreturn
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutreturn4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.LoraLayoutreturn
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "layoutreturn_stateid".
+
+type LayoutreturnStateid interface {
+	isLayoutreturnStateid()
+	GetLrsPresent() bool
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadLayoutreturnStateid(r io.Reader) (m LayoutreturnStateid, nTotal int64, err error) {
+	var nField int64
+	var discriminant bool
+	{
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case true:
+		var mArm LayoutreturnStateid_TRUE
+		{
+			m := &mArm
+			{
+				m := &m.LrsStateid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case false:
+		var mArm LayoutreturnStateid_FALSE
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant layoutreturn_stateid.lrs_present has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readLayoutreturnStateidLrsPresent(r io.Reader) (m bool, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadBool(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeLayoutreturnStateidLrsPresent(w io.Writer, m bool) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteBool(w, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const layoutreturnStateidLrsPresentEncodedSizeBytes = 4
+
+type LayoutreturnStateid_TRUE struct {
+	LrsStateid Stateid4
+}
+
+func (m *LayoutreturnStateid_TRUE) isLayoutreturnStateid() {}
+
+func (m *LayoutreturnStateid_TRUE) GetLrsPresent() bool {
+	return true
+}
+
+func (m *LayoutreturnStateid_TRUE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m bool = true
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LrsStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *LayoutreturnStateid_TRUE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 16
+	return
+}
+
+type LayoutreturnStateid_FALSE struct{}
+
+func (m *LayoutreturnStateid_FALSE) isLayoutreturnStateid() {}
+
+func (m *LayoutreturnStateid_FALSE) GetLrsPresent() bool {
+	return false
+}
+
+func (m *LayoutreturnStateid_FALSE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m bool = false
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *LayoutreturnStateid_FALSE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "LAYOUTRETURN4res".
+
+type Layoutreturn4res interface {
+	isLayoutreturn4res()
+	GetLorrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadLayoutreturn4res(r io.Reader) (m Layoutreturn4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm Layoutreturn4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				mSave := &m.LorrStateid
+				var m LayoutreturnStateid
+				m, nField, err = ReadLayoutreturnStateid(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Layoutreturn4res_default
+		{
+			m := &mArm
+			m.LorrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readLayoutreturn4resLorrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeLayoutreturn4resLorrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const layoutreturn4resLorrStatusEncodedSizeBytes = 4
+
+type Layoutreturn4res_NFS4_OK struct {
+	LorrStateid LayoutreturnStateid
+}
+
+func (m *Layoutreturn4res_NFS4_OK) isLayoutreturn4res() {}
+
+func (m *Layoutreturn4res_NFS4_OK) GetLorrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *Layoutreturn4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LorrStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutreturn4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.LorrStateid
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type Layoutreturn4res_default struct {
+	LorrStatus Nfsstat4
+}
+
+func (m *Layoutreturn4res_default) isLayoutreturn4res() {}
+
+func (m *Layoutreturn4res_default) GetLorrStatus() Nfsstat4 {
+	return m.LorrStatus
+}
+
+func (m *Layoutreturn4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LorrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutreturn4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "secinfo_style4".
+
+type SecinfoStyle4 int32
+
+func (mParent *SecinfoStyle4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m SecinfoStyle4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m SecinfoStyle4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const SecinfoStyle4EncodedSizeBytes = 4
+
+const SECINFO_STYLE4_CURRENT_FH SecinfoStyle4 = 0
+
+const SECINFO_STYLE4_PARENT SecinfoStyle4 = 1
+
+var SecinfoStyle4_name = map[SecinfoStyle4]string{
+	0: "SECINFO_STYLE4_CURRENT_FH",
+	1: "SECINFO_STYLE4_PARENT",
+}
+
+// Type definition "SECINFO_NO_NAME4args".
+
+type SecinfoNoName4args = SecinfoStyle4
+
+func ReadSecinfoNoName4args(r io.Reader) (m SecinfoStyle4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteSecinfoNoName4args(w io.Writer, m SecinfoStyle4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const SecinfoNoName4argsEncodedSizeBytes = 4
+
+// Type definition "SECINFO_NO_NAME4res".
+
+type SecinfoNoName4res = Secinfo4res
+
+func ReadSecinfoNoName4res(r io.Reader) (m Secinfo4res, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = ReadSecinfo4res(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteSecinfoNoName4res(w io.Writer, m Secinfo4res) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetSecinfoNoName4resEncodedSizeBytes(m Secinfo4res) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "SEQUENCE4args".
+
+type Sequence4args struct {
+	SaSessionid     [16]byte
+	SaSequenceid    uint32
+	SaSlotid        uint32
+	SaHighestSlotid uint32
+	SaCachethis     bool
+}
+
+func (m *Sequence4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SaSessionid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.SaSequenceid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SaSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SaHighestSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SaCachethis
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Sequence4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SaSessionid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SaSequenceid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SaSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SaHighestSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SaCachethis
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Sequence4argsEncodedSizeBytes = 32
+
+const SEQ4_STATUS_CB_PATH_DOWN = 1
+
+const SEQ4_STATUS_CB_GSS_CONTEXTS_EXPIRING = 2
+
+const SEQ4_STATUS_CB_GSS_CONTEXTS_EXPIRED = 4
+
+const SEQ4_STATUS_EXPIRED_ALL_STATE_REVOKED = 8
+
+const SEQ4_STATUS_EXPIRED_SOME_STATE_REVOKED = 16
+
+const SEQ4_STATUS_ADMIN_STATE_REVOKED = 32
+
+const SEQ4_STATUS_RECALLABLE_STATE_REVOKED = 64
+
+const SEQ4_STATUS_LEASE_MOVED = 128
+
+const SEQ4_STATUS_RESTART_RECLAIM_NEEDED = 256
+
+const SEQ4_STATUS_CB_PATH_DOWN_SESSION = 512
+
+const SEQ4_STATUS_BACKCHANNEL_FAULT = 1024
+
+const SEQ4_STATUS_DEVID_CHANGED = 2048
+
+const SEQ4_STATUS_DEVID_DELETED = 4096
+
+// Type definition "SEQUENCE4resok".
+
+type Sequence4resok struct {
+	SrSessionid           [16]byte
+	SrSequenceid          uint32
+	SrSlotid              uint32
+	SrHighestSlotid       uint32
+	SrTargetHighestSlotid uint32
+	SrStatusFlags         uint32
+}
+
+func (m *Sequence4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SrSessionid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.SrSequenceid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SrSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SrHighestSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SrTargetHighestSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SrStatusFlags
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Sequence4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SrSessionid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SrSequenceid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SrSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SrHighestSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SrTargetHighestSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SrStatusFlags
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Sequence4resokEncodedSizeBytes = 36
+
+// Type definition "SEQUENCE4res".
+
+type Sequence4res interface {
+	isSequence4res()
+	GetSrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadSequence4res(r io.Reader) (m Sequence4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm Sequence4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.SrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Sequence4res_default
+		{
+			m := &mArm
+			m.SrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readSequence4resSrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeSequence4resSrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const sequence4resSrStatusEncodedSizeBytes = 4
+
+type Sequence4res_NFS4_OK struct {
+	SrResok4 Sequence4resok
+}
+
+func (m *Sequence4res_NFS4_OK) isSequence4res() {}
+
+func (m *Sequence4res_NFS4_OK) GetSrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *Sequence4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.SrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Sequence4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 36
+	return
+}
+
+type Sequence4res_default struct {
+	SrStatus Nfsstat4
+}
+
+func (m *Sequence4res_default) isSequence4res() {}
+
+func (m *Sequence4res_default) GetSrStatus() Nfsstat4 {
+	return m.SrStatus
+}
+
+func (m *Sequence4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Sequence4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "ssa_digest_input4".
+
+type SsaDigestInput4 struct {
+	SdiSeqargs Sequence4args
+}
+
+func (m *SsaDigestInput4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SdiSeqargs
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SsaDigestInput4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SdiSeqargs
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const SsaDigestInput4EncodedSizeBytes = 32
+
+// Type definition "SET_SSV4args".
+
+type SetSsv4args struct {
+	SsaSsv    []byte
+	SsaDigest []byte
+}
+
+func (m *SetSsv4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SsaSsv
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SsaDigest
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SetSsv4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SsaSsv
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SsaDigest
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SetSsv4args) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.SsaSsv
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.SsaDigest
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "ssr_digest_input4".
+
+type SsrDigestInput4 struct {
+	SdiSeqres Sequence4res
+}
+
+func (m *SsrDigestInput4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SdiSeqres
+		var m Sequence4res
+		m, nField, err = ReadSequence4res(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SsrDigestInput4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SdiSeqres
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SsrDigestInput4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.SdiSeqres
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "SET_SSV4resok".
+
+type SetSsv4resok struct {
+	SsrDigest []byte
+}
+
+func (m *SetSsv4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SsrDigest
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SetSsv4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SsrDigest
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SetSsv4resok) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.SsrDigest
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "SET_SSV4res".
+
+type SetSsv4res interface {
+	isSetSsv4res()
+	GetSsrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadSetSsv4res(r io.Reader) (m SetSsv4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm SetSsv4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.SsrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm SetSsv4res_default
+		{
+			m := &mArm
+			m.SsrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readSetSsv4resSsrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeSetSsv4resSsrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const setSsv4resSsrStatusEncodedSizeBytes = 4
+
+type SetSsv4res_NFS4_OK struct {
+	SsrResok4 SetSsv4resok
+}
+
+func (m *SetSsv4res_NFS4_OK) isSetSsv4res() {}
+
+func (m *SetSsv4res_NFS4_OK) GetSsrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *SetSsv4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.SsrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SetSsv4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.SsrResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type SetSsv4res_default struct {
+	SsrStatus Nfsstat4
+}
+
+func (m *SetSsv4res_default) isSetSsv4res() {}
+
+func (m *SetSsv4res_default) GetSsrStatus() Nfsstat4 {
+	return m.SsrStatus
+}
+
+func (m *SetSsv4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *SetSsv4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "TEST_STATEID4args".
+
+type TestStateid4args struct {
+	TsStateids []Stateid4
+}
+
+func (m *TestStateid4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.TsStateids
+		var m []Stateid4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds TEST_STATEID4args.ts_stateids's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, Stateid4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *TestStateid4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.TsStateids
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds TEST_STATEID4args.ts_stateids's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *TestStateid4args) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.TsStateids
+		nTotal += 4 + 16*len(m)
+	}
+	return
+}
+
+// Type definition "TEST_STATEID4resok".
+
+type TestStateid4resok struct {
+	TsrStatusCodes []Nfsstat4
+}
+
+func (m *TestStateid4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.TsrStatusCodes
+		var m []Nfsstat4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds TEST_STATEID4resok.tsr_status_codes's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m Nfsstat4
+			*(*int32)(&m), nField, err = runtime.ReadInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *TestStateid4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.TsrStatusCodes
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds TEST_STATEID4resok.tsr_status_codes's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteInt(w, int32(m))
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *TestStateid4resok) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.TsrStatusCodes
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "TEST_STATEID4res".
+
+type TestStateid4res interface {
+	isTestStateid4res()
+	GetTsrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadTestStateid4res(r io.Reader) (m TestStateid4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm TestStateid4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.TsrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm TestStateid4res_default
+		{
+			m := &mArm
+			m.TsrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readTestStateid4resTsrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeTestStateid4resTsrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const testStateid4resTsrStatusEncodedSizeBytes = 4
+
+type TestStateid4res_NFS4_OK struct {
+	TsrResok4 TestStateid4resok
+}
+
+func (m *TestStateid4res_NFS4_OK) isTestStateid4res() {}
+
+func (m *TestStateid4res_NFS4_OK) GetTsrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *TestStateid4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.TsrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *TestStateid4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.TsrResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type TestStateid4res_default struct {
+	TsrStatus Nfsstat4
+}
+
+func (m *TestStateid4res_default) isTestStateid4res() {}
+
+func (m *TestStateid4res_default) GetTsrStatus() Nfsstat4 {
+	return m.TsrStatus
+}
+
+func (m *TestStateid4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.TsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *TestStateid4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "deleg_claim4".
+
+type DelegClaim4 interface {
+	isDelegClaim4()
+	GetDcClaim() OpenClaimType4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadDelegClaim4(r io.Reader) (m DelegClaim4, nTotal int64, err error) {
+	var nField int64
+	var discriminant OpenClaimType4
+	{
+		var m OpenClaimType4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 4:
+		var mArm DelegClaim4_CLAIM_FH
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	case 6:
+		var mArm DelegClaim4_CLAIM_DELEG_PREV_FH
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	case 1:
+		var mArm DelegClaim4_CLAIM_PREVIOUS
+		{
+			m := &mArm
+			{
+				mSave := &m.DcDelegateType
+				var m OpenDelegationType4
+				*(*int32)(&m), nField, err = runtime.ReadInt(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant deleg_claim4.dc_claim has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readDelegClaim4DcClaim(r io.Reader) (m OpenClaimType4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeDelegClaim4DcClaim(w io.Writer, m OpenClaimType4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const delegClaim4DcClaimEncodedSizeBytes = 4
+
+type DelegClaim4_CLAIM_FH struct{}
+
+func (m *DelegClaim4_CLAIM_FH) isDelegClaim4() {}
+
+func (m *DelegClaim4_CLAIM_FH) GetDcClaim() OpenClaimType4 {
+	return 4
+}
+
+func (m *DelegClaim4_CLAIM_FH) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m OpenClaimType4 = 4
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *DelegClaim4_CLAIM_FH) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+type DelegClaim4_CLAIM_DELEG_PREV_FH struct{}
+
+func (m *DelegClaim4_CLAIM_DELEG_PREV_FH) isDelegClaim4() {}
+
+func (m *DelegClaim4_CLAIM_DELEG_PREV_FH) GetDcClaim() OpenClaimType4 {
+	return 6
+}
+
+func (m *DelegClaim4_CLAIM_DELEG_PREV_FH) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m OpenClaimType4 = 6
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *DelegClaim4_CLAIM_DELEG_PREV_FH) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+type DelegClaim4_CLAIM_PREVIOUS struct {
+	DcDelegateType OpenDelegationType4
+}
+
+func (m *DelegClaim4_CLAIM_PREVIOUS) isDelegClaim4() {}
+
+func (m *DelegClaim4_CLAIM_PREVIOUS) GetDcClaim() OpenClaimType4 {
+	return 1
+}
+
+func (m *DelegClaim4_CLAIM_PREVIOUS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m OpenClaimType4 = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.DcDelegateType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *DelegClaim4_CLAIM_PREVIOUS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+// Type definition "WANT_DELEGATION4args".
+
+type WantDelegation4args struct {
+	WdaWant  uint32
+	WdaClaim DelegClaim4
+}
+
+func (m *WantDelegation4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.WdaWant
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.WdaClaim
+		var m DelegClaim4
+		m, nField, err = ReadDelegClaim4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *WantDelegation4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.WdaWant
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.WdaClaim
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *WantDelegation4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.WdaClaim
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "WANT_DELEGATION4res".
+
+type WantDelegation4res interface {
+	isWantDelegation4res()
+	GetWdrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadWantDelegation4res(r io.Reader) (m WantDelegation4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm WantDelegation4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				mSave := &m.WdrResok4
+				var m OpenDelegation4
+				m, nField, err = ReadOpenDelegation4(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	default:
+		var mArm WantDelegation4res_default
+		{
+			m := &mArm
+			m.WdrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readWantDelegation4resWdrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeWantDelegation4resWdrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const wantDelegation4resWdrStatusEncodedSizeBytes = 4
+
+type WantDelegation4res_NFS4_OK struct {
+	WdrResok4 OpenDelegation4
+}
+
+func (m *WantDelegation4res_NFS4_OK) isWantDelegation4res() {}
+
+func (m *WantDelegation4res_NFS4_OK) GetWdrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *WantDelegation4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.WdrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *WantDelegation4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.WdrResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type WantDelegation4res_default struct {
+	WdrStatus Nfsstat4
+}
+
+func (m *WantDelegation4res_default) isWantDelegation4res() {}
+
+func (m *WantDelegation4res_default) GetWdrStatus() Nfsstat4 {
+	return m.WdrStatus
+}
+
+func (m *WantDelegation4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.WdrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *WantDelegation4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "DESTROY_CLIENTID4args".
+
+type DestroyClientid4args struct {
+	DcaClientid uint64
+}
+
+func (m *DestroyClientid4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.DcaClientid
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *DestroyClientid4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.DcaClientid
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const DestroyClientid4argsEncodedSizeBytes = 8
+
+// Type definition "DESTROY_CLIENTID4res".
+
+type DestroyClientid4res struct {
+	DcrStatus Nfsstat4
+}
+
+func (m *DestroyClientid4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.DcrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *DestroyClientid4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.DcrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const DestroyClientid4resEncodedSizeBytes = 4
+
+// Type definition "RECLAIM_COMPLETE4args".
+
+type ReclaimComplete4args struct {
+	RcaOneFs bool
+}
+
+func (m *ReclaimComplete4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.RcaOneFs
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ReclaimComplete4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RcaOneFs
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const ReclaimComplete4argsEncodedSizeBytes = 4
+
+// Type definition "RECLAIM_COMPLETE4res".
+
+type ReclaimComplete4res struct {
+	RcrStatus Nfsstat4
+}
+
+func (m *ReclaimComplete4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.RcrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ReclaimComplete4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RcrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const ReclaimComplete4resEncodedSizeBytes = 4
+
+// Type definition "COPY4args".
+
+type Copy4args struct {
+	CaSrcStateid   Stateid4
+	CaDstStateid   Stateid4
+	CaSrcOffset    uint64
+	CaDstOffset    uint64
+	CaCount        uint64
+	CaConsecutive  bool
+	CaSynchronous  bool
+	CaSourceServer []Netloc4
+}
+
+func (m *Copy4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CaSrcStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CaDstStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CaSrcOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaDstOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaCount
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaConsecutive
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaSynchronous
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CaSourceServer
+		var m []Netloc4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds COPY4args.ca_source_server's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m Netloc4
+			m, nField, err = ReadNetloc4(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Copy4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CaSrcStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CaDstStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaSrcOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaDstOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaCount
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaConsecutive
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaSynchronous
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CaSourceServer
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds COPY4args.ca_source_server's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *Copy4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	nTotal += 16
+	nTotal += 8
+	nTotal += 8
+	nTotal += 8
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.CaSourceServer
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "copy_requirements4".
+
+type CopyRequirements4 struct {
+	CrConsecutive bool
+	CrSynchronous bool
+}
+
+func (m *CopyRequirements4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CrConsecutive
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CrSynchronous
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CopyRequirements4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CrConsecutive
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CrSynchronous
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CopyRequirements4EncodedSizeBytes = 8
+
+// Type definition "COPY4resok".
+
+type Copy4resok struct {
+	CrResponse     WriteResponse4
+	CrRequirements CopyRequirements4
+}
+
+func (m *Copy4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CrResponse
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CrRequirements
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Copy4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CrResponse
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CrRequirements
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Copy4resok) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := &m.CrResponse
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	nTotal += 8
+	return
+}
+
+// Type definition "COPY4res".
+
+type Copy4res interface {
+	isCopy4res()
+	GetCrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadCopy4res(r io.Reader) (m Copy4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm Copy4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.CrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 10094:
+		var mArm Copy4res_NFS4ERR_OFFLOAD_NO_REQS
+		{
+			m := &mArm
+			{
+				m := &m.CrRequirements
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Copy4res_default
+		{
+			m := &mArm
+			m.CrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readCopy4resCrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeCopy4resCrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const copy4resCrStatusEncodedSizeBytes = 4
+
+type Copy4res_NFS4_OK struct {
+	CrResok4 Copy4resok
+}
+
+func (m *Copy4res_NFS4_OK) isCopy4res() {}
+
+func (m *Copy4res_NFS4_OK) GetCrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *Copy4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Copy4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.CrResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type Copy4res_NFS4ERR_OFFLOAD_NO_REQS struct {
+	CrRequirements CopyRequirements4
+}
+
+func (m *Copy4res_NFS4ERR_OFFLOAD_NO_REQS) isCopy4res() {}
+
+func (m *Copy4res_NFS4ERR_OFFLOAD_NO_REQS) GetCrStatus() Nfsstat4 {
+	return 10094
+}
+
+func (m *Copy4res_NFS4ERR_OFFLOAD_NO_REQS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 10094
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CrRequirements
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Copy4res_NFS4ERR_OFFLOAD_NO_REQS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 8
+	return
+}
+
+type Copy4res_default struct {
+	CrStatus Nfsstat4
+}
+
+func (m *Copy4res_default) isCopy4res() {}
+
+func (m *Copy4res_default) GetCrStatus() Nfsstat4 {
+	return m.CrStatus
+}
+
+func (m *Copy4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Copy4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "COPY_NOTIFY4args".
+
+type CopyNotify4args struct {
+	CnaSrcStateid        Stateid4
+	CnaDestinationServer Netloc4
+}
+
+func (m *CopyNotify4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CnaSrcStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CnaDestinationServer
+		var m Netloc4
+		m, nField, err = ReadNetloc4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CopyNotify4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CnaSrcStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CnaDestinationServer
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CopyNotify4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	{
+		m := m.CnaDestinationServer
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "COPY_NOTIFY4resok".
+
+type CopyNotify4resok struct {
+	CnrLeaseTime    Nfstime4
+	CnrStateid      Stateid4
+	CnrSourceServer []Netloc4
+}
+
+func (m *CopyNotify4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CnrLeaseTime
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CnrStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CnrSourceServer
+		var m []Netloc4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds COPY_NOTIFY4resok.cnr_source_server's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m Netloc4
+			m, nField, err = ReadNetloc4(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CopyNotify4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CnrLeaseTime
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CnrStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CnrSourceServer
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds COPY_NOTIFY4resok.cnr_source_server's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *CopyNotify4resok) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 12
+	nTotal += 16
+	{
+		m := m.CnrSourceServer
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "COPY_NOTIFY4res".
+
+type CopyNotify4res interface {
+	isCopyNotify4res()
+	GetCnrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadCopyNotify4res(r io.Reader) (m CopyNotify4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm CopyNotify4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.Resok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm CopyNotify4res_default
+		{
+			m := &mArm
+			m.CnrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readCopyNotify4resCnrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeCopyNotify4resCnrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const copyNotify4resCnrStatusEncodedSizeBytes = 4
+
+type CopyNotify4res_NFS4_OK struct {
+	Resok4 CopyNotify4resok
+}
+
+func (m *CopyNotify4res_NFS4_OK) isCopyNotify4res() {}
+
+func (m *CopyNotify4res_NFS4_OK) GetCnrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *CopyNotify4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Resok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CopyNotify4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Resok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type CopyNotify4res_default struct {
+	CnrStatus Nfsstat4
+}
+
+func (m *CopyNotify4res_default) isCopyNotify4res() {}
+
+func (m *CopyNotify4res_default) GetCnrStatus() Nfsstat4 {
+	return m.CnrStatus
+}
+
+func (m *CopyNotify4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CnrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CopyNotify4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "OFFLOAD_CANCEL4args".
+
+type OffloadCancel4args struct {
+	OcaStateid Stateid4
+}
+
+func (m *OffloadCancel4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.OcaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OffloadCancel4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.OcaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const OffloadCancel4argsEncodedSizeBytes = 16
+
+// Type definition "OFFLOAD_CANCEL4res".
+
+type OffloadCancel4res struct {
+	OcrStatus Nfsstat4
+}
+
+func (m *OffloadCancel4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.OcrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *OffloadCancel4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.OcrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const OffloadCancel4resEncodedSizeBytes = 4
+
+// Type definition "OFFLOAD_STATUS4args".
+
+type OffloadStatus4args struct {
+	OsaStateid Stateid4
+}
+
+func (m *OffloadStatus4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.OsaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OffloadStatus4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.OsaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const OffloadStatus4argsEncodedSizeBytes = 16
+
+// Type definition "OFFLOAD_STATUS4resok".
+
+type OffloadStatus4resok struct {
+	OsrCount    uint64
+	OsrComplete []Nfsstat4
+}
+
+func (m *OffloadStatus4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.OsrCount
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.OsrComplete
+		var m []Nfsstat4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds OFFLOAD_STATUS4resok.osr_complete's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m Nfsstat4
+			*(*int32)(&m), nField, err = runtime.ReadInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *OffloadStatus4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.OsrCount
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OsrComplete
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds OFFLOAD_STATUS4resok.osr_complete's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteInt(w, int32(m))
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *OffloadStatus4resok) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	{
+		m := m.OsrComplete
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "OFFLOAD_STATUS4res".
+
+type OffloadStatus4res interface {
+	isOffloadStatus4res()
+	GetOsrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadOffloadStatus4res(r io.Reader) (m OffloadStatus4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm OffloadStatus4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.OsrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm OffloadStatus4res_default
+		{
+			m := &mArm
+			m.OsrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readOffloadStatus4resOsrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeOffloadStatus4resOsrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const offloadStatus4resOsrStatusEncodedSizeBytes = 4
+
+type OffloadStatus4res_NFS4_OK struct {
+	OsrResok4 OffloadStatus4resok
+}
+
+func (m *OffloadStatus4res_NFS4_OK) isOffloadStatus4res() {}
+
+func (m *OffloadStatus4res_NFS4_OK) GetOsrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *OffloadStatus4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OsrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OffloadStatus4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OsrResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type OffloadStatus4res_default struct {
+	OsrStatus Nfsstat4
+}
+
+func (m *OffloadStatus4res_default) isOffloadStatus4res() {}
+
+func (m *OffloadStatus4res_default) GetOsrStatus() Nfsstat4 {
+	return m.OsrStatus
+}
+
+func (m *OffloadStatus4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.OsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OffloadStatus4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "ALLOCATE4args".
+
+type Allocate4args struct {
+	AaStateid Stateid4
+	AaOffset  uint64
+	AaLength  uint64
+}
+
+func (m *Allocate4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.AaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.AaOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.AaLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Allocate4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.AaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.AaOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.AaLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Allocate4argsEncodedSizeBytes = 32
+
+// Type definition "ALLOCATE4res".
+
+type Allocate4res struct {
+	ArStatus Nfsstat4
+}
+
+func (m *Allocate4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.ArStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Allocate4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.ArStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Allocate4resEncodedSizeBytes = 4
+
+// Type definition "DEALLOCATE4args".
+
+type Deallocate4args struct {
+	DaStateid Stateid4
+	DaOffset  uint64
+	DaLength  uint64
+}
+
+func (m *Deallocate4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.DaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.DaOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.DaLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Deallocate4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.DaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.DaOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.DaLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Deallocate4argsEncodedSizeBytes = 32
+
+// Type definition "DEALLOCATE4res".
+
+type Deallocate4res struct {
+	DrStatus Nfsstat4
+}
+
+func (m *Deallocate4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.DrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Deallocate4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.DrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Deallocate4resEncodedSizeBytes = 4
+
+// Type definition "IO_ADVISE_type4".
+
+type IoAdviseType4 int32
+
+func (mParent *IoAdviseType4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m IoAdviseType4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m IoAdviseType4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const IoAdviseType4EncodedSizeBytes = 4
+
+const IO_ADVISE4_DONTNEED IoAdviseType4 = 6
+
+const IO_ADVISE4_INIT_PROXIMITY IoAdviseType4 = 10
+
+const IO_ADVISE4_NOREUSE IoAdviseType4 = 7
+
+const IO_ADVISE4_NORMAL IoAdviseType4 = 0
+
+const IO_ADVISE4_RANDOM IoAdviseType4 = 3
+
+const IO_ADVISE4_READ IoAdviseType4 = 8
+
+const IO_ADVISE4_SEQUENTIAL IoAdviseType4 = 1
+
+const IO_ADVISE4_SEQUENTIAL_BACKWARDS IoAdviseType4 = 2
+
+const IO_ADVISE4_WILLNEED IoAdviseType4 = 4
+
+const IO_ADVISE4_WILLNEED_OPPORTUNISTIC IoAdviseType4 = 5
+
+const IO_ADVISE4_WRITE IoAdviseType4 = 9
+
+var IoAdviseType4_name = map[IoAdviseType4]string{
+	6:  "IO_ADVISE4_DONTNEED",
+	10: "IO_ADVISE4_INIT_PROXIMITY",
+	7:  "IO_ADVISE4_NOREUSE",
+	0:  "IO_ADVISE4_NORMAL",
+	3:  "IO_ADVISE4_RANDOM",
+	8:  "IO_ADVISE4_READ",
+	1:  "IO_ADVISE4_SEQUENTIAL",
+	2:  "IO_ADVISE4_SEQUENTIAL_BACKWARDS",
+	4:  "IO_ADVISE4_WILLNEED",
+	5:  "IO_ADVISE4_WILLNEED_OPPORTUNISTIC",
+	9:  "IO_ADVISE4_WRITE",
+}
+
+// Type definition "IO_ADVISE4args".
+
+type IoAdvise4args struct {
+	IaaStateid Stateid4
+	IaaOffset  uint64
+	IaaCount   uint64
+	IaaHints   []uint32
+}
+
+func (m *IoAdvise4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.IaaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.IaaOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.IaaCount
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.IaaHints
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *IoAdvise4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.IaaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.IaaOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.IaaCount
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.IaaHints
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *IoAdvise4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	nTotal += 8
+	nTotal += 8
+	{
+		m := m.IaaHints
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "IO_ADVISE4resok".
+
+type IoAdvise4resok struct {
+	IorHints []uint32
+}
+
+func (m *IoAdvise4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.IorHints
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *IoAdvise4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.IorHints
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *IoAdvise4resok) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.IorHints
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "IO_ADVISE4res".
+
+type IoAdvise4res interface {
+	isIoAdvise4res()
+	GetIorStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadIoAdvise4res(r io.Reader) (m IoAdvise4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm IoAdvise4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.Resok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm IoAdvise4res_default
+		{
+			m := &mArm
+			m.IorStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readIoAdvise4resIorStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeIoAdvise4resIorStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const ioAdvise4resIorStatusEncodedSizeBytes = 4
+
+type IoAdvise4res_NFS4_OK struct {
+	Resok4 IoAdvise4resok
+}
+
+func (m *IoAdvise4res_NFS4_OK) isIoAdvise4res() {}
+
+func (m *IoAdvise4res_NFS4_OK) GetIorStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *IoAdvise4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Resok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *IoAdvise4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Resok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type IoAdvise4res_default struct {
+	IorStatus Nfsstat4
+}
+
+func (m *IoAdvise4res_default) isIoAdvise4res() {}
+
+func (m *IoAdvise4res_default) GetIorStatus() Nfsstat4 {
+	return m.IorStatus
+}
+
+func (m *IoAdvise4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.IorStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *IoAdvise4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "device_error4".
+
+type DeviceError4 struct {
+	DeDeviceid [16]byte
+	DeStatus   Nfsstat4
+	DeOpnum    NfsOpnum4
+}
+
+func (m *DeviceError4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.DeDeviceid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.DeStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.DeOpnum
+		var m NfsOpnum4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *DeviceError4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.DeDeviceid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.DeStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.DeOpnum
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const DeviceError4EncodedSizeBytes = 24
+
+// Type definition "LAYOUTERROR4args".
+
+type Layouterror4args struct {
+	LeaOffset  uint64
+	LeaLength  uint64
+	LeaStateid Stateid4
+	LeaErrors  []DeviceError4
+}
+
+func (m *Layouterror4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LeaOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LeaLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.LeaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.LeaErrors
+		var m []DeviceError4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds LAYOUTERROR4args.lea_errors's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, DeviceError4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Layouterror4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LeaOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LeaLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LeaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LeaErrors
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds LAYOUTERROR4args.lea_errors's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *Layouterror4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 8
+	nTotal += 16
+	{
+		m := m.LeaErrors
+		nTotal += 4 + 24*len(m)
+	}
+	return
+}
+
+// Type definition "LAYOUTERROR4res".
+
+type Layouterror4res struct {
+	LerStatus Nfsstat4
+}
+
+func (m *Layouterror4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LerStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Layouterror4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LerStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Layouterror4resEncodedSizeBytes = 4
+
+// Type definition "io_info4".
+
+type IoInfo4 struct {
+	IiCount uint64
+	IiBytes uint64
+}
+
+func (m *IoInfo4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.IiCount
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.IiBytes
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *IoInfo4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.IiCount
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.IiBytes
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const IoInfo4EncodedSizeBytes = 16
+
+// Type definition "LAYOUTSTATS4args".
+
+type Layoutstats4args struct {
+	LsaOffset       uint64
+	LsaLength       uint64
+	LsaStateid      Stateid4
+	LsaRead         IoInfo4
+	LsaWrite        IoInfo4
+	LsaDeviceid     [16]byte
+	LsaLayoutupdate Layoutupdate4
+}
+
+func (m *Layoutstats4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LsaOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LsaLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.LsaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LsaRead
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LsaWrite
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LsaDeviceid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LsaLayoutupdate
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutstats4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LsaOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LsaLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LsaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LsaRead
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LsaWrite
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LsaDeviceid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LsaLayoutupdate
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutstats4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 8
+	nTotal += 8
+	nTotal += 16
+	nTotal += 16
+	nTotal += 16
+	nTotal += 16
+	{
+		m := &m.LsaLayoutupdate
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "LAYOUTSTATS4res".
+
+type Layoutstats4res struct {
+	LsrStatus Nfsstat4
+}
+
+func (m *Layoutstats4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LsrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Layoutstats4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Layoutstats4resEncodedSizeBytes = 4
+
+// Type definition "READ_PLUS4args".
+
+type ReadPlus4args struct {
+	RpaStateid Stateid4
+	RpaOffset  uint64
+	RpaCount   uint32
+}
+
+func (m *ReadPlus4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.RpaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.RpaOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.RpaCount
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ReadPlus4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.RpaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.RpaOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.RpaCount
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const ReadPlus4argsEncodedSizeBytes = 28
+
+// Type definition "read_plus_content".
+
+type ReadPlusContent interface {
+	isReadPlusContent()
+	GetRpcContent() DataContent4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadReadPlusContent(r io.Reader) (m ReadPlusContent, nTotal int64, err error) {
+	var nField int64
+	var discriminant DataContent4
+	{
+		var m DataContent4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm ReadPlusContent_NFS4_CONTENT_DATA
+		{
+			m := &mArm
+			{
+				m := &m.RpcData
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 1:
+		var mArm ReadPlusContent_NFS4_CONTENT_HOLE
+		{
+			m := &mArm
+			{
+				m := &m.RpcHole
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm ReadPlusContent_default
+		{
+			m := &mArm
+			m.RpcContent = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readReadPlusContentRpcContent(r io.Reader) (m DataContent4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeReadPlusContentRpcContent(w io.Writer, m DataContent4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const readPlusContentRpcContentEncodedSizeBytes = 4
+
+type ReadPlusContent_NFS4_CONTENT_DATA struct {
+	RpcData Data4
+}
+
+func (m *ReadPlusContent_NFS4_CONTENT_DATA) isReadPlusContent() {}
+
+func (m *ReadPlusContent_NFS4_CONTENT_DATA) GetRpcContent() DataContent4 {
+	return 0
+}
+
+func (m *ReadPlusContent_NFS4_CONTENT_DATA) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m DataContent4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.RpcData
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ReadPlusContent_NFS4_CONTENT_DATA) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.RpcData
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type ReadPlusContent_NFS4_CONTENT_HOLE struct {
+	RpcHole DataInfo4
+}
+
+func (m *ReadPlusContent_NFS4_CONTENT_HOLE) isReadPlusContent() {}
+
+func (m *ReadPlusContent_NFS4_CONTENT_HOLE) GetRpcContent() DataContent4 {
+	return 1
+}
+
+func (m *ReadPlusContent_NFS4_CONTENT_HOLE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m DataContent4 = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.RpcHole
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ReadPlusContent_NFS4_CONTENT_HOLE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 16
+	return
+}
+
+type ReadPlusContent_default struct {
+	RpcContent DataContent4
+}
+
+func (m *ReadPlusContent_default) isReadPlusContent() {}
+
+func (m *ReadPlusContent_default) GetRpcContent() DataContent4 {
+	return m.RpcContent
+}
+
+func (m *ReadPlusContent_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RpcContent
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ReadPlusContent_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "read_plus_res4".
+
+type ReadPlusRes4 struct {
+	RprEof      bool
+	RprContents []ReadPlusContent
+}
+
+func (m *ReadPlusRes4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.RprEof
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.RprContents
+		var m []ReadPlusContent
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds read_plus_res4.rpr_contents's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m ReadPlusContent
+			m, nField, err = ReadReadPlusContent(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ReadPlusRes4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RprEof
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.RprContents
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds read_plus_res4.rpr_contents's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *ReadPlusRes4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.RprContents
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "READ_PLUS4res".
+
+type ReadPlus4res interface {
+	isReadPlus4res()
+	GetRpStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadReadPlus4res(r io.Reader) (m ReadPlus4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm ReadPlus4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.RpResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm ReadPlus4res_default
+		{
+			m := &mArm
+			m.RpStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readReadPlus4resRpStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeReadPlus4resRpStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const readPlus4resRpStatusEncodedSizeBytes = 4
+
+type ReadPlus4res_NFS4_OK struct {
+	RpResok4 ReadPlusRes4
+}
+
+func (m *ReadPlus4res_NFS4_OK) isReadPlus4res() {}
+
+func (m *ReadPlus4res_NFS4_OK) GetRpStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *ReadPlus4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.RpResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ReadPlus4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.RpResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type ReadPlus4res_default struct {
+	RpStatus Nfsstat4
+}
+
+func (m *ReadPlus4res_default) isReadPlus4res() {}
+
+func (m *ReadPlus4res_default) GetRpStatus() Nfsstat4 {
+	return m.RpStatus
+}
+
+func (m *ReadPlus4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RpStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *ReadPlus4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "SEEK4args".
+
+type Seek4args struct {
+	SaStateid Stateid4
+	SaOffset  uint64
+	SaWhat    DataContent4
+}
+
+func (m *Seek4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.SaOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SaWhat
+		var m DataContent4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Seek4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.SaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SaOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SaWhat
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const Seek4argsEncodedSizeBytes = 28
+
+// Type definition "seek_res4".
+
+type SeekRes4 struct {
+	SrEof    bool
+	SrOffset uint64
+}
+
+func (m *SeekRes4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.SrEof
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.SrOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *SeekRes4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SrEof
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.SrOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const SeekRes4EncodedSizeBytes = 12
+
+// Type definition "SEEK4res".
+
+type Seek4res interface {
+	isSeek4res()
+	GetSaStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadSeek4res(r io.Reader) (m Seek4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm Seek4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.Resok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm Seek4res_default
+		{
+			m := &mArm
+			m.SaStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readSeek4resSaStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeSeek4resSaStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const seek4resSaStatusEncodedSizeBytes = 4
+
+type Seek4res_NFS4_OK struct {
+	Resok4 SeekRes4
+}
+
+func (m *Seek4res_NFS4_OK) isSeek4res() {}
+
+func (m *Seek4res_NFS4_OK) GetSaStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *Seek4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Resok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Seek4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 12
+	return
+}
+
+type Seek4res_default struct {
+	SaStatus Nfsstat4
+}
+
+func (m *Seek4res_default) isSeek4res() {}
+
+func (m *Seek4res_default) GetSaStatus() Nfsstat4 {
+	return m.SaStatus
+}
+
+func (m *Seek4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.SaStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Seek4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "WRITE_SAME4args".
+
+type WriteSame4args struct {
+	WsaStateid Stateid4
+	WsaStable  StableHow4
+	WsaAdb     AppDataBlock4
+}
+
+func (m *WriteSame4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.WsaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.WsaStable
+		var m StableHow4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.WsaAdb
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *WriteSame4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.WsaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.WsaStable
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.WsaAdb
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *WriteSame4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	nTotal += 4
+	{
+		m := &m.WsaAdb
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "WRITE_SAME4res".
+
+type WriteSame4res interface {
+	isWriteSame4res()
+	GetWsrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadWriteSame4res(r io.Reader) (m WriteSame4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm WriteSame4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.Resok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm WriteSame4res_default
+		{
+			m := &mArm
+			m.WsrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readWriteSame4resWsrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeWriteSame4resWsrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const writeSame4resWsrStatusEncodedSizeBytes = 4
+
+type WriteSame4res_NFS4_OK struct {
+	Resok4 WriteResponse4
+}
+
+func (m *WriteSame4res_NFS4_OK) isWriteSame4res() {}
+
+func (m *WriteSame4res_NFS4_OK) GetWsrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *WriteSame4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Resok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *WriteSame4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Resok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type WriteSame4res_default struct {
+	WsrStatus Nfsstat4
+}
+
+func (m *WriteSame4res_default) isWriteSame4res() {}
+
+func (m *WriteSame4res_default) GetWsrStatus() Nfsstat4 {
+	return m.WsrStatus
+}
+
+func (m *WriteSame4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.WsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *WriteSame4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
 }
 
 // Type definition "nfs_argop4".
@@ -14749,6 +32421,456 @@ func ReadNfsArgop4(r io.Reader) (m NfsArgop4, nTotal int64, err error) {
 			m := &mArm
 			{
 				m := &m.OpreleaseLockowner
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 40:
+		var mArm NfsArgop4_OP_BACKCHANNEL_CTL
+		{
+			m := &mArm
+			{
+				m := &m.OpbackchannelCtl
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 41:
+		var mArm NfsArgop4_OP_BIND_CONN_TO_SESSION
+		{
+			m := &mArm
+			{
+				m := &m.OpbindConnToSession
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 42:
+		var mArm NfsArgop4_OP_EXCHANGE_ID
+		{
+			m := &mArm
+			{
+				m := &m.OpexchangeId
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 43:
+		var mArm NfsArgop4_OP_CREATE_SESSION
+		{
+			m := &mArm
+			{
+				m := &m.OpcreateSession
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 44:
+		var mArm NfsArgop4_OP_DESTROY_SESSION
+		{
+			m := &mArm
+			{
+				m := &m.OpdestroySession
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 45:
+		var mArm NfsArgop4_OP_FREE_STATEID
+		{
+			m := &mArm
+			{
+				m := &m.OpfreeStateid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 46:
+		var mArm NfsArgop4_OP_GET_DIR_DELEGATION
+		{
+			m := &mArm
+			{
+				m := &m.OpgetDirDelegation
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 47:
+		var mArm NfsArgop4_OP_GETDEVICEINFO
+		{
+			m := &mArm
+			{
+				m := &m.Opgetdeviceinfo
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 48:
+		var mArm NfsArgop4_OP_GETDEVICELIST
+		{
+			m := &mArm
+			{
+				m := &m.Opgetdevicelist
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 49:
+		var mArm NfsArgop4_OP_LAYOUTCOMMIT
+		{
+			m := &mArm
+			{
+				m := &m.Oplayoutcommit
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 50:
+		var mArm NfsArgop4_OP_LAYOUTGET
+		{
+			m := &mArm
+			{
+				m := &m.Oplayoutget
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 51:
+		var mArm NfsArgop4_OP_LAYOUTRETURN
+		{
+			m := &mArm
+			{
+				m := &m.Oplayoutreturn
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 52:
+		var mArm NfsArgop4_OP_SECINFO_NO_NAME
+		{
+			m := &mArm
+			{
+				mSave := &m.OpsecinfoNoName
+				var m SecinfoStyle4
+				*(*int32)(&m), nField, err = runtime.ReadInt(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 53:
+		var mArm NfsArgop4_OP_SEQUENCE
+		{
+			m := &mArm
+			{
+				m := &m.Opsequence
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 54:
+		var mArm NfsArgop4_OP_SET_SSV
+		{
+			m := &mArm
+			{
+				m := &m.OpsetSsv
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 55:
+		var mArm NfsArgop4_OP_TEST_STATEID
+		{
+			m := &mArm
+			{
+				m := &m.OptestStateid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 56:
+		var mArm NfsArgop4_OP_WANT_DELEGATION
+		{
+			m := &mArm
+			{
+				m := &m.OpwantDelegation
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 57:
+		var mArm NfsArgop4_OP_DESTROY_CLIENTID
+		{
+			m := &mArm
+			{
+				m := &m.OpdestroyClientid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 58:
+		var mArm NfsArgop4_OP_RECLAIM_COMPLETE
+		{
+			m := &mArm
+			{
+				m := &m.OpreclaimComplete
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 59:
+		var mArm NfsArgop4_OP_ALLOCATE
+		{
+			m := &mArm
+			{
+				m := &m.Opallocate
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 60:
+		var mArm NfsArgop4_OP_COPY
+		{
+			m := &mArm
+			{
+				m := &m.Opcopy
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 61:
+		var mArm NfsArgop4_OP_COPY_NOTIFY
+		{
+			m := &mArm
+			{
+				m := &m.OpoffloadNotify
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 62:
+		var mArm NfsArgop4_OP_DEALLOCATE
+		{
+			m := &mArm
+			{
+				m := &m.Opdeallocate
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 63:
+		var mArm NfsArgop4_OP_IO_ADVISE
+		{
+			m := &mArm
+			{
+				m := &m.OpioAdvise
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 64:
+		var mArm NfsArgop4_OP_LAYOUTERROR
+		{
+			m := &mArm
+			{
+				m := &m.Oplayouterror
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 65:
+		var mArm NfsArgop4_OP_LAYOUTSTATS
+		{
+			m := &mArm
+			{
+				m := &m.Oplayoutstats
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 66:
+		var mArm NfsArgop4_OP_OFFLOAD_CANCEL
+		{
+			m := &mArm
+			{
+				m := &m.OpoffloadCancel
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 67:
+		var mArm NfsArgop4_OP_OFFLOAD_STATUS
+		{
+			m := &mArm
+			{
+				m := &m.OpoffloadStatus
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 68:
+		var mArm NfsArgop4_OP_READ_PLUS
+		{
+			m := &mArm
+			{
+				m := &m.OpreadPlus
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 69:
+		var mArm NfsArgop4_OP_SEEK
+		{
+			m := &mArm
+			{
+				m := &m.Opseek
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 70:
+		var mArm NfsArgop4_OP_WRITE_SAME
+		{
+			m := &mArm
+			{
+				m := &m.OpwriteSame
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 71:
+		var mArm NfsArgop4_OP_CLONE
+		{
+			m := &mArm
+			{
+				m := &m.Opclone
 				nField, err = m.ReadFrom(r)
 				nTotal += nField
 				if err != nil {
@@ -16179,6 +34301,1270 @@ func (m *NfsArgop4_OP_RELEASE_LOCKOWNER) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
+type NfsArgop4_OP_BACKCHANNEL_CTL struct {
+	OpbackchannelCtl BackchannelCtl4args
+}
+
+func (m *NfsArgop4_OP_BACKCHANNEL_CTL) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_BACKCHANNEL_CTL) GetArgop() NfsOpnum4 {
+	return 40
+}
+
+func (m *NfsArgop4_OP_BACKCHANNEL_CTL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 40
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpbackchannelCtl
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_BACKCHANNEL_CTL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpbackchannelCtl
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_BIND_CONN_TO_SESSION struct {
+	OpbindConnToSession BindConnToSession4args
+}
+
+func (m *NfsArgop4_OP_BIND_CONN_TO_SESSION) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_BIND_CONN_TO_SESSION) GetArgop() NfsOpnum4 {
+	return 41
+}
+
+func (m *NfsArgop4_OP_BIND_CONN_TO_SESSION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 41
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpbindConnToSession
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_BIND_CONN_TO_SESSION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 24
+	return
+}
+
+type NfsArgop4_OP_EXCHANGE_ID struct {
+	OpexchangeId ExchangeId4args
+}
+
+func (m *NfsArgop4_OP_EXCHANGE_ID) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_EXCHANGE_ID) GetArgop() NfsOpnum4 {
+	return 42
+}
+
+func (m *NfsArgop4_OP_EXCHANGE_ID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 42
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpexchangeId
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_EXCHANGE_ID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpexchangeId
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_CREATE_SESSION struct {
+	OpcreateSession CreateSession4args
+}
+
+func (m *NfsArgop4_OP_CREATE_SESSION) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_CREATE_SESSION) GetArgop() NfsOpnum4 {
+	return 43
+}
+
+func (m *NfsArgop4_OP_CREATE_SESSION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 43
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcreateSession
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_CREATE_SESSION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpcreateSession
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_DESTROY_SESSION struct {
+	OpdestroySession DestroySession4args
+}
+
+func (m *NfsArgop4_OP_DESTROY_SESSION) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_DESTROY_SESSION) GetArgop() NfsOpnum4 {
+	return 44
+}
+
+func (m *NfsArgop4_OP_DESTROY_SESSION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 44
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpdestroySession
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_DESTROY_SESSION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 16
+	return
+}
+
+type NfsArgop4_OP_FREE_STATEID struct {
+	OpfreeStateid FreeStateid4args
+}
+
+func (m *NfsArgop4_OP_FREE_STATEID) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_FREE_STATEID) GetArgop() NfsOpnum4 {
+	return 45
+}
+
+func (m *NfsArgop4_OP_FREE_STATEID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 45
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpfreeStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_FREE_STATEID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 16
+	return
+}
+
+type NfsArgop4_OP_GET_DIR_DELEGATION struct {
+	OpgetDirDelegation GetDirDelegation4args
+}
+
+func (m *NfsArgop4_OP_GET_DIR_DELEGATION) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_GET_DIR_DELEGATION) GetArgop() NfsOpnum4 {
+	return 46
+}
+
+func (m *NfsArgop4_OP_GET_DIR_DELEGATION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 46
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpgetDirDelegation
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_GET_DIR_DELEGATION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpgetDirDelegation
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_GETDEVICEINFO struct {
+	Opgetdeviceinfo Getdeviceinfo4args
+}
+
+func (m *NfsArgop4_OP_GETDEVICEINFO) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_GETDEVICEINFO) GetArgop() NfsOpnum4 {
+	return 47
+}
+
+func (m *NfsArgop4_OP_GETDEVICEINFO) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 47
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opgetdeviceinfo
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_GETDEVICEINFO) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Opgetdeviceinfo
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_GETDEVICELIST struct {
+	Opgetdevicelist Getdevicelist4args
+}
+
+func (m *NfsArgop4_OP_GETDEVICELIST) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_GETDEVICELIST) GetArgop() NfsOpnum4 {
+	return 48
+}
+
+func (m *NfsArgop4_OP_GETDEVICELIST) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 48
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opgetdevicelist
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_GETDEVICELIST) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 24
+	return
+}
+
+type NfsArgop4_OP_LAYOUTCOMMIT struct {
+	Oplayoutcommit Layoutcommit4args
+}
+
+func (m *NfsArgop4_OP_LAYOUTCOMMIT) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_LAYOUTCOMMIT) GetArgop() NfsOpnum4 {
+	return 49
+}
+
+func (m *NfsArgop4_OP_LAYOUTCOMMIT) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 49
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Oplayoutcommit
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_LAYOUTCOMMIT) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Oplayoutcommit
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_LAYOUTGET struct {
+	Oplayoutget Layoutget4args
+}
+
+func (m *NfsArgop4_OP_LAYOUTGET) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_LAYOUTGET) GetArgop() NfsOpnum4 {
+	return 50
+}
+
+func (m *NfsArgop4_OP_LAYOUTGET) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 50
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Oplayoutget
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_LAYOUTGET) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 56
+	return
+}
+
+type NfsArgop4_OP_LAYOUTRETURN struct {
+	Oplayoutreturn Layoutreturn4args
+}
+
+func (m *NfsArgop4_OP_LAYOUTRETURN) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_LAYOUTRETURN) GetArgop() NfsOpnum4 {
+	return 51
+}
+
+func (m *NfsArgop4_OP_LAYOUTRETURN) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 51
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Oplayoutreturn
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_LAYOUTRETURN) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Oplayoutreturn
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_SECINFO_NO_NAME struct {
+	OpsecinfoNoName SecinfoStyle4
+}
+
+func (m *NfsArgop4_OP_SECINFO_NO_NAME) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_SECINFO_NO_NAME) GetArgop() NfsOpnum4 {
+	return 52
+}
+
+func (m *NfsArgop4_OP_SECINFO_NO_NAME) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 52
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpsecinfoNoName
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_SECINFO_NO_NAME) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsArgop4_OP_SEQUENCE struct {
+	Opsequence Sequence4args
+}
+
+func (m *NfsArgop4_OP_SEQUENCE) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_SEQUENCE) GetArgop() NfsOpnum4 {
+	return 53
+}
+
+func (m *NfsArgop4_OP_SEQUENCE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 53
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opsequence
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_SEQUENCE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 32
+	return
+}
+
+type NfsArgop4_OP_SET_SSV struct {
+	OpsetSsv SetSsv4args
+}
+
+func (m *NfsArgop4_OP_SET_SSV) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_SET_SSV) GetArgop() NfsOpnum4 {
+	return 54
+}
+
+func (m *NfsArgop4_OP_SET_SSV) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 54
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpsetSsv
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_SET_SSV) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpsetSsv
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_TEST_STATEID struct {
+	OptestStateid TestStateid4args
+}
+
+func (m *NfsArgop4_OP_TEST_STATEID) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_TEST_STATEID) GetArgop() NfsOpnum4 {
+	return 55
+}
+
+func (m *NfsArgop4_OP_TEST_STATEID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 55
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OptestStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_TEST_STATEID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OptestStateid
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_WANT_DELEGATION struct {
+	OpwantDelegation WantDelegation4args
+}
+
+func (m *NfsArgop4_OP_WANT_DELEGATION) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_WANT_DELEGATION) GetArgop() NfsOpnum4 {
+	return 56
+}
+
+func (m *NfsArgop4_OP_WANT_DELEGATION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 56
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpwantDelegation
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_WANT_DELEGATION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpwantDelegation
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_DESTROY_CLIENTID struct {
+	OpdestroyClientid DestroyClientid4args
+}
+
+func (m *NfsArgop4_OP_DESTROY_CLIENTID) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_DESTROY_CLIENTID) GetArgop() NfsOpnum4 {
+	return 57
+}
+
+func (m *NfsArgop4_OP_DESTROY_CLIENTID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 57
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpdestroyClientid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_DESTROY_CLIENTID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 8
+	return
+}
+
+type NfsArgop4_OP_RECLAIM_COMPLETE struct {
+	OpreclaimComplete ReclaimComplete4args
+}
+
+func (m *NfsArgop4_OP_RECLAIM_COMPLETE) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_RECLAIM_COMPLETE) GetArgop() NfsOpnum4 {
+	return 58
+}
+
+func (m *NfsArgop4_OP_RECLAIM_COMPLETE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 58
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpreclaimComplete
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_RECLAIM_COMPLETE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsArgop4_OP_ALLOCATE struct {
+	Opallocate Allocate4args
+}
+
+func (m *NfsArgop4_OP_ALLOCATE) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_ALLOCATE) GetArgop() NfsOpnum4 {
+	return 59
+}
+
+func (m *NfsArgop4_OP_ALLOCATE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 59
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opallocate
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_ALLOCATE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 32
+	return
+}
+
+type NfsArgop4_OP_COPY struct {
+	Opcopy Copy4args
+}
+
+func (m *NfsArgop4_OP_COPY) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_COPY) GetArgop() NfsOpnum4 {
+	return 60
+}
+
+func (m *NfsArgop4_OP_COPY) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 60
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opcopy
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_COPY) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Opcopy
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_COPY_NOTIFY struct {
+	OpoffloadNotify CopyNotify4args
+}
+
+func (m *NfsArgop4_OP_COPY_NOTIFY) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_COPY_NOTIFY) GetArgop() NfsOpnum4 {
+	return 61
+}
+
+func (m *NfsArgop4_OP_COPY_NOTIFY) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 61
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpoffloadNotify
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_COPY_NOTIFY) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpoffloadNotify
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_DEALLOCATE struct {
+	Opdeallocate Deallocate4args
+}
+
+func (m *NfsArgop4_OP_DEALLOCATE) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_DEALLOCATE) GetArgop() NfsOpnum4 {
+	return 62
+}
+
+func (m *NfsArgop4_OP_DEALLOCATE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 62
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opdeallocate
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_DEALLOCATE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 32
+	return
+}
+
+type NfsArgop4_OP_IO_ADVISE struct {
+	OpioAdvise IoAdvise4args
+}
+
+func (m *NfsArgop4_OP_IO_ADVISE) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_IO_ADVISE) GetArgop() NfsOpnum4 {
+	return 63
+}
+
+func (m *NfsArgop4_OP_IO_ADVISE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 63
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpioAdvise
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_IO_ADVISE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpioAdvise
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_LAYOUTERROR struct {
+	Oplayouterror Layouterror4args
+}
+
+func (m *NfsArgop4_OP_LAYOUTERROR) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_LAYOUTERROR) GetArgop() NfsOpnum4 {
+	return 64
+}
+
+func (m *NfsArgop4_OP_LAYOUTERROR) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 64
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Oplayouterror
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_LAYOUTERROR) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Oplayouterror
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_LAYOUTSTATS struct {
+	Oplayoutstats Layoutstats4args
+}
+
+func (m *NfsArgop4_OP_LAYOUTSTATS) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_LAYOUTSTATS) GetArgop() NfsOpnum4 {
+	return 65
+}
+
+func (m *NfsArgop4_OP_LAYOUTSTATS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 65
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Oplayoutstats
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_LAYOUTSTATS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Oplayoutstats
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_OFFLOAD_CANCEL struct {
+	OpoffloadCancel OffloadCancel4args
+}
+
+func (m *NfsArgop4_OP_OFFLOAD_CANCEL) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_OFFLOAD_CANCEL) GetArgop() NfsOpnum4 {
+	return 66
+}
+
+func (m *NfsArgop4_OP_OFFLOAD_CANCEL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 66
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpoffloadCancel
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_OFFLOAD_CANCEL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 16
+	return
+}
+
+type NfsArgop4_OP_OFFLOAD_STATUS struct {
+	OpoffloadStatus OffloadStatus4args
+}
+
+func (m *NfsArgop4_OP_OFFLOAD_STATUS) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_OFFLOAD_STATUS) GetArgop() NfsOpnum4 {
+	return 67
+}
+
+func (m *NfsArgop4_OP_OFFLOAD_STATUS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 67
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpoffloadStatus
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_OFFLOAD_STATUS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 16
+	return
+}
+
+type NfsArgop4_OP_READ_PLUS struct {
+	OpreadPlus ReadPlus4args
+}
+
+func (m *NfsArgop4_OP_READ_PLUS) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_READ_PLUS) GetArgop() NfsOpnum4 {
+	return 68
+}
+
+func (m *NfsArgop4_OP_READ_PLUS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 68
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpreadPlus
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_READ_PLUS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 28
+	return
+}
+
+type NfsArgop4_OP_SEEK struct {
+	Opseek Seek4args
+}
+
+func (m *NfsArgop4_OP_SEEK) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_SEEK) GetArgop() NfsOpnum4 {
+	return 69
+}
+
+func (m *NfsArgop4_OP_SEEK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 69
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opseek
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_SEEK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 28
+	return
+}
+
+type NfsArgop4_OP_WRITE_SAME struct {
+	OpwriteSame WriteSame4args
+}
+
+func (m *NfsArgop4_OP_WRITE_SAME) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_WRITE_SAME) GetArgop() NfsOpnum4 {
+	return 70
+}
+
+func (m *NfsArgop4_OP_WRITE_SAME) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 70
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpwriteSame
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_WRITE_SAME) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpwriteSame
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsArgop4_OP_CLONE struct {
+	Opclone Clone4args
+}
+
+func (m *NfsArgop4_OP_CLONE) isNfsArgop4() {}
+
+func (m *NfsArgop4_OP_CLONE) GetArgop() NfsOpnum4 {
+	return 71
+}
+
+func (m *NfsArgop4_OP_CLONE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 71
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opclone
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsArgop4_OP_CLONE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 56
+	return
+}
+
 type NfsArgop4_OP_ILLEGAL struct{}
 
 func (m *NfsArgop4_OP_ILLEGAL) isNfsArgop4() {}
@@ -16780,6 +36166,496 @@ func ReadNfsResop4(r io.Reader) (m NfsResop4, nTotal int64, err error) {
 			m := &mArm
 			{
 				m := &m.OpreleaseLockowner
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 40:
+		var mArm NfsResop4_OP_BACKCHANNEL_CTL
+		{
+			m := &mArm
+			{
+				m := &m.OpbackchannelCtl
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 41:
+		var mArm NfsResop4_OP_BIND_CONN_TO_SESSION
+		{
+			m := &mArm
+			{
+				mSave := &m.OpbindConnToSession
+				var m BindConnToSession4res
+				m, nField, err = ReadBindConnToSession4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 42:
+		var mArm NfsResop4_OP_EXCHANGE_ID
+		{
+			m := &mArm
+			{
+				mSave := &m.OpexchangeId
+				var m ExchangeId4res
+				m, nField, err = ReadExchangeId4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 43:
+		var mArm NfsResop4_OP_CREATE_SESSION
+		{
+			m := &mArm
+			{
+				mSave := &m.OpcreateSession
+				var m CreateSession4res
+				m, nField, err = ReadCreateSession4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 44:
+		var mArm NfsResop4_OP_DESTROY_SESSION
+		{
+			m := &mArm
+			{
+				m := &m.OpdestroySession
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 45:
+		var mArm NfsResop4_OP_FREE_STATEID
+		{
+			m := &mArm
+			{
+				m := &m.OpfreeStateid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 46:
+		var mArm NfsResop4_OP_GET_DIR_DELEGATION
+		{
+			m := &mArm
+			{
+				mSave := &m.OpgetDirDelegation
+				var m GetDirDelegation4res
+				m, nField, err = ReadGetDirDelegation4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 47:
+		var mArm NfsResop4_OP_GETDEVICEINFO
+		{
+			m := &mArm
+			{
+				mSave := &m.Opgetdeviceinfo
+				var m Getdeviceinfo4res
+				m, nField, err = ReadGetdeviceinfo4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 48:
+		var mArm NfsResop4_OP_GETDEVICELIST
+		{
+			m := &mArm
+			{
+				mSave := &m.Opgetdevicelist
+				var m Getdevicelist4res
+				m, nField, err = ReadGetdevicelist4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 49:
+		var mArm NfsResop4_OP_LAYOUTCOMMIT
+		{
+			m := &mArm
+			{
+				mSave := &m.Oplayoutcommit
+				var m Layoutcommit4res
+				m, nField, err = ReadLayoutcommit4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 50:
+		var mArm NfsResop4_OP_LAYOUTGET
+		{
+			m := &mArm
+			{
+				mSave := &m.Oplayoutget
+				var m Layoutget4res
+				m, nField, err = ReadLayoutget4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 51:
+		var mArm NfsResop4_OP_LAYOUTRETURN
+		{
+			m := &mArm
+			{
+				mSave := &m.Oplayoutreturn
+				var m Layoutreturn4res
+				m, nField, err = ReadLayoutreturn4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 52:
+		var mArm NfsResop4_OP_SECINFO_NO_NAME
+		{
+			m := &mArm
+			{
+				mSave := &m.OpsecinfoNoName
+				var m Secinfo4res
+				m, nField, err = ReadSecinfo4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 53:
+		var mArm NfsResop4_OP_SEQUENCE
+		{
+			m := &mArm
+			{
+				mSave := &m.Opsequence
+				var m Sequence4res
+				m, nField, err = ReadSequence4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 54:
+		var mArm NfsResop4_OP_SET_SSV
+		{
+			m := &mArm
+			{
+				mSave := &m.OpsetSsv
+				var m SetSsv4res
+				m, nField, err = ReadSetSsv4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 55:
+		var mArm NfsResop4_OP_TEST_STATEID
+		{
+			m := &mArm
+			{
+				mSave := &m.OptestStateid
+				var m TestStateid4res
+				m, nField, err = ReadTestStateid4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 56:
+		var mArm NfsResop4_OP_WANT_DELEGATION
+		{
+			m := &mArm
+			{
+				mSave := &m.OpwantDelegation
+				var m WantDelegation4res
+				m, nField, err = ReadWantDelegation4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 57:
+		var mArm NfsResop4_OP_DESTROY_CLIENTID
+		{
+			m := &mArm
+			{
+				m := &m.OpdestroyClientid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 58:
+		var mArm NfsResop4_OP_RECLAIM_COMPLETE
+		{
+			m := &mArm
+			{
+				m := &m.OpreclaimComplete
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 59:
+		var mArm NfsResop4_OP_ALLOCATE
+		{
+			m := &mArm
+			{
+				m := &m.Opallocate
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 60:
+		var mArm NfsResop4_OP_COPY
+		{
+			m := &mArm
+			{
+				mSave := &m.Opcopy
+				var m Copy4res
+				m, nField, err = ReadCopy4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 61:
+		var mArm NfsResop4_OP_COPY_NOTIFY
+		{
+			m := &mArm
+			{
+				mSave := &m.OpcopyNotify
+				var m CopyNotify4res
+				m, nField, err = ReadCopyNotify4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 62:
+		var mArm NfsResop4_OP_DEALLOCATE
+		{
+			m := &mArm
+			{
+				m := &m.Opdeallocate
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 63:
+		var mArm NfsResop4_OP_IO_ADVISE
+		{
+			m := &mArm
+			{
+				mSave := &m.OpioAdvise
+				var m IoAdvise4res
+				m, nField, err = ReadIoAdvise4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 64:
+		var mArm NfsResop4_OP_LAYOUTERROR
+		{
+			m := &mArm
+			{
+				m := &m.Oplayouterror
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 65:
+		var mArm NfsResop4_OP_LAYOUTSTATS
+		{
+			m := &mArm
+			{
+				m := &m.Oplayoutstats
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 66:
+		var mArm NfsResop4_OP_OFFLOAD_CANCEL
+		{
+			m := &mArm
+			{
+				m := &m.OpoffloadCancel
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 67:
+		var mArm NfsResop4_OP_OFFLOAD_STATUS
+		{
+			m := &mArm
+			{
+				mSave := &m.OpoffloadStatus
+				var m OffloadStatus4res
+				m, nField, err = ReadOffloadStatus4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 68:
+		var mArm NfsResop4_OP_READ_PLUS
+		{
+			m := &mArm
+			{
+				mSave := &m.OpreadPlus
+				var m ReadPlus4res
+				m, nField, err = ReadReadPlus4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 69:
+		var mArm NfsResop4_OP_SEEK
+		{
+			m := &mArm
+			{
+				mSave := &m.Opseek
+				var m Seek4res
+				m, nField, err = ReadSeek4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 70:
+		var mArm NfsResop4_OP_WRITE_SAME
+		{
+			m := &mArm
+			{
+				mSave := &m.OpwriteSame
+				var m WriteSame4res
+				m, nField, err = ReadWriteSame4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 71:
+		var mArm NfsResop4_OP_CLONE
+		{
+			m := &mArm
+			{
+				m := &m.Opclone
 				nField, err = m.ReadFrom(r)
 				nTotal += nField
 				if err != nil {
@@ -18306,6 +38182,1285 @@ func (m *NfsResop4_OP_RELEASE_LOCKOWNER) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
+type NfsResop4_OP_BACKCHANNEL_CTL struct {
+	OpbackchannelCtl BackchannelCtl4res
+}
+
+func (m *NfsResop4_OP_BACKCHANNEL_CTL) isNfsResop4() {}
+
+func (m *NfsResop4_OP_BACKCHANNEL_CTL) GetResop() NfsOpnum4 {
+	return 40
+}
+
+func (m *NfsResop4_OP_BACKCHANNEL_CTL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 40
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpbackchannelCtl
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_BACKCHANNEL_CTL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_BIND_CONN_TO_SESSION struct {
+	OpbindConnToSession BindConnToSession4res
+}
+
+func (m *NfsResop4_OP_BIND_CONN_TO_SESSION) isNfsResop4() {}
+
+func (m *NfsResop4_OP_BIND_CONN_TO_SESSION) GetResop() NfsOpnum4 {
+	return 41
+}
+
+func (m *NfsResop4_OP_BIND_CONN_TO_SESSION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 41
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpbindConnToSession
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_BIND_CONN_TO_SESSION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpbindConnToSession
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_EXCHANGE_ID struct {
+	OpexchangeId ExchangeId4res
+}
+
+func (m *NfsResop4_OP_EXCHANGE_ID) isNfsResop4() {}
+
+func (m *NfsResop4_OP_EXCHANGE_ID) GetResop() NfsOpnum4 {
+	return 42
+}
+
+func (m *NfsResop4_OP_EXCHANGE_ID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 42
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpexchangeId
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_EXCHANGE_ID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpexchangeId
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_CREATE_SESSION struct {
+	OpcreateSession CreateSession4res
+}
+
+func (m *NfsResop4_OP_CREATE_SESSION) isNfsResop4() {}
+
+func (m *NfsResop4_OP_CREATE_SESSION) GetResop() NfsOpnum4 {
+	return 43
+}
+
+func (m *NfsResop4_OP_CREATE_SESSION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 43
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpcreateSession
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_CREATE_SESSION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpcreateSession
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_DESTROY_SESSION struct {
+	OpdestroySession DestroySession4res
+}
+
+func (m *NfsResop4_OP_DESTROY_SESSION) isNfsResop4() {}
+
+func (m *NfsResop4_OP_DESTROY_SESSION) GetResop() NfsOpnum4 {
+	return 44
+}
+
+func (m *NfsResop4_OP_DESTROY_SESSION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 44
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpdestroySession
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_DESTROY_SESSION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_FREE_STATEID struct {
+	OpfreeStateid FreeStateid4res
+}
+
+func (m *NfsResop4_OP_FREE_STATEID) isNfsResop4() {}
+
+func (m *NfsResop4_OP_FREE_STATEID) GetResop() NfsOpnum4 {
+	return 45
+}
+
+func (m *NfsResop4_OP_FREE_STATEID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 45
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpfreeStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_FREE_STATEID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_GET_DIR_DELEGATION struct {
+	OpgetDirDelegation GetDirDelegation4res
+}
+
+func (m *NfsResop4_OP_GET_DIR_DELEGATION) isNfsResop4() {}
+
+func (m *NfsResop4_OP_GET_DIR_DELEGATION) GetResop() NfsOpnum4 {
+	return 46
+}
+
+func (m *NfsResop4_OP_GET_DIR_DELEGATION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 46
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpgetDirDelegation
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_GET_DIR_DELEGATION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpgetDirDelegation
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_GETDEVICEINFO struct {
+	Opgetdeviceinfo Getdeviceinfo4res
+}
+
+func (m *NfsResop4_OP_GETDEVICEINFO) isNfsResop4() {}
+
+func (m *NfsResop4_OP_GETDEVICEINFO) GetResop() NfsOpnum4 {
+	return 47
+}
+
+func (m *NfsResop4_OP_GETDEVICEINFO) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 47
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Opgetdeviceinfo
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_GETDEVICEINFO) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Opgetdeviceinfo
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_GETDEVICELIST struct {
+	Opgetdevicelist Getdevicelist4res
+}
+
+func (m *NfsResop4_OP_GETDEVICELIST) isNfsResop4() {}
+
+func (m *NfsResop4_OP_GETDEVICELIST) GetResop() NfsOpnum4 {
+	return 48
+}
+
+func (m *NfsResop4_OP_GETDEVICELIST) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 48
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Opgetdevicelist
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_GETDEVICELIST) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Opgetdevicelist
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_LAYOUTCOMMIT struct {
+	Oplayoutcommit Layoutcommit4res
+}
+
+func (m *NfsResop4_OP_LAYOUTCOMMIT) isNfsResop4() {}
+
+func (m *NfsResop4_OP_LAYOUTCOMMIT) GetResop() NfsOpnum4 {
+	return 49
+}
+
+func (m *NfsResop4_OP_LAYOUTCOMMIT) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 49
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Oplayoutcommit
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_LAYOUTCOMMIT) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Oplayoutcommit
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_LAYOUTGET struct {
+	Oplayoutget Layoutget4res
+}
+
+func (m *NfsResop4_OP_LAYOUTGET) isNfsResop4() {}
+
+func (m *NfsResop4_OP_LAYOUTGET) GetResop() NfsOpnum4 {
+	return 50
+}
+
+func (m *NfsResop4_OP_LAYOUTGET) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 50
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Oplayoutget
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_LAYOUTGET) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Oplayoutget
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_LAYOUTRETURN struct {
+	Oplayoutreturn Layoutreturn4res
+}
+
+func (m *NfsResop4_OP_LAYOUTRETURN) isNfsResop4() {}
+
+func (m *NfsResop4_OP_LAYOUTRETURN) GetResop() NfsOpnum4 {
+	return 51
+}
+
+func (m *NfsResop4_OP_LAYOUTRETURN) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 51
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Oplayoutreturn
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_LAYOUTRETURN) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Oplayoutreturn
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_SECINFO_NO_NAME struct {
+	OpsecinfoNoName Secinfo4res
+}
+
+func (m *NfsResop4_OP_SECINFO_NO_NAME) isNfsResop4() {}
+
+func (m *NfsResop4_OP_SECINFO_NO_NAME) GetResop() NfsOpnum4 {
+	return 52
+}
+
+func (m *NfsResop4_OP_SECINFO_NO_NAME) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 52
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpsecinfoNoName
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_SECINFO_NO_NAME) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpsecinfoNoName
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_SEQUENCE struct {
+	Opsequence Sequence4res
+}
+
+func (m *NfsResop4_OP_SEQUENCE) isNfsResop4() {}
+
+func (m *NfsResop4_OP_SEQUENCE) GetResop() NfsOpnum4 {
+	return 53
+}
+
+func (m *NfsResop4_OP_SEQUENCE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 53
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Opsequence
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_SEQUENCE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Opsequence
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_SET_SSV struct {
+	OpsetSsv SetSsv4res
+}
+
+func (m *NfsResop4_OP_SET_SSV) isNfsResop4() {}
+
+func (m *NfsResop4_OP_SET_SSV) GetResop() NfsOpnum4 {
+	return 54
+}
+
+func (m *NfsResop4_OP_SET_SSV) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 54
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpsetSsv
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_SET_SSV) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpsetSsv
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_TEST_STATEID struct {
+	OptestStateid TestStateid4res
+}
+
+func (m *NfsResop4_OP_TEST_STATEID) isNfsResop4() {}
+
+func (m *NfsResop4_OP_TEST_STATEID) GetResop() NfsOpnum4 {
+	return 55
+}
+
+func (m *NfsResop4_OP_TEST_STATEID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 55
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OptestStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_TEST_STATEID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OptestStateid
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_WANT_DELEGATION struct {
+	OpwantDelegation WantDelegation4res
+}
+
+func (m *NfsResop4_OP_WANT_DELEGATION) isNfsResop4() {}
+
+func (m *NfsResop4_OP_WANT_DELEGATION) GetResop() NfsOpnum4 {
+	return 56
+}
+
+func (m *NfsResop4_OP_WANT_DELEGATION) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 56
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpwantDelegation
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_WANT_DELEGATION) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpwantDelegation
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_DESTROY_CLIENTID struct {
+	OpdestroyClientid DestroyClientid4res
+}
+
+func (m *NfsResop4_OP_DESTROY_CLIENTID) isNfsResop4() {}
+
+func (m *NfsResop4_OP_DESTROY_CLIENTID) GetResop() NfsOpnum4 {
+	return 57
+}
+
+func (m *NfsResop4_OP_DESTROY_CLIENTID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 57
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpdestroyClientid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_DESTROY_CLIENTID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_RECLAIM_COMPLETE struct {
+	OpreclaimComplete ReclaimComplete4res
+}
+
+func (m *NfsResop4_OP_RECLAIM_COMPLETE) isNfsResop4() {}
+
+func (m *NfsResop4_OP_RECLAIM_COMPLETE) GetResop() NfsOpnum4 {
+	return 58
+}
+
+func (m *NfsResop4_OP_RECLAIM_COMPLETE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 58
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpreclaimComplete
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_RECLAIM_COMPLETE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_ALLOCATE struct {
+	Opallocate Allocate4res
+}
+
+func (m *NfsResop4_OP_ALLOCATE) isNfsResop4() {}
+
+func (m *NfsResop4_OP_ALLOCATE) GetResop() NfsOpnum4 {
+	return 59
+}
+
+func (m *NfsResop4_OP_ALLOCATE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 59
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opallocate
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_ALLOCATE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_COPY struct {
+	Opcopy Copy4res
+}
+
+func (m *NfsResop4_OP_COPY) isNfsResop4() {}
+
+func (m *NfsResop4_OP_COPY) GetResop() NfsOpnum4 {
+	return 60
+}
+
+func (m *NfsResop4_OP_COPY) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 60
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Opcopy
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_COPY) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Opcopy
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_COPY_NOTIFY struct {
+	OpcopyNotify CopyNotify4res
+}
+
+func (m *NfsResop4_OP_COPY_NOTIFY) isNfsResop4() {}
+
+func (m *NfsResop4_OP_COPY_NOTIFY) GetResop() NfsOpnum4 {
+	return 61
+}
+
+func (m *NfsResop4_OP_COPY_NOTIFY) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 61
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpcopyNotify
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_COPY_NOTIFY) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpcopyNotify
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_DEALLOCATE struct {
+	Opdeallocate Deallocate4res
+}
+
+func (m *NfsResop4_OP_DEALLOCATE) isNfsResop4() {}
+
+func (m *NfsResop4_OP_DEALLOCATE) GetResop() NfsOpnum4 {
+	return 62
+}
+
+func (m *NfsResop4_OP_DEALLOCATE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 62
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opdeallocate
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_DEALLOCATE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_IO_ADVISE struct {
+	OpioAdvise IoAdvise4res
+}
+
+func (m *NfsResop4_OP_IO_ADVISE) isNfsResop4() {}
+
+func (m *NfsResop4_OP_IO_ADVISE) GetResop() NfsOpnum4 {
+	return 63
+}
+
+func (m *NfsResop4_OP_IO_ADVISE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 63
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpioAdvise
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_IO_ADVISE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpioAdvise
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_LAYOUTERROR struct {
+	Oplayouterror Layouterror4res
+}
+
+func (m *NfsResop4_OP_LAYOUTERROR) isNfsResop4() {}
+
+func (m *NfsResop4_OP_LAYOUTERROR) GetResop() NfsOpnum4 {
+	return 64
+}
+
+func (m *NfsResop4_OP_LAYOUTERROR) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 64
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Oplayouterror
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_LAYOUTERROR) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_LAYOUTSTATS struct {
+	Oplayoutstats Layoutstats4res
+}
+
+func (m *NfsResop4_OP_LAYOUTSTATS) isNfsResop4() {}
+
+func (m *NfsResop4_OP_LAYOUTSTATS) GetResop() NfsOpnum4 {
+	return 65
+}
+
+func (m *NfsResop4_OP_LAYOUTSTATS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 65
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Oplayoutstats
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_LAYOUTSTATS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_OFFLOAD_CANCEL struct {
+	OpoffloadCancel OffloadCancel4res
+}
+
+func (m *NfsResop4_OP_OFFLOAD_CANCEL) isNfsResop4() {}
+
+func (m *NfsResop4_OP_OFFLOAD_CANCEL) GetResop() NfsOpnum4 {
+	return 66
+}
+
+func (m *NfsResop4_OP_OFFLOAD_CANCEL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 66
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpoffloadCancel
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_OFFLOAD_CANCEL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsResop4_OP_OFFLOAD_STATUS struct {
+	OpoffloadStatus OffloadStatus4res
+}
+
+func (m *NfsResop4_OP_OFFLOAD_STATUS) isNfsResop4() {}
+
+func (m *NfsResop4_OP_OFFLOAD_STATUS) GetResop() NfsOpnum4 {
+	return 67
+}
+
+func (m *NfsResop4_OP_OFFLOAD_STATUS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 67
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpoffloadStatus
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_OFFLOAD_STATUS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpoffloadStatus
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_READ_PLUS struct {
+	OpreadPlus ReadPlus4res
+}
+
+func (m *NfsResop4_OP_READ_PLUS) isNfsResop4() {}
+
+func (m *NfsResop4_OP_READ_PLUS) GetResop() NfsOpnum4 {
+	return 68
+}
+
+func (m *NfsResop4_OP_READ_PLUS) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 68
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpreadPlus
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_READ_PLUS) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpreadPlus
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_SEEK struct {
+	Opseek Seek4res
+}
+
+func (m *NfsResop4_OP_SEEK) isNfsResop4() {}
+
+func (m *NfsResop4_OP_SEEK) GetResop() NfsOpnum4 {
+	return 69
+}
+
+func (m *NfsResop4_OP_SEEK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 69
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Opseek
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_SEEK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Opseek
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_WRITE_SAME struct {
+	OpwriteSame WriteSame4res
+}
+
+func (m *NfsResop4_OP_WRITE_SAME) isNfsResop4() {}
+
+func (m *NfsResop4_OP_WRITE_SAME) GetResop() NfsOpnum4 {
+	return 70
+}
+
+func (m *NfsResop4_OP_WRITE_SAME) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 70
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.OpwriteSame
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_WRITE_SAME) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.OpwriteSame
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsResop4_OP_CLONE struct {
+	Opclone Clone4res
+}
+
+func (m *NfsResop4_OP_CLONE) isNfsResop4() {}
+
+func (m *NfsResop4_OP_CLONE) GetResop() NfsOpnum4 {
+	return 71
+}
+
+func (m *NfsResop4_OP_CLONE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsOpnum4 = 71
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opclone
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsResop4_OP_CLONE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
 type NfsResop4_OP_ILLEGAL struct {
 	Opillegal Illegal4res
 }
@@ -19080,6 +40235,3105 @@ done:
 
 const CbIllegal4resEncodedSizeBytes = 4
 
+// Type definition "layoutrecall_type4".
+
+type LayoutrecallType4 int32
+
+func (mParent *LayoutrecallType4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m LayoutrecallType4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m LayoutrecallType4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const LayoutrecallType4EncodedSizeBytes = 4
+
+const LAYOUTRECALL4_ALL LayoutrecallType4 = 3
+
+const LAYOUTRECALL4_FILE LayoutrecallType4 = 1
+
+const LAYOUTRECALL4_FSID LayoutrecallType4 = 2
+
+var LayoutrecallType4_name = map[LayoutrecallType4]string{
+	3: "LAYOUTRECALL4_ALL",
+	1: "LAYOUTRECALL4_FILE",
+	2: "LAYOUTRECALL4_FSID",
+}
+
+// Type definition "layoutrecall_file4".
+
+type LayoutrecallFile4 struct {
+	LorFh      []byte
+	LorOffset  uint64
+	LorLength  uint64
+	LorStateid Stateid4
+}
+
+func (m *LayoutrecallFile4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.LorFh
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 128)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LorOffset
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.LorLength
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.LorStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *LayoutrecallFile4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.LorFh
+		nField, err = runtime.WriteVariableLengthOpaque(w, 128, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LorOffset
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.LorLength
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LorStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *LayoutrecallFile4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.LorFh
+		nTotal += (len(m) + 7) &^ 3
+	}
+	nTotal += 8
+	nTotal += 8
+	nTotal += 16
+	return
+}
+
+// Type definition "layoutrecall4".
+
+type Layoutrecall4 interface {
+	isLayoutrecall4()
+	GetLorRecalltype() LayoutrecallType4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadLayoutrecall4(r io.Reader) (m Layoutrecall4, nTotal int64, err error) {
+	var nField int64
+	var discriminant LayoutrecallType4
+	{
+		var m LayoutrecallType4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 1:
+		var mArm Layoutrecall4_LAYOUTRECALL4_FILE
+		{
+			m := &mArm
+			{
+				m := &m.LorLayout
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 2:
+		var mArm Layoutrecall4_LAYOUTRECALL4_FSID
+		{
+			m := &mArm
+			{
+				m := &m.LorFsid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 3:
+		var mArm Layoutrecall4_LAYOUTRECALL4_ALL
+		{
+			m := &mArm
+			_ = m
+		}
+		m = &mArm
+	default:
+		err = fmt.Errorf("discriminant layoutrecall4.lor_recalltype has unknown value %d", discriminant)
+		goto done
+	}
+done:
+	return
+}
+
+func readLayoutrecall4LorRecalltype(r io.Reader) (m LayoutrecallType4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeLayoutrecall4LorRecalltype(w io.Writer, m LayoutrecallType4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const layoutrecall4LorRecalltypeEncodedSizeBytes = 4
+
+type Layoutrecall4_LAYOUTRECALL4_FILE struct {
+	LorLayout LayoutrecallFile4
+}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_FILE) isLayoutrecall4() {}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_FILE) GetLorRecalltype() LayoutrecallType4 {
+	return 1
+}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_FILE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m LayoutrecallType4 = 1
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LorLayout
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_FILE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.LorLayout
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type Layoutrecall4_LAYOUTRECALL4_FSID struct {
+	LorFsid Fsid4
+}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_FSID) isLayoutrecall4() {}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_FSID) GetLorRecalltype() LayoutrecallType4 {
+	return 2
+}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_FSID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m LayoutrecallType4 = 2
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.LorFsid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_FSID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 16
+	return
+}
+
+type Layoutrecall4_LAYOUTRECALL4_ALL struct{}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_ALL) isLayoutrecall4() {}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_ALL) GetLorRecalltype() LayoutrecallType4 {
+	return 3
+}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_ALL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m LayoutrecallType4 = 3
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Layoutrecall4_LAYOUTRECALL4_ALL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "CB_LAYOUTRECALL4args".
+
+type CbLayoutrecall4args struct {
+	CloraType    Layouttype4
+	CloraIomode  Layoutiomode4
+	CloraChanged bool
+	CloraRecall  Layoutrecall4
+}
+
+func (m *CbLayoutrecall4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CloraType
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CloraIomode
+		var m Layoutiomode4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CloraChanged
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CloraRecall
+		var m Layoutrecall4
+		m, nField, err = ReadLayoutrecall4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbLayoutrecall4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CloraType
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CloraIomode
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CloraChanged
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CloraRecall
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CbLayoutrecall4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.CloraRecall
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "CB_LAYOUTRECALL4res".
+
+type CbLayoutrecall4res struct {
+	ClorrStatus Nfsstat4
+}
+
+func (m *CbLayoutrecall4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.ClorrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbLayoutrecall4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.ClorrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbLayoutrecall4resEncodedSizeBytes = 4
+
+// Type definition "notify_type4".
+
+type NotifyType4 int32
+
+func (mParent *NotifyType4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m NotifyType4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m NotifyType4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NotifyType4EncodedSizeBytes = 4
+
+const NOTIFY4_ADD_ENTRY NotifyType4 = 3
+
+const NOTIFY4_CHANGE_CHILD_ATTRS NotifyType4 = 0
+
+const NOTIFY4_CHANGE_COOKIE_VERIFIER NotifyType4 = 5
+
+const NOTIFY4_CHANGE_DIR_ATTRS NotifyType4 = 1
+
+const NOTIFY4_REMOVE_ENTRY NotifyType4 = 2
+
+const NOTIFY4_RENAME_ENTRY NotifyType4 = 4
+
+var NotifyType4_name = map[NotifyType4]string{
+	3: "NOTIFY4_ADD_ENTRY",
+	0: "NOTIFY4_CHANGE_CHILD_ATTRS",
+	5: "NOTIFY4_CHANGE_COOKIE_VERIFIER",
+	1: "NOTIFY4_CHANGE_DIR_ATTRS",
+	2: "NOTIFY4_REMOVE_ENTRY",
+	4: "NOTIFY4_RENAME_ENTRY",
+}
+
+// Type definition "notify_entry4".
+
+type NotifyEntry4 struct {
+	NeFile  string
+	NeAttrs Fattr4
+}
+
+func (m *NotifyEntry4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.NeFile
+		var m string
+		m, nField, err = runtime.ReadUTF8String(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.NeAttrs
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyEntry4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.NeFile
+		nField, err = runtime.WriteUTF8String(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NeAttrs
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyEntry4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.NeFile
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := &m.NeAttrs
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "prev_entry4".
+
+type PrevEntry4 struct {
+	PePrevEntry       NotifyEntry4
+	PePrevEntryCookie uint64
+}
+
+func (m *PrevEntry4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.PePrevEntry
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.PePrevEntryCookie
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *PrevEntry4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.PePrevEntry
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.PePrevEntryCookie
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *PrevEntry4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := &m.PePrevEntry
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	nTotal += 8
+	return
+}
+
+// Type definition "notify_remove4".
+
+type NotifyRemove4 struct {
+	NrmOldEntry       NotifyEntry4
+	NrmOldEntryCookie uint64
+}
+
+func (m *NotifyRemove4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NrmOldEntry
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.NrmOldEntryCookie
+		var m uint64
+		m, nField, err = runtime.ReadUnsignedHyper(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *NotifyRemove4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NrmOldEntry
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NrmOldEntryCookie
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyRemove4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := &m.NrmOldEntry
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	nTotal += 8
+	return
+}
+
+// Type definition "notify_add4".
+
+type NotifyAdd4 struct {
+	NadOldEntry       []NotifyRemove4
+	NadNewEntry       NotifyEntry4
+	NadNewEntryCookie []uint64
+	NadPrevEntry      []PrevEntry4
+	NadLastEntry      bool
+}
+
+func (m *NotifyAdd4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.NadOldEntry
+		var m []NotifyRemove4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds notify_add4.nad_old_entry's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, NotifyRemove4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+	{
+		m := &m.NadNewEntry
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.NadNewEntryCookie
+		var m []uint64
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds notify_add4.nad_new_entry_cookie's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint64
+			m, nField, err = runtime.ReadUnsignedHyper(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NadPrevEntry
+		var m []PrevEntry4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 1 {
+			err = fmt.Errorf("size of %d elements exceeds notify_add4.nad_prev_entry's maximum of 1 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, PrevEntry4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NadLastEntry
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *NotifyAdd4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.NadOldEntry
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds notify_add4.nad_old_entry's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := &m.NadNewEntry
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NadNewEntryCookie
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds notify_add4.nad_new_entry_cookie's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedHyper(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.NadPrevEntry
+		if uint(len(m)) > 1 {
+			err = fmt.Errorf("size of %d elements exceeds notify_add4.nad_prev_entry's maximum of 1 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.NadLastEntry
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyAdd4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.NadOldEntry
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	{
+		m := &m.NadNewEntry
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := m.NadNewEntryCookie
+		nTotal += 4 + 8*len(m)
+	}
+	{
+		m := m.NadPrevEntry
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	nTotal += 4
+	return
+}
+
+// Type definition "notify_attr4".
+
+type NotifyAttr4 struct {
+	NaChangedEntry NotifyEntry4
+}
+
+func (m *NotifyAttr4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NaChangedEntry
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyAttr4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NaChangedEntry
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyAttr4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := &m.NaChangedEntry
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "notify_rename4".
+
+type NotifyRename4 struct {
+	NrnOldEntry NotifyRemove4
+	NrnNewEntry NotifyAdd4
+}
+
+func (m *NotifyRename4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NrnOldEntry
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NrnNewEntry
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyRename4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NrnOldEntry
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NrnNewEntry
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyRename4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := &m.NrnOldEntry
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	{
+		m := &m.NrnNewEntry
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "notify_verifier4".
+
+type NotifyVerifier4 struct {
+	NvOldCookieverf [8]byte
+	NvNewCookieverf [8]byte
+}
+
+func (m *NotifyVerifier4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NvOldCookieverf
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NvNewCookieverf
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyVerifier4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.NvOldCookieverf
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NvNewCookieverf
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const NotifyVerifier4EncodedSizeBytes = 16
+
+// Type definition "notifylist4".
+
+type Notifylist4 = []byte
+
+func ReadNotifylist4(r io.Reader) (m []byte, nTotal int64, err error) {
+	var nField int64
+	m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteNotifylist4(w io.Writer, m []byte) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetNotifylist4EncodedSizeBytes(m []byte) (nTotal int) {
+	nTotal += (len(m) + 7) &^ 3
+	return
+}
+
+// Type definition "notify4".
+
+type Notify4 struct {
+	NotifyMask []uint32
+	NotifyVals []byte
+}
+
+func (m *Notify4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.NotifyMask
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.NotifyVals
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 4294967295)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *Notify4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.NotifyMask
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+	{
+		m := m.NotifyVals
+		nField, err = runtime.WriteVariableLengthOpaque(w, 4294967295, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *Notify4) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.NotifyMask
+		nTotal += 4 + 4*len(m)
+	}
+	{
+		m := m.NotifyVals
+		nTotal += (len(m) + 7) &^ 3
+	}
+	return
+}
+
+// Type definition "CB_NOTIFY4args".
+
+type CbNotify4args struct {
+	CnaStateid Stateid4
+	CnaFh      []byte
+	CnaChanges []Notify4
+}
+
+func (m *CbNotify4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CnaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CnaFh
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 128)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CnaChanges
+		var m []Notify4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds CB_NOTIFY4args.cna_changes's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, Notify4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbNotify4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CnaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CnaFh
+		nField, err = runtime.WriteVariableLengthOpaque(w, 128, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CnaChanges
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds CB_NOTIFY4args.cna_changes's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *CbNotify4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	{
+		m := m.CnaFh
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.CnaChanges
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "CB_NOTIFY4res".
+
+type CbNotify4res struct {
+	CnrStatus Nfsstat4
+}
+
+func (m *CbNotify4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CnrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbNotify4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CnrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbNotify4resEncodedSizeBytes = 4
+
+// Type definition "CB_PUSH_DELEG4args".
+
+type CbPushDeleg4args struct {
+	CpdaFh         []byte
+	CpdaDelegation OpenDelegation4
+}
+
+func (m *CbPushDeleg4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CpdaFh
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 128)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CpdaDelegation
+		var m OpenDelegation4
+		m, nField, err = ReadOpenDelegation4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbPushDeleg4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CpdaFh
+		nField, err = runtime.WriteVariableLengthOpaque(w, 128, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CpdaDelegation
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CbPushDeleg4args) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.CpdaFh
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := m.CpdaDelegation
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "CB_PUSH_DELEG4res".
+
+type CbPushDeleg4res struct {
+	CpdrStatus Nfsstat4
+}
+
+func (m *CbPushDeleg4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CpdrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbPushDeleg4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CpdrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbPushDeleg4resEncodedSizeBytes = 4
+
+const RCA4_TYPE_MASK_RDATA_DLG = 0
+
+const RCA4_TYPE_MASK_WDATA_DLG = 1
+
+const RCA4_TYPE_MASK_DIR_DLG = 2
+
+const RCA4_TYPE_MASK_FILE_LAYOUT = 3
+
+const RCA4_TYPE_MASK_BLK_LAYOUT = 4
+
+const RCA4_TYPE_MASK_OBJ_LAYOUT_MIN = 8
+
+const RCA4_TYPE_MASK_OBJ_LAYOUT_MAX = 9
+
+const RCA4_TYPE_MASK_OTHER_LAYOUT_MIN = 12
+
+const RCA4_TYPE_MASK_OTHER_LAYOUT_MAX = 15
+
+// Type definition "CB_RECALL_ANY4args".
+
+type CbRecallAny4args struct {
+	CraaObjectsToKeep uint32
+	CraaTypeMask      []uint32
+}
+
+func (m *CbRecallAny4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CraaObjectsToKeep
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CraaTypeMask
+		var m []uint32
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			mParent := &m
+			var m uint32
+			m, nField, err = runtime.ReadUnsignedInt(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+			*mParent = append(*mParent, m)
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbRecallAny4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CraaObjectsToKeep
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CraaTypeMask
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds bitmap4's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = runtime.WriteUnsignedInt(w, m)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *CbRecallAny4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.CraaTypeMask
+		nTotal += 4 + 4*len(m)
+	}
+	return
+}
+
+// Type definition "CB_RECALL_ANY4res".
+
+type CbRecallAny4res struct {
+	CrarStatus Nfsstat4
+}
+
+func (m *CbRecallAny4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CrarStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbRecallAny4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CrarStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbRecallAny4resEncodedSizeBytes = 4
+
+// Type definition "CB_RECALLABLE_OBJ_AVAIL4args".
+
+type CbRecallableObjAvail4args = CbRecallAny4args
+
+func ReadCbRecallableObjAvail4args(r io.Reader, m *CbRecallAny4args) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.ReadFrom(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func WriteCbRecallableObjAvail4args(w io.Writer, m *CbRecallAny4args) (nTotal int64, err error) {
+	var nField int64
+	nField, err = m.WriteTo(w)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func GetCbRecallableObjAvail4argsEncodedSizeBytes(m *CbRecallAny4args) (nTotal int) {
+	nTotal += m.GetEncodedSizeBytes()
+	return
+}
+
+// Type definition "CB_RECALLABLE_OBJ_AVAIL4res".
+
+type CbRecallableObjAvail4res struct {
+	CroaStatus Nfsstat4
+}
+
+func (m *CbRecallableObjAvail4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CroaStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbRecallableObjAvail4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CroaStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbRecallableObjAvail4resEncodedSizeBytes = 4
+
+// Type definition "CB_RECALL_SLOT4args".
+
+type CbRecallSlot4args struct {
+	RsaTargetHighestSlotid uint32
+}
+
+func (m *CbRecallSlot4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.RsaTargetHighestSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbRecallSlot4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RsaTargetHighestSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbRecallSlot4argsEncodedSizeBytes = 4
+
+// Type definition "CB_RECALL_SLOT4res".
+
+type CbRecallSlot4res struct {
+	RsrStatus Nfsstat4
+}
+
+func (m *CbRecallSlot4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.RsrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbRecallSlot4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbRecallSlot4resEncodedSizeBytes = 4
+
+// Type definition "referring_call4".
+
+type ReferringCall4 struct {
+	RcSequenceid uint32
+	RcSlotid     uint32
+}
+
+func (m *ReferringCall4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.RcSequenceid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.RcSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ReferringCall4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.RcSequenceid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.RcSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const ReferringCall4EncodedSizeBytes = 8
+
+// Type definition "referring_call_list4".
+
+type ReferringCallList4 struct {
+	RclSessionid      [16]byte
+	RclReferringCalls []ReferringCall4
+}
+
+func (m *ReferringCallList4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.RclSessionid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.RclReferringCalls
+		var m []ReferringCall4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds referring_call_list4.rcl_referring_calls's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, ReferringCall4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *ReferringCallList4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.RclSessionid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.RclReferringCalls
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds referring_call_list4.rcl_referring_calls's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *ReferringCallList4) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	{
+		m := m.RclReferringCalls
+		nTotal += 4 + 8*len(m)
+	}
+	return
+}
+
+// Type definition "CB_SEQUENCE4args".
+
+type CbSequence4args struct {
+	CsaSessionid          [16]byte
+	CsaSequenceid         uint32
+	CsaSlotid             uint32
+	CsaHighestSlotid      uint32
+	CsaCachethis          bool
+	CsaReferringCallLists []ReferringCallList4
+}
+
+func (m *CbSequence4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CsaSessionid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CsaSequenceid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsaSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsaHighestSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsaCachethis
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsaReferringCallLists
+		var m []ReferringCallList4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds CB_SEQUENCE4args.csa_referring_call_lists's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, ReferringCallList4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbSequence4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CsaSessionid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsaSequenceid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsaSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsaHighestSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsaCachethis
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsaReferringCallLists
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds CB_SEQUENCE4args.csa_referring_call_lists's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *CbSequence4args) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 16
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	nTotal += 4
+	{
+		m := m.CsaReferringCallLists
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "CB_SEQUENCE4resok".
+
+type CbSequence4resok struct {
+	CsrSessionid           [16]byte
+	CsrSequenceid          uint32
+	CsrSlotid              uint32
+	CsrHighestSlotid       uint32
+	CsrTargetHighestSlotid uint32
+}
+
+func (m *CbSequence4resok) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CsrSessionid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CsrSequenceid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsrSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsrHighestSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CsrTargetHighestSlotid
+		var m uint32
+		m, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbSequence4resok) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := &m.CsrSessionid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsrSequenceid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsrSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsrHighestSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CsrTargetHighestSlotid
+		nField, err = runtime.WriteUnsignedInt(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbSequence4resokEncodedSizeBytes = 32
+
+// Type definition "CB_SEQUENCE4res".
+
+type CbSequence4res interface {
+	isCbSequence4res()
+	GetCsrStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadCbSequence4res(r io.Reader) (m CbSequence4res, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm CbSequence4res_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.CsrResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm CbSequence4res_default
+		{
+			m := &mArm
+			m.CsrStatus = discriminant
+			_ = m
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readCbSequence4resCsrStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeCbSequence4resCsrStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const cbSequence4resCsrStatusEncodedSizeBytes = 4
+
+type CbSequence4res_NFS4_OK struct {
+	CsrResok4 CbSequence4resok
+}
+
+func (m *CbSequence4res_NFS4_OK) isCbSequence4res() {}
+
+func (m *CbSequence4res_NFS4_OK) GetCsrStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *CbSequence4res_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CsrResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CbSequence4res_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 32
+	return
+}
+
+type CbSequence4res_default struct {
+	CsrStatus Nfsstat4
+}
+
+func (m *CbSequence4res_default) isCbSequence4res() {}
+
+func (m *CbSequence4res_default) GetCsrStatus() Nfsstat4 {
+	return m.CsrStatus
+}
+
+func (m *CbSequence4res_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CsrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CbSequence4res_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	return
+}
+
+// Type definition "CB_WANTS_CANCELLED4args".
+
+type CbWantsCancelled4args struct {
+	CwcaContendedWantsCancelled bool
+	CwcaResourcedWantsCancelled bool
+}
+
+func (m *CbWantsCancelled4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CwcaContendedWantsCancelled
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		mSave := &m.CwcaResourcedWantsCancelled
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbWantsCancelled4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CwcaContendedWantsCancelled
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CwcaResourcedWantsCancelled
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbWantsCancelled4argsEncodedSizeBytes = 8
+
+// Type definition "CB_WANTS_CANCELLED4res".
+
+type CbWantsCancelled4res struct {
+	CwcrStatus Nfsstat4
+}
+
+func (m *CbWantsCancelled4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CwcrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbWantsCancelled4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CwcrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbWantsCancelled4resEncodedSizeBytes = 4
+
+// Type definition "CB_NOTIFY_LOCK4args".
+
+type CbNotifyLock4args struct {
+	CnlaFh        []byte
+	CnlaLockOwner StateOwner4
+}
+
+func (m *CbNotifyLock4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CnlaFh
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 128)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.CnlaLockOwner
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CbNotifyLock4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CnlaFh
+		nField, err = runtime.WriteVariableLengthOpaque(w, 128, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CnlaLockOwner
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CbNotifyLock4args) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.CnlaFh
+		nTotal += (len(m) + 7) &^ 3
+	}
+	{
+		m := &m.CnlaLockOwner
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "CB_NOTIFY_LOCK4res".
+
+type CbNotifyLock4res struct {
+	CnlrStatus Nfsstat4
+}
+
+func (m *CbNotifyLock4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CnlrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbNotifyLock4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CnlrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbNotifyLock4resEncodedSizeBytes = 4
+
+// Type definition "notify_deviceid_type4".
+
+type NotifyDeviceidType4 int32
+
+func (mParent *NotifyDeviceidType4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	var m NotifyDeviceidType4
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+	*mParent = m
+done:
+	return
+}
+
+func (m NotifyDeviceidType4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const NotifyDeviceidType4EncodedSizeBytes = 4
+
+const NOTIFY_DEVICEID4_CHANGE NotifyDeviceidType4 = 1
+
+const NOTIFY_DEVICEID4_DELETE NotifyDeviceidType4 = 2
+
+var NotifyDeviceidType4_name = map[NotifyDeviceidType4]string{
+	1: "NOTIFY_DEVICEID4_CHANGE",
+	2: "NOTIFY_DEVICEID4_DELETE",
+}
+
+// Type definition "notify_deviceid_delete4".
+
+type NotifyDeviceidDelete4 struct {
+	NddLayouttype Layouttype4
+	NddDeviceid   [16]byte
+}
+
+func (m *NotifyDeviceidDelete4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.NddLayouttype
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.NddDeviceid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NotifyDeviceidDelete4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.NddLayouttype
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NddDeviceid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const NotifyDeviceidDelete4EncodedSizeBytes = 20
+
+// Type definition "notify_deviceid_change4".
+
+type NotifyDeviceidChange4 struct {
+	NdcLayouttype Layouttype4
+	NdcDeviceid   [16]byte
+	NdcImmediate  bool
+}
+
+func (m *NotifyDeviceidChange4) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.NdcLayouttype
+		var m Layouttype4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.NdcDeviceid
+		nField, err = runtime.ReadFixedLengthOpaque(r, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.NdcImmediate
+		var m bool
+		m, nField, err = runtime.ReadBool(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *NotifyDeviceidChange4) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.NdcLayouttype
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.NdcDeviceid
+		nField, err = runtime.WriteFixedLengthOpaque(w, m[:])
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.NdcImmediate
+		nField, err = runtime.WriteBool(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const NotifyDeviceidChange4EncodedSizeBytes = 24
+
+// Type definition "CB_NOTIFY_DEVICEID4args".
+
+type CbNotifyDeviceid4args struct {
+	CndaChanges []Notify4
+}
+
+func (m *CbNotifyDeviceid4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CndaChanges
+		var m []Notify4
+		var nElements uint32
+		nElements, nField, err = runtime.ReadUnsignedInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		if nElements > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds CB_NOTIFY_DEVICEID4args.cnda_changes's maximum of 4294967295 elements", nElements)
+			goto done
+		}
+		for nElements > 0 {
+			nElements--
+			m = append(m, Notify4{})
+			m := &m[len(m)-1]
+			nField, err = m.ReadFrom(r)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbNotifyDeviceid4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CndaChanges
+		if uint(len(m)) > 4294967295 {
+			err = fmt.Errorf("size of %d elements exceeds CB_NOTIFY_DEVICEID4args.cnda_changes's maximum of 4294967295 elements", len(m))
+			goto done
+		}
+		nField, err = runtime.WriteUnsignedInt(w, uint32(len(m)))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		for _, m := range m {
+			nField, err = m.WriteTo(w)
+			nTotal += nField
+			if err != nil {
+				goto done
+			}
+		}
+	}
+done:
+	return
+}
+
+func (m *CbNotifyDeviceid4args) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.CndaChanges
+		nTotal += 4
+		for _, m := range m {
+			nTotal += m.GetEncodedSizeBytes()
+		}
+	}
+	return
+}
+
+// Type definition "CB_NOTIFY_DEVICEID4res".
+
+type CbNotifyDeviceid4res struct {
+	CndrStatus Nfsstat4
+}
+
+func (m *CbNotifyDeviceid4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CndrStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbNotifyDeviceid4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CndrStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbNotifyDeviceid4resEncodedSizeBytes = 4
+
+// Type definition "offload_info4".
+
+type OffloadInfo4 interface {
+	isOffloadInfo4()
+	GetCoaStatus() Nfsstat4
+	io.WriterTo
+	GetEncodedSizeBytes() int
+}
+
+func ReadOffloadInfo4(r io.Reader) (m OffloadInfo4, nTotal int64, err error) {
+	var nField int64
+	var discriminant Nfsstat4
+	{
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		discriminant = m
+	}
+	switch discriminant {
+	case 0:
+		var mArm OffloadInfo4_NFS4_OK
+		{
+			m := &mArm
+			{
+				m := &m.CoaResok4
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	default:
+		var mArm OffloadInfo4_default
+		{
+			m := &mArm
+			m.CoaStatus = discriminant
+			{
+				mSave := &m.CoaBytesCopied
+				var m uint64
+				m, nField, err = runtime.ReadUnsignedHyper(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	}
+done:
+	return
+}
+
+func readOffloadInfo4CoaStatus(r io.Reader) (m Nfsstat4, nTotal int64, err error) {
+	var nField int64
+	*(*int32)(&m), nField, err = runtime.ReadInt(r)
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+func writeOffloadInfo4CoaStatus(w io.Writer, m Nfsstat4) (nTotal int64, err error) {
+	var nField int64
+	nField, err = runtime.WriteInt(w, int32(m))
+	nTotal += nField
+	if err != nil {
+		goto done
+	}
+done:
+	return
+}
+
+const offloadInfo4CoaStatusEncodedSizeBytes = 4
+
+type OffloadInfo4_NFS4_OK struct {
+	CoaResok4 WriteResponse4
+}
+
+func (m *OffloadInfo4_NFS4_OK) isOffloadInfo4() {}
+
+func (m *OffloadInfo4_NFS4_OK) GetCoaStatus() Nfsstat4 {
+	return 0
+}
+
+func (m *OffloadInfo4_NFS4_OK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m Nfsstat4 = 0
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CoaResok4
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OffloadInfo4_NFS4_OK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.CoaResok4
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type OffloadInfo4_default struct {
+	CoaStatus      Nfsstat4
+	CoaBytesCopied uint64
+}
+
+func (m *OffloadInfo4_default) isOffloadInfo4() {}
+
+func (m *OffloadInfo4_default) GetCoaStatus() Nfsstat4 {
+	return m.CoaStatus
+}
+
+func (m *OffloadInfo4_default) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CoaStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CoaBytesCopied
+		nField, err = runtime.WriteUnsignedHyper(w, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *OffloadInfo4_default) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 8
+	return
+}
+
+// Type definition "CB_OFFLOAD4args".
+
+type CbOffload4args struct {
+	CoaFh          []byte
+	CoaStateid     Stateid4
+	CoaOffloadInfo OffloadInfo4
+}
+
+func (m *CbOffload4args) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CoaFh
+		var m []byte
+		m, nField, err = runtime.ReadVariableLengthOpaque(r, 128)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+	{
+		m := &m.CoaStateid
+		nField, err = m.ReadFrom(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		mSave := &m.CoaOffloadInfo
+		var m OffloadInfo4
+		m, nField, err = ReadOffloadInfo4(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbOffload4args) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CoaFh
+		nField, err = runtime.WriteVariableLengthOpaque(w, 128, m)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.CoaStateid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.CoaOffloadInfo
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *CbOffload4args) GetEncodedSizeBytes() (nTotal int) {
+	{
+		m := m.CoaFh
+		nTotal += (len(m) + 7) &^ 3
+	}
+	nTotal += 16
+	{
+		m := m.CoaOffloadInfo
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+// Type definition "CB_OFFLOAD4res".
+
+type CbOffload4res struct {
+	CorStatus Nfsstat4
+}
+
+func (m *CbOffload4res) ReadFrom(r io.Reader) (nTotal int64, err error) {
+	var nField int64
+	{
+		mSave := &m.CorStatus
+		var m Nfsstat4
+		*(*int32)(&m), nField, err = runtime.ReadInt(r)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+		*mSave = m
+	}
+done:
+	return
+}
+
+func (m *CbOffload4res) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		m := m.CorStatus
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+const CbOffload4resEncodedSizeBytes = 4
+
 // Type definition "nfs_cb_opnum4".
 
 type NfsCbOpnum4 int32
@@ -19114,12 +43368,45 @@ const OP_CB_GETATTR NfsCbOpnum4 = 3
 
 const OP_CB_ILLEGAL NfsCbOpnum4 = 10044
 
+const OP_CB_LAYOUTRECALL NfsCbOpnum4 = 5
+
+const OP_CB_NOTIFY NfsCbOpnum4 = 6
+
+const OP_CB_NOTIFY_DEVICEID NfsCbOpnum4 = 14
+
+const OP_CB_NOTIFY_LOCK NfsCbOpnum4 = 13
+
+const OP_CB_OFFLOAD NfsCbOpnum4 = 15
+
+const OP_CB_PUSH_DELEG NfsCbOpnum4 = 7
+
 const OP_CB_RECALL NfsCbOpnum4 = 4
+
+const OP_CB_RECALLABLE_OBJ_AVAIL NfsCbOpnum4 = 9
+
+const OP_CB_RECALL_ANY NfsCbOpnum4 = 8
+
+const OP_CB_RECALL_SLOT NfsCbOpnum4 = 10
+
+const OP_CB_SEQUENCE NfsCbOpnum4 = 11
+
+const OP_CB_WANTS_CANCELLED NfsCbOpnum4 = 12
 
 var NfsCbOpnum4_name = map[NfsCbOpnum4]string{
 	3:     "OP_CB_GETATTR",
 	10044: "OP_CB_ILLEGAL",
+	5:     "OP_CB_LAYOUTRECALL",
+	6:     "OP_CB_NOTIFY",
+	14:    "OP_CB_NOTIFY_DEVICEID",
+	13:    "OP_CB_NOTIFY_LOCK",
+	15:    "OP_CB_OFFLOAD",
+	7:     "OP_CB_PUSH_DELEG",
 	4:     "OP_CB_RECALL",
+	9:     "OP_CB_RECALLABLE_OBJ_AVAIL",
+	8:     "OP_CB_RECALL_ANY",
+	10:    "OP_CB_RECALL_SLOT",
+	11:    "OP_CB_SEQUENCE",
+	12:    "OP_CB_WANTS_CANCELLED",
 }
 
 // Type definition "nfs_cb_argop4".
@@ -19164,6 +43451,160 @@ func ReadNfsCbArgop4(r io.Reader) (m NfsCbArgop4, nTotal int64, err error) {
 			m := &mArm
 			{
 				m := &m.Opcbrecall
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 5:
+		var mArm NfsCbArgop4_OP_CB_LAYOUTRECALL
+		{
+			m := &mArm
+			{
+				m := &m.Opcblayoutrecall
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 6:
+		var mArm NfsCbArgop4_OP_CB_NOTIFY
+		{
+			m := &mArm
+			{
+				m := &m.Opcbnotify
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 7:
+		var mArm NfsCbArgop4_OP_CB_PUSH_DELEG
+		{
+			m := &mArm
+			{
+				m := &m.OpcbpushDeleg
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 8:
+		var mArm NfsCbArgop4_OP_CB_RECALL_ANY
+		{
+			m := &mArm
+			{
+				m := &m.OpcbrecallAny
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 9:
+		var mArm NfsCbArgop4_OP_CB_RECALLABLE_OBJ_AVAIL
+		{
+			m := &mArm
+			{
+				m := &m.OpcbrecallableObjAvail
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 10:
+		var mArm NfsCbArgop4_OP_CB_RECALL_SLOT
+		{
+			m := &mArm
+			{
+				m := &m.OpcbrecallSlot
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 11:
+		var mArm NfsCbArgop4_OP_CB_SEQUENCE
+		{
+			m := &mArm
+			{
+				m := &m.Opcbsequence
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 12:
+		var mArm NfsCbArgop4_OP_CB_WANTS_CANCELLED
+		{
+			m := &mArm
+			{
+				m := &m.OpcbwantsCancelled
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 13:
+		var mArm NfsCbArgop4_OP_CB_NOTIFY_LOCK
+		{
+			m := &mArm
+			{
+				m := &m.OpcbnotifyLock
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 14:
+		var mArm NfsCbArgop4_OP_CB_NOTIFY_DEVICEID
+		{
+			m := &mArm
+			{
+				m := &m.OpcbnotifyDeviceid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 15:
+		var mArm NfsCbArgop4_OP_CB_OFFLOAD
+		{
+			m := &mArm
+			{
+				m := &m.Opcboffload
 				nField, err = m.ReadFrom(r)
 				nTotal += nField
 				if err != nil {
@@ -19293,6 +43734,451 @@ func (m *NfsCbArgop4_OP_CB_RECALL) GetEncodedSizeBytes() (nTotal int) {
 	return
 }
 
+type NfsCbArgop4_OP_CB_LAYOUTRECALL struct {
+	Opcblayoutrecall CbLayoutrecall4args
+}
+
+func (m *NfsCbArgop4_OP_CB_LAYOUTRECALL) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_LAYOUTRECALL) GetArgop() NfsCbOpnum4 {
+	return 5
+}
+
+func (m *NfsCbArgop4_OP_CB_LAYOUTRECALL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 5
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opcblayoutrecall
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_LAYOUTRECALL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Opcblayoutrecall
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsCbArgop4_OP_CB_NOTIFY struct {
+	Opcbnotify CbNotify4args
+}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY) GetArgop() NfsCbOpnum4 {
+	return 6
+}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 6
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opcbnotify
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Opcbnotify
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsCbArgop4_OP_CB_PUSH_DELEG struct {
+	OpcbpushDeleg CbPushDeleg4args
+}
+
+func (m *NfsCbArgop4_OP_CB_PUSH_DELEG) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_PUSH_DELEG) GetArgop() NfsCbOpnum4 {
+	return 7
+}
+
+func (m *NfsCbArgop4_OP_CB_PUSH_DELEG) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 7
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbpushDeleg
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_PUSH_DELEG) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpcbpushDeleg
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsCbArgop4_OP_CB_RECALL_ANY struct {
+	OpcbrecallAny CbRecallAny4args
+}
+
+func (m *NfsCbArgop4_OP_CB_RECALL_ANY) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_RECALL_ANY) GetArgop() NfsCbOpnum4 {
+	return 8
+}
+
+func (m *NfsCbArgop4_OP_CB_RECALL_ANY) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 8
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbrecallAny
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_RECALL_ANY) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpcbrecallAny
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsCbArgop4_OP_CB_RECALLABLE_OBJ_AVAIL struct {
+	OpcbrecallableObjAvail CbRecallAny4args
+}
+
+func (m *NfsCbArgop4_OP_CB_RECALLABLE_OBJ_AVAIL) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_RECALLABLE_OBJ_AVAIL) GetArgop() NfsCbOpnum4 {
+	return 9
+}
+
+func (m *NfsCbArgop4_OP_CB_RECALLABLE_OBJ_AVAIL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 9
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbrecallableObjAvail
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_RECALLABLE_OBJ_AVAIL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpcbrecallableObjAvail
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsCbArgop4_OP_CB_RECALL_SLOT struct {
+	OpcbrecallSlot CbRecallSlot4args
+}
+
+func (m *NfsCbArgop4_OP_CB_RECALL_SLOT) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_RECALL_SLOT) GetArgop() NfsCbOpnum4 {
+	return 10
+}
+
+func (m *NfsCbArgop4_OP_CB_RECALL_SLOT) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 10
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbrecallSlot
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_RECALL_SLOT) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbArgop4_OP_CB_SEQUENCE struct {
+	Opcbsequence CbSequence4args
+}
+
+func (m *NfsCbArgop4_OP_CB_SEQUENCE) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_SEQUENCE) GetArgop() NfsCbOpnum4 {
+	return 11
+}
+
+func (m *NfsCbArgop4_OP_CB_SEQUENCE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 11
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opcbsequence
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_SEQUENCE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Opcbsequence
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsCbArgop4_OP_CB_WANTS_CANCELLED struct {
+	OpcbwantsCancelled CbWantsCancelled4args
+}
+
+func (m *NfsCbArgop4_OP_CB_WANTS_CANCELLED) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_WANTS_CANCELLED) GetArgop() NfsCbOpnum4 {
+	return 12
+}
+
+func (m *NfsCbArgop4_OP_CB_WANTS_CANCELLED) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 12
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbwantsCancelled
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_WANTS_CANCELLED) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 8
+	return
+}
+
+type NfsCbArgop4_OP_CB_NOTIFY_LOCK struct {
+	OpcbnotifyLock CbNotifyLock4args
+}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY_LOCK) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY_LOCK) GetArgop() NfsCbOpnum4 {
+	return 13
+}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY_LOCK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 13
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbnotifyLock
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY_LOCK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpcbnotifyLock
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsCbArgop4_OP_CB_NOTIFY_DEVICEID struct {
+	OpcbnotifyDeviceid CbNotifyDeviceid4args
+}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY_DEVICEID) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY_DEVICEID) GetArgop() NfsCbOpnum4 {
+	return 14
+}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY_DEVICEID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 14
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbnotifyDeviceid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_NOTIFY_DEVICEID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.OpcbnotifyDeviceid
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsCbArgop4_OP_CB_OFFLOAD struct {
+	Opcboffload CbOffload4args
+}
+
+func (m *NfsCbArgop4_OP_CB_OFFLOAD) isNfsCbArgop4() {}
+
+func (m *NfsCbArgop4_OP_CB_OFFLOAD) GetArgop() NfsCbOpnum4 {
+	return 15
+}
+
+func (m *NfsCbArgop4_OP_CB_OFFLOAD) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 15
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opcboffload
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbArgop4_OP_CB_OFFLOAD) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := &m.Opcboffload
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
 type NfsCbArgop4_OP_CB_ILLEGAL struct{}
 
 func (m *NfsCbArgop4_OP_CB_ILLEGAL) isNfsCbArgop4() {}
@@ -19364,6 +44250,162 @@ func ReadNfsCbResop4(r io.Reader) (m NfsCbResop4, nTotal int64, err error) {
 			m := &mArm
 			{
 				m := &m.Opcbrecall
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 5:
+		var mArm NfsCbResop4_OP_CB_LAYOUTRECALL
+		{
+			m := &mArm
+			{
+				m := &m.Opcblayoutrecall
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 6:
+		var mArm NfsCbResop4_OP_CB_NOTIFY
+		{
+			m := &mArm
+			{
+				m := &m.Opcbnotify
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 7:
+		var mArm NfsCbResop4_OP_CB_PUSH_DELEG
+		{
+			m := &mArm
+			{
+				m := &m.OpcbpushDeleg
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 8:
+		var mArm NfsCbResop4_OP_CB_RECALL_ANY
+		{
+			m := &mArm
+			{
+				m := &m.OpcbrecallAny
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 9:
+		var mArm NfsCbResop4_OP_CB_RECALLABLE_OBJ_AVAIL
+		{
+			m := &mArm
+			{
+				m := &m.OpcbrecallableObjAvail
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 10:
+		var mArm NfsCbResop4_OP_CB_RECALL_SLOT
+		{
+			m := &mArm
+			{
+				m := &m.OpcbrecallSlot
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 11:
+		var mArm NfsCbResop4_OP_CB_SEQUENCE
+		{
+			m := &mArm
+			{
+				mSave := &m.Opcbsequence
+				var m CbSequence4res
+				m, nField, err = ReadCbSequence4res(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+				*mSave = m
+			}
+		}
+		m = &mArm
+	case 12:
+		var mArm NfsCbResop4_OP_CB_WANTS_CANCELLED
+		{
+			m := &mArm
+			{
+				m := &m.OpcbwantsCancelled
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 13:
+		var mArm NfsCbResop4_OP_CB_NOTIFY_LOCK
+		{
+			m := &mArm
+			{
+				m := &m.OpcbnotifyLock
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 14:
+		var mArm NfsCbResop4_OP_CB_NOTIFY_DEVICEID
+		{
+			m := &mArm
+			{
+				m := &m.OpcbnotifyDeviceid
+				nField, err = m.ReadFrom(r)
+				nTotal += nField
+				if err != nil {
+					goto done
+				}
+			}
+		}
+		m = &mArm
+	case 15:
+		var mArm NfsCbResop4_OP_CB_OFFLOAD
+		{
+			m := &mArm
+			{
+				m := &m.Opcboffload
 				nField, err = m.ReadFrom(r)
 				nTotal += nField
 				if err != nil {
@@ -19492,6 +44534,427 @@ done:
 }
 
 func (m *NfsCbResop4_OP_CB_RECALL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_LAYOUTRECALL struct {
+	Opcblayoutrecall CbLayoutrecall4res
+}
+
+func (m *NfsCbResop4_OP_CB_LAYOUTRECALL) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_LAYOUTRECALL) GetResop() NfsCbOpnum4 {
+	return 5
+}
+
+func (m *NfsCbResop4_OP_CB_LAYOUTRECALL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 5
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opcblayoutrecall
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_LAYOUTRECALL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_NOTIFY struct {
+	Opcbnotify CbNotify4res
+}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY) GetResop() NfsCbOpnum4 {
+	return 6
+}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 6
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opcbnotify
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_PUSH_DELEG struct {
+	OpcbpushDeleg CbPushDeleg4res
+}
+
+func (m *NfsCbResop4_OP_CB_PUSH_DELEG) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_PUSH_DELEG) GetResop() NfsCbOpnum4 {
+	return 7
+}
+
+func (m *NfsCbResop4_OP_CB_PUSH_DELEG) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 7
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbpushDeleg
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_PUSH_DELEG) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_RECALL_ANY struct {
+	OpcbrecallAny CbRecallAny4res
+}
+
+func (m *NfsCbResop4_OP_CB_RECALL_ANY) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_RECALL_ANY) GetResop() NfsCbOpnum4 {
+	return 8
+}
+
+func (m *NfsCbResop4_OP_CB_RECALL_ANY) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 8
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbrecallAny
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_RECALL_ANY) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_RECALLABLE_OBJ_AVAIL struct {
+	OpcbrecallableObjAvail CbRecallableObjAvail4res
+}
+
+func (m *NfsCbResop4_OP_CB_RECALLABLE_OBJ_AVAIL) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_RECALLABLE_OBJ_AVAIL) GetResop() NfsCbOpnum4 {
+	return 9
+}
+
+func (m *NfsCbResop4_OP_CB_RECALLABLE_OBJ_AVAIL) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 9
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbrecallableObjAvail
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_RECALLABLE_OBJ_AVAIL) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_RECALL_SLOT struct {
+	OpcbrecallSlot CbRecallSlot4res
+}
+
+func (m *NfsCbResop4_OP_CB_RECALL_SLOT) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_RECALL_SLOT) GetResop() NfsCbOpnum4 {
+	return 10
+}
+
+func (m *NfsCbResop4_OP_CB_RECALL_SLOT) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 10
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbrecallSlot
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_RECALL_SLOT) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_SEQUENCE struct {
+	Opcbsequence CbSequence4res
+}
+
+func (m *NfsCbResop4_OP_CB_SEQUENCE) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_SEQUENCE) GetResop() NfsCbOpnum4 {
+	return 11
+}
+
+func (m *NfsCbResop4_OP_CB_SEQUENCE) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 11
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := m.Opcbsequence
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_SEQUENCE) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	{
+		m := m.Opcbsequence
+		nTotal += m.GetEncodedSizeBytes()
+	}
+	return
+}
+
+type NfsCbResop4_OP_CB_WANTS_CANCELLED struct {
+	OpcbwantsCancelled CbWantsCancelled4res
+}
+
+func (m *NfsCbResop4_OP_CB_WANTS_CANCELLED) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_WANTS_CANCELLED) GetResop() NfsCbOpnum4 {
+	return 12
+}
+
+func (m *NfsCbResop4_OP_CB_WANTS_CANCELLED) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 12
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbwantsCancelled
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_WANTS_CANCELLED) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_NOTIFY_LOCK struct {
+	OpcbnotifyLock CbNotifyLock4res
+}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY_LOCK) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY_LOCK) GetResop() NfsCbOpnum4 {
+	return 13
+}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY_LOCK) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 13
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbnotifyLock
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY_LOCK) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_NOTIFY_DEVICEID struct {
+	OpcbnotifyDeviceid CbNotifyDeviceid4res
+}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY_DEVICEID) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY_DEVICEID) GetResop() NfsCbOpnum4 {
+	return 14
+}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY_DEVICEID) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 14
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.OpcbnotifyDeviceid
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_NOTIFY_DEVICEID) GetEncodedSizeBytes() (nTotal int) {
+	nTotal += 4
+	nTotal += 4
+	return
+}
+
+type NfsCbResop4_OP_CB_OFFLOAD struct {
+	Opcboffload CbOffload4res
+}
+
+func (m *NfsCbResop4_OP_CB_OFFLOAD) isNfsCbResop4() {}
+
+func (m *NfsCbResop4_OP_CB_OFFLOAD) GetResop() NfsCbOpnum4 {
+	return 15
+}
+
+func (m *NfsCbResop4_OP_CB_OFFLOAD) WriteTo(w io.Writer) (nTotal int64, err error) {
+	var nField int64
+	{
+		var m NfsCbOpnum4 = 15
+		nField, err = runtime.WriteInt(w, int32(m))
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+	{
+		m := &m.Opcboffload
+		nField, err = m.WriteTo(w)
+		nTotal += nField
+		if err != nil {
+			goto done
+		}
+	}
+done:
+	return
+}
+
+func (m *NfsCbResop4_OP_CB_OFFLOAD) GetEncodedSizeBytes() (nTotal int) {
 	nTotal += 4
 	nTotal += 4
 	return
