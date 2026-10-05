@@ -2793,8 +2793,8 @@ type NfsProgram interface {
 	NfsV3Nfsproc3Commit(context.Context, *Commit3args) (Commit3res, error)
 }
 
-func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io.ReadCloser, io.Writer) (rpcv2.AcceptedReplyData, error) {
-	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (rpcv2.AcceptedReplyData, error) {
+func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io.ReadCloser, func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
+	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, newReturnValue func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
 		var err error
 		switch vers {
 		case 3:
@@ -2823,6 +2823,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -2848,6 +2851,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -2873,6 +2879,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -2898,6 +2907,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -2923,6 +2935,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -2948,6 +2963,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -2973,6 +2991,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -2998,6 +3019,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3023,6 +3047,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3048,6 +3075,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3073,6 +3103,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3098,6 +3131,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3123,6 +3159,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3148,6 +3187,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3173,6 +3215,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3198,6 +3243,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3223,6 +3271,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3248,6 +3299,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3273,6 +3327,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3298,6 +3355,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -3323,6 +3383,9 @@ func NewNfsProgramService(p NfsProgram) func(context.Context, uint32, uint32, io
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)

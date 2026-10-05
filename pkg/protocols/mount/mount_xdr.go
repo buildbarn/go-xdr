@@ -359,8 +359,8 @@ type MountProgram interface {
 	MountV3Mountproc3Export(context.Context) (*Exportnode, error)
 }
 
-func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32, io.ReadCloser, io.Writer) (rpcv2.AcceptedReplyData, error) {
-	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (rpcv2.AcceptedReplyData, error) {
+func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32, io.ReadCloser, func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
+	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, newReturnValue func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
 		var err error
 		switch vers {
 		case 1:
@@ -390,6 +390,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -405,6 +408,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -445,6 +451,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -484,6 +493,9 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -499,6 +511,12 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += 4
+				if m != nil {
+					nTotal += m.GetEncodedSizeBytes()
+				}
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					if m == nil {
@@ -554,6 +572,12 @@ func NewMountProgramService(p MountProgram) func(context.Context, uint32, uint32
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += 4
+				if m != nil {
+					nTotal += m.GetEncodedSizeBytes()
+				}
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					if m == nil {

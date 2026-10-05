@@ -613,8 +613,8 @@ type NlmProg interface {
 	Nlm4VersNlmproc4FreeAll(context.Context, *Nlm4Notify) error
 }
 
-func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadCloser, io.Writer) (rpcv2.AcceptedReplyData, error) {
-	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (rpcv2.AcceptedReplyData, error) {
+func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadCloser, func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
+	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, newReturnValue func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
 		var err error
 		switch vers {
 		case 4:
@@ -643,6 +643,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -668,6 +671,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -693,6 +699,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -718,6 +727,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -743,6 +755,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -938,6 +953,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -963,6 +981,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -988,6 +1009,9 @@ func NewNlmProgService(p NlmProg) func(context.Context, uint32, uint32, io.ReadC
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)

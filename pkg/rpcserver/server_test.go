@@ -3,11 +3,13 @@ package rpcserver_test
 import (
 	"bytes"
 	"context"
+	"encoding/binary"
 	"errors"
 	"io"
 	"testing"
 
 	"github.com/buildbarn/go-xdr/internal/mock"
+	"github.com/buildbarn/go-xdr/pkg/protocols/nfsv4"
 	"github.com/buildbarn/go-xdr/pkg/protocols/rpcv2"
 	"github.com/buildbarn/go-xdr/pkg/rpcserver"
 	"github.com/golang/mock/gomock"
@@ -288,7 +290,7 @@ func TestServer(t *testing.T) {
 				}, rpcv2.AUTH_OK
 			})
 		service.EXPECT().Call(mockContext1, uint32(7), uint32(4), gomock.Any(), gomock.Any()).
-			DoAndReturn(func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, returnValue io.Writer) (rpcv2.AcceptedReplyData, error) {
+			DoAndReturn(func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, newReturnValue func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
 				var in [8]byte
 				n, err := parameters.Read(in[:])
 				require.Equal(t, 8, n)
@@ -296,7 +298,7 @@ func TestServer(t *testing.T) {
 				require.Equal(t, [...]byte{0xb3, 0x83, 0x19, 0x90, 0x0a, 0xe0, 0xf1, 0x2a}, in)
 				require.NoError(t, parameters.Close())
 
-				n, err = returnValue.Write([]byte{0x44, 0xe5, 0x33, 0x30, 0xa5, 0xf4, 0x75, 0xbb})
+				n, err = newReturnValue(8).Write([]byte{0x44, 0xe5, 0x33, 0x30, 0xa5, 0xf4, 0x75, 0xbb})
 				require.Equal(t, 8, n)
 				require.NoError(t, err)
 
@@ -308,7 +310,7 @@ func TestServer(t *testing.T) {
 				return mockContext2, rpcv2.OpaqueAuth{Flavor: rpcv2.AUTH_NONE}, rpcv2.AUTH_OK
 			})
 		service.EXPECT().Call(mockContext2, uint32(3), uint32(9), gomock.Any(), gomock.Any()).
-			DoAndReturn(func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, returnValue io.Writer) (rpcv2.AcceptedReplyData, error) {
+			DoAndReturn(func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, newReturnValue func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
 				var in [8]byte
 				n, err := parameters.Read(in[:])
 				require.Equal(t, 8, n)
@@ -316,7 +318,7 @@ func TestServer(t *testing.T) {
 				require.Equal(t, [...]byte{0xa9, 0x73, 0x1c, 0xfa, 0xfe, 0x16, 0xe0, 0x81}, in)
 				require.NoError(t, parameters.Close())
 
-				n, err = returnValue.Write([]byte{0x26, 0xb5, 0x37, 0xb0, 0xe4, 0xf4, 0x6a, 0x84})
+				n, err = newReturnValue(8).Write([]byte{0x26, 0xb5, 0x37, 0xb0, 0xe4, 0xf4, 0x6a, 0x84})
 				require.Equal(t, 8, n)
 				require.NoError(t, err)
 
@@ -416,5 +418,207 @@ func TestServer(t *testing.T) {
 				// Some payload that follows.
 				0xa9, 0x73, 0x1c, 0xfa, 0xfe, 0x16, 0xe0, 0x81,
 			}), w))
+	})
+
+	t.Run("WithoutReturnValue", func(t *testing.T) {
+		mismatch := rpcv2.AcceptedReplyData_PROG_MISMATCH{}
+		mismatch.MismatchInfo.Low = 3
+		mismatch.MismatchInfo.High = 4
+		for _, replyData := range []rpcv2.AcceptedReplyData{
+			&rpcv2.AcceptedReplyData_SUCCESS{},
+			&rpcv2.AcceptedReplyData_default{Stat: rpcv2.PROC_UNAVAIL},
+			&mismatch,
+		} {
+			authenticator.EXPECT().Authenticate(gomock.Any(), &rpcv2.OpaqueAuth{}, &rpcv2.OpaqueAuth{}).
+				DoAndReturn(func(ctx context.Context, credentials, verifier *rpcv2.OpaqueAuth) (context.Context, rpcv2.OpaqueAuth, rpcv2.AuthStat) {
+					return ctx, rpcv2.OpaqueAuth{}, rpcv2.AUTH_OK
+				})
+			service.EXPECT().Call(gomock.Any(), uint32(1), uint32(1), gomock.Any(), gomock.Any()).Return(replyData, nil)
+			w := mock.NewMockWriter(ctrl)
+			w.EXPECT().Write(gomock.Any()).DoAndReturn(func(p []byte) (int, error) {
+				require.Equal(t, uint32(len(p)-4)|0x80000000, binary.BigEndian.Uint32(p))
+				require.Equal(t, len(p), cap(p))
+				var reply rpcv2.RpcMsg
+				n, err := reply.ReadFrom(bytes.NewReader(p[4:]))
+				require.NoError(t, err)
+				require.Equal(t, int64(len(p)-4), n)
+				require.Equal(t, replyData, reply.Body.(*rpcv2.RpcMsgBody_REPLY).Rbody.(*rpcv2.ReplyBody_MSG_ACCEPTED).Areply.ReplyData)
+				return len(p), nil
+			})
+			require.NoError(t, s.HandleConnection(bytes.NewReader([]byte{
+				0x80, 0x00, 0x00, 0x28, // Record marker.
+				0x00, 0x00, 0x00, 0x01, // XID.
+				0x00, 0x00, 0x00, 0x00, // CALL.
+				0x00, 0x00, 0x00, 0x02, // RPC version.
+				0x00, 0x00, 0x00, 0x7b, // Program.
+				0x00, 0x00, 0x00, 0x01, // Program version.
+				0x00, 0x00, 0x00, 0x01, // Procedure.
+				0x00, 0x00, 0x00, 0x00, // AUTH_NONE credentials.
+				0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, // AUTH_NONE verifier.
+				0x00, 0x00, 0x00, 0x00,
+			}), w))
+		}
+	})
+
+	t.Run("ReplyBodySizing", func(t *testing.T) {
+		r := mock.NewMockReader(ctrl)
+		w := mock.NewMockWriter(ctrl)
+		requestReady := make(chan struct{})
+		close(requestReady)
+		var expectedCapacities, actualCapacities []int
+		sizes := []int{0, 32, 1 << 20, 32, 4095, 4096, 4097, 0}
+		authenticator.EXPECT().Authenticate(gomock.Any(), &rpcv2.OpaqueAuth{}, &rpcv2.OpaqueAuth{}).
+			DoAndReturn(func(ctx context.Context, credentials, verifier *rpcv2.OpaqueAuth) (context.Context, rpcv2.OpaqueAuth, rpcv2.AuthStat) {
+				return ctx, rpcv2.OpaqueAuth{}, rpcv2.AUTH_OK
+			}).Times(len(sizes))
+
+		for i, size := range sizes {
+			request := []byte{
+				0x80, 0x00, 0x00, 0x28, // Record marker.
+				0x00, 0x00, 0x00, 0x00, // XID, set below.
+				0x00, 0x00, 0x00, 0x00, // CALL.
+				0x00, 0x00, 0x00, 0x02, // RPC version.
+				0x00, 0x00, 0x00, 0x7b, // Program.
+				0x00, 0x00, 0x00, 0x01, // Program version.
+				0x00, 0x00, 0x00, 0x01, // Procedure.
+				0x00, 0x00, 0x00, 0x00, // AUTH_NONE credentials.
+				0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, // AUTH_NONE verifier.
+				0x00, 0x00, 0x00, 0x00,
+			}
+			binary.BigEndian.PutUint32(request[4:], uint32(i+1))
+			ready := requestReady
+			r.EXPECT().Read(gomock.Any()).DoAndReturn(func(p []byte) (int, error) {
+				// Send the next request after the previous reply.
+				<-ready
+				return copy(p, request), nil
+			})
+
+			expectedCapacities = append(expectedCapacities, size)
+			var replyStart *byte
+			data := bytes.Repeat([]byte{0xa5}, size)
+			service.EXPECT().Call(gomock.Any(), uint32(1), uint32(1), gomock.Any(), gomock.Any()).
+				DoAndReturn(func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, newReturnValue func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
+					returnValue := newReturnValue(len(data))
+					replyStart = &returnValue.(*bytes.Buffer).Bytes()[0]
+					actualCapacities = append(actualCapacities, returnValue.(*bytes.Buffer).Available())
+					n, err := returnValue.Write(data)
+					require.Equal(t, len(data), n)
+					require.NoError(t, err)
+					return &rpcv2.AcceptedReplyData_SUCCESS{}, nil
+				})
+
+			reply := []byte{
+				0x00, 0x00, 0x00, 0x00, // Record marker, set below.
+				0x00, 0x00, 0x00, 0x00, // XID, set below.
+				0x00, 0x00, 0x00, 0x01, // REPLY.
+				0x00, 0x00, 0x00, 0x00, // MSG_ACCEPTED.
+				0x00, 0x00, 0x00, 0x00, // AUTH_NONE verifier.
+				0x00, 0x00, 0x00, 0x00,
+				0x00, 0x00, 0x00, 0x00, // SUCCESS.
+			}
+			binary.BigEndian.PutUint32(reply, uint32(24+len(data))|0x80000000)
+			binary.BigEndian.PutUint32(reply[4:], uint32(i+1))
+			reply = append(reply, data...)
+			nextRequestReady := make(chan struct{})
+			w.EXPECT().Write(gomock.Any()).DoAndReturn(func(p []byte) (int, error) {
+				defer close(nextRequestReady)
+				require.Equal(t, reply, p)
+				require.Equal(t, len(p), cap(p))
+				require.Same(t, replyStart, &p[0])
+				return len(p), nil
+			})
+			requestReady = nextRequestReady
+		}
+		r.EXPECT().Read(gomock.Any()).Return(0, io.EOF)
+
+		require.NoError(t, s.HandleConnection(r, w))
+		require.Equal(t, expectedCapacities, actualCapacities)
+	})
+}
+
+func TestNFSv4Service(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	program := mock.NewMockNfs4Program(ctrl)
+	service := nfsv4.NewNfs4ProgramService(program)
+	ctx := context.Background()
+
+	t.Run("Compound", func(t *testing.T) {
+		for _, size := range []int{0, 1, 1024, 1 << 20} {
+			response := nfsv4.Compound4res{
+				Tag: "read",
+				Resarray: []nfsv4.NfsResop4{
+					&nfsv4.NfsResop4_OP_READ{
+						Opread: &nfsv4.Read4res_NFS4_OK{
+							Resok4: nfsv4.Read4resok{Data: bytes.Repeat([]byte{0xa5}, size)},
+						},
+					},
+				},
+			}
+			program.EXPECT().NfsV4Nfsproc4Compound(ctx, &nfsv4.Compound4args{}).Return(&response, nil)
+			expected := bytes.NewBuffer(nil)
+			_, err := response.WriteTo(expected)
+			require.NoError(t, err)
+
+			var actual *bytes.Buffer
+			replyData, err := service(ctx, 4, 1, io.NopCloser(bytes.NewReader(make([]byte, 12))), func(sizeBytes int) io.Writer {
+				require.Nil(t, actual)
+				require.Equal(t, expected.Len(), sizeBytes)
+				actual = bytes.NewBuffer(make([]byte, 0, sizeBytes))
+				return actual
+			})
+			require.NoError(t, err)
+			require.Equal(t, &rpcv2.AcceptedReplyData_SUCCESS{}, replyData)
+			require.Equal(t, expected.Bytes(), actual.Bytes())
+			require.Equal(t, expected.Len(), actual.Cap())
+		}
+	})
+
+	t.Run("Void", func(t *testing.T) {
+		program.EXPECT().NfsV4Nfsproc4Null(ctx).Return(nil)
+		replyData, err := service(ctx, 4, 0, io.NopCloser(bytes.NewReader(nil)), nil)
+		require.NoError(t, err)
+		require.Equal(t, &rpcv2.AcceptedReplyData_SUCCESS{}, replyData)
+	})
+
+	t.Run("ProcedureUnavailable", func(t *testing.T) {
+		replyData, err := service(ctx, 4, 2, io.NopCloser(bytes.NewReader(nil)), nil)
+		require.NoError(t, err)
+		require.Equal(t, &rpcv2.AcceptedReplyData_default{Stat: rpcv2.PROC_UNAVAIL}, replyData)
+	})
+
+	t.Run("VersionMismatch", func(t *testing.T) {
+		replyData, err := service(ctx, 3, 0, io.NopCloser(bytes.NewReader(nil)), nil)
+		require.NoError(t, err)
+		expected := rpcv2.AcceptedReplyData_PROG_MISMATCH{}
+		expected.MismatchInfo.Low = 4
+		expected.MismatchInfo.High = 4
+		require.Equal(t, &expected, replyData)
+	})
+
+	t.Run("ReadError", func(t *testing.T) {
+		replyData, err := service(ctx, 4, 1, io.NopCloser(bytes.NewReader(nil)), nil)
+		require.Equal(t, io.EOF, err)
+		require.Nil(t, replyData)
+	})
+
+	t.Run("ProcedureError", func(t *testing.T) {
+		program.EXPECT().NfsV4Nfsproc4Compound(ctx, &nfsv4.Compound4args{}).Return(nil, io.ErrUnexpectedEOF)
+		replyData, err := service(ctx, 4, 1, io.NopCloser(bytes.NewReader(make([]byte, 12))), nil)
+		require.Equal(t, io.ErrUnexpectedEOF, err)
+		require.Nil(t, replyData)
+	})
+
+	t.Run("WriteError", func(t *testing.T) {
+		program.EXPECT().NfsV4Nfsproc4Compound(ctx, &nfsv4.Compound4args{}).Return(&nfsv4.Compound4res{}, nil)
+		w := mock.NewMockWriter(ctrl)
+		w.EXPECT().Write(gomock.Any()).Return(0, io.ErrClosedPipe)
+		replyData, err := service(ctx, 4, 1, io.NopCloser(bytes.NewReader(make([]byte, 12))), func(sizeBytes int) io.Writer {
+			require.Equal(t, 12, sizeBytes)
+			return w
+		})
+		require.Equal(t, io.ErrClosedPipe, err)
+		require.Nil(t, replyData)
 	})
 }

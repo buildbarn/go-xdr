@@ -7,34 +7,11 @@ import (
 	"encoding/binary"
 	"errors"
 	"io"
-	"sync/atomic"
 
 	"github.com/buildbarn/go-xdr/pkg/protocols/rpcv2"
 
 	"golang.org/x/sync/errgroup"
 )
-
-// increasingUint32 is an atomic 32-bit unsigned integer that can only
-// be increased. It is used to store the largest observed reply size.
-type increasingUint32 struct {
-	value uint32
-}
-
-func (esb *increasingUint32) get() uint32 {
-	return atomic.LoadUint32(&esb.value)
-}
-
-func (esb *increasingUint32) maybeIncrease(oldValue, newValue uint32) {
-	for {
-		if oldValue > newValue {
-			return
-		}
-		if atomic.CompareAndSwapUint32(&esb.value, oldValue, newValue) {
-			return
-		}
-		oldValue = atomic.LoadUint32(&esb.value)
-	}
-}
 
 // recordMarkerSizeBytes is the size of record markers that are
 // prepended to RPC messages that are transmitted across a streaming
@@ -48,7 +25,11 @@ const recordMarkerSizeBytes = 4
 // It should close it immediately after it has finished reading the
 // parameters, so that the RPC server can continue to read the next
 // incoming request.
-type Service func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, returnValue io.Writer) (rpcv2.AcceptedReplyData, error)
+//
+// To write a successful return value, the service calls newReturnValue
+// once with its encoded size in bytes. Replies without a return value do
+// not need to call newReturnValue.
+type Service func(ctx context.Context, vers, proc uint32, parameters io.ReadCloser, newReturnValue func(sizeBytes int) io.Writer) (rpcv2.AcceptedReplyData, error)
 
 // Server of ONC RPCv2, as described in RFC 5531.
 type Server struct {
@@ -92,9 +73,6 @@ type connectionHandler struct {
 
 	reader io.Reader
 	writer io.Writer
-
-	maximumReplyRPCMessageSizeBytes  increasingUint32
-	maximumReplyReturnValueSizeBytes increasingUint32
 }
 
 func (ch *connectionHandler) startReadingMessages() {
@@ -209,66 +187,39 @@ func (ch *connectionHandler) readMessages() error {
 			connectionHandler:   ch,
 		}
 
-		// Allocate buffer space for storing the reply, based on
-		// the largest reply sent so far.
-		maximumReplyRPCMessageSizeBytes := ch.maximumReplyRPCMessageSizeBytes.get()
-		maximumReplyReturnValueSizeBytes := ch.maximumReplyReturnValueSizeBytes.get()
-		replyReturnValueStartBytes := recordMarkerSizeBytes + maximumReplyRPCMessageSizeBytes
-		replyBuffer := bytes.NewBuffer(make(
-			[]byte,
-			replyReturnValueStartBytes,
-			replyReturnValueStartBytes+maximumReplyReturnValueSizeBytes))
-
-		replyData, err := service(ctxWithAuth, callBody.Vers, callBody.Proc, &rc, replyBuffer)
+		replyBody := rpcv2.ReplyBody_MSG_ACCEPTED{
+			Areply: rpcv2.AcceptedReply{
+				Verf:      replyVerifier,
+				ReplyData: &rpcv2.AcceptedReplyData_SUCCESS{},
+			},
+		}
+		replyRPCMessage := rpcv2.RpcMsg{
+			Xid: callRPCMessage.Xid,
+			Body: &rpcv2.RpcMsgBody_REPLY{
+				Rbody: &replyBody,
+			},
+		}
+		replyReturnValueStartBytes := recordMarkerSizeBytes + replyRPCMessage.GetEncodedSizeBytes()
+		var replyBuffer *bytes.Buffer
+		replyData, err := service(ctxWithAuth, callBody.Vers, callBody.Proc, &rc, func(sizeBytes int) io.Writer {
+			replyBuffer = bytes.NewBuffer(make([]byte, replyReturnValueStartBytes, replyReturnValueStartBytes+sizeBytes))
+			return replyBuffer
+		})
 		cancelContext()
 		rc.Close()
 		if err != nil {
 			return err
 		}
 
-		// If the return value is bigger than observed before,
-		// store its size, so that future requests can
-		// immediately allocate a properly sized buffer.
-		replyReturnValueSizeBytes := uint32(replyBuffer.Len()) - replyReturnValueStartBytes
-		ch.maximumReplyReturnValueSizeBytes.maybeIncrease(
-			maximumReplyReturnValueSizeBytes,
-			replyReturnValueSizeBytes)
-
-		replyRPCMessage := rpcv2.RpcMsg{
-			Xid: callRPCMessage.Xid,
-			Body: &rpcv2.RpcMsgBody_REPLY{
-				Rbody: &rpcv2.ReplyBody_MSG_ACCEPTED{
-					Areply: rpcv2.AcceptedReply{
-						Verf:      replyVerifier,
-						ReplyData: replyData,
-					},
-				},
-			},
+		replyBody.Areply.ReplyData = replyData
+		if replyBuffer == nil || replyData.GetStat() != rpcv2.SUCCESS {
+			return ch.replyWithoutReturnValue(&replyRPCMessage)
 		}
-		replyRPCMessageSizeBytes := uint32(replyRPCMessage.GetEncodedSizeBytes())
-
 		reply := replyBuffer.Bytes()
-		if replyRPCMessageSizeBytes <= maximumReplyRPCMessageSizeBytes {
-			// There is enough space to prepend the record
-			// marker and reply RPC message to the buffer.
-			reply = reply[maximumReplyRPCMessageSizeBytes-replyRPCMessageSizeBytes:]
-			replyRPCMessage.WriteTo(bytes.NewBuffer(reply[recordMarkerSizeBytes:recordMarkerSizeBytes]))
-		} else {
-			// There is no space to prepend the record
-			// marker and reply RPC message to the buffer.
-			// Create a new buffer and copy the contents.
-			ch.maximumReplyRPCMessageSizeBytes.maybeIncrease(
-				maximumReplyRPCMessageSizeBytes,
-				replyRPCMessageSizeBytes)
-			biggerReplyBuffer := bytes.NewBuffer(make(
-				[]byte,
-				recordMarkerSizeBytes,
-				recordMarkerSizeBytes+replyRPCMessageSizeBytes+replyReturnValueSizeBytes))
-			replyRPCMessage.WriteTo(biggerReplyBuffer)
-			biggerReplyBuffer.Write(reply[replyReturnValueStartBytes:])
-			reply = biggerReplyBuffer.Bytes()
+		if _, err := replyRPCMessage.WriteTo(bytes.NewBuffer(reply[recordMarkerSizeBytes:recordMarkerSizeBytes])); err != nil {
+			return err
 		}
-		binary.BigEndian.PutUint32(reply, (replyRPCMessageSizeBytes+replyReturnValueSizeBytes)|0x80000000)
+		binary.BigEndian.PutUint32(reply, uint32(len(reply)-recordMarkerSizeBytes)|0x80000000)
 
 		_, err = ch.writer.Write(reply)
 		return err
