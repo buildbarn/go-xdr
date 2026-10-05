@@ -88,7 +88,7 @@ func (d programDefinition) emitAllDefinitions(s sink, r Resolver) error {
 	s.emitPackageNamePrefix("context")
 	s.emitString("Context, uint32, uint32, ")
 	s.emitPackageNamePrefix("io")
-	s.emitString("ReadCloser, ")
+	s.emitString("ReadCloser, func(int) ")
 	s.emitPackageNamePrefix("io")
 	s.emitString("Writer) (")
 	s.emitPackageNamePrefix(rpcv2Package)
@@ -97,7 +97,7 @@ func (d programDefinition) emitAllDefinitions(s sink, r Resolver) error {
 	s.emitPackageNamePrefix("context")
 	s.emitString("Context, vers uint32, proc uint32, r ")
 	s.emitPackageNamePrefix("io")
-	s.emitString("ReadCloser, w ")
+	s.emitString("ReadCloser, newReturnValue func(int) ")
 	s.emitPackageNamePrefix("io")
 	s.emitString("Writer) (")
 	s.emitPackageNamePrefix(rpcv2Package)
@@ -167,6 +167,19 @@ func (d programDefinition) emitAllDefinitions(s sink, r Resolver) error {
 			}
 			s.emitString(")\nif errProc != nil {\nreturn nil, errProc\n}\n")
 			if returnType := procedure.returnType; returnType != nil {
+				if size, err := returnType.getFixedEncodedSizeBytes(r); err != nil {
+					return err
+				} else if size == nil {
+					s.emitString("var nTotal int\n")
+					if err := returnType.emitGetVariableEncodedSizeBytes(s, r, i); err != nil {
+						return err
+					}
+					s.emitString("w := newReturnValue(nTotal)\n")
+				} else {
+					s.emitString("w := newReturnValue(")
+					s.emitString(size.String())
+					s.emitString(")\n")
+				}
 				s.emitString("{\nvar nField, nTotal int64\n")
 				if err := returnType.emitWriteTo(s, r, i); err != nil {
 					return err

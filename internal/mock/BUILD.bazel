@@ -24,16 +24,26 @@ gomock(
     package = "mock",
 )
 
+gomock(
+    name = "nfsv4",
+    out = "nfsv4.go",
+    interfaces = ["Nfs4Program"],
+    library = "//pkg/protocols/nfsv4",
+    package = "mock",
+)
+
 go_library(
     name = "mock",
     srcs = [
         "aliases.go",
+        "nfsv4.go",
         "rpcserver.go",
     ],
     importpath = "github.com/buildbarn/go-xdr/internal/mock",
     visibility = ["//:__subpackages__"],
     # keep
     deps = [
+        "//pkg/protocols/nfsv4",
         "//pkg/protocols/rpcv2",
         "@com_github_golang_mock//gomock",
     ],

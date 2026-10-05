@@ -39740,8 +39740,8 @@ type Nfs4Program interface {
 	NfsV4Nfsproc4Compound(context.Context, *Compound4args) (*Compound4res, error)
 }
 
-func NewNfs4ProgramService(p Nfs4Program) func(context.Context, uint32, uint32, io.ReadCloser, io.Writer) (rpcv2.AcceptedReplyData, error) {
-	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (rpcv2.AcceptedReplyData, error) {
+func NewNfs4ProgramService(p Nfs4Program) func(context.Context, uint32, uint32, io.ReadCloser, func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
+	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, newReturnValue func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
 		var err error
 		switch vers {
 		case 4:
@@ -39770,6 +39770,9 @@ func NewNfs4ProgramService(p Nfs4Program) func(context.Context, uint32, uint32, 
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
@@ -45259,8 +45262,8 @@ type Nfs4Callback interface {
 	NfsCbCbCompound(context.Context, *CbCompound4args) (*CbCompound4res, error)
 }
 
-func NewNfs4CallbackService(p Nfs4Callback) func(context.Context, uint32, uint32, io.ReadCloser, io.Writer) (rpcv2.AcceptedReplyData, error) {
-	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, w io.Writer) (rpcv2.AcceptedReplyData, error) {
+func NewNfs4CallbackService(p Nfs4Callback) func(context.Context, uint32, uint32, io.ReadCloser, func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
+	return func(ctx context.Context, vers, proc uint32, r io.ReadCloser, newReturnValue func(int) io.Writer) (rpcv2.AcceptedReplyData, error) {
 		var err error
 		switch vers {
 		case 1:
@@ -45289,6 +45292,9 @@ func NewNfs4CallbackService(p Nfs4Callback) func(context.Context, uint32, uint32
 				if errProc != nil {
 					return nil, errProc
 				}
+				var nTotal int
+				nTotal += m.GetEncodedSizeBytes()
+				w := newReturnValue(nTotal)
 				{
 					var nField, nTotal int64
 					nField, err = m.WriteTo(w)
