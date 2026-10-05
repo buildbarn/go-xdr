@@ -1,0 +1,31 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+load("//:xdr.bzl", "go_xdr_library")
+load("//pkg/compiler/tests:diff.bzl", "diff_test")
+
+go_xdr_library(
+    name = "opaque_generated",
+    src = "opaque.x",
+)
+
+diff_test(
+    name = "diff_test",
+    after = ":opaque_generated",
+    before = "opaque.go",
+)
+
+go_library(
+    name = "opaque",
+    srcs = ["opaque.go"],
+    importpath = "github.com/buildbarn/go-xdr/pkg/compiler/tests/opaque",
+    visibility = ["//visibility:public"],
+    deps = ["//pkg/runtime"],
+)
+
+go_test(
+    name = "opaque_test",
+    srcs = ["opaque_test.go"],
+    deps = [
+        ":opaque",
+        "@com_github_stretchr_testify//require",
+    ],
+)
