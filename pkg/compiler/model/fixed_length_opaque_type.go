@@ -68,5 +68,5 @@ func (t *fixedLengthOpaqueType) getFixedEncodedSizeBytes(r Resolver) (*big.Int, 
 	}
 	var withPadding big.Int
 	withPadding.Add(vv.constant, paddingMask)
-	return withPadding.AndNot(vv.constant, paddingMask), nil
+	return withPadding.AndNot(&withPadding, paddingMask), nil
 }
